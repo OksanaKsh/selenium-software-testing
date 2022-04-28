@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace FirstProject
 {
-    public class OpenURLAndClose
+    public class OpenAndCloseBrowser
     {
         IWebDriver webDriver;
 
