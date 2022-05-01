@@ -2,6 +2,8 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Threading;
+using OpenQA.Selenium.Support.UI;
+
 
 namespace FirstProject
 {
