@@ -26,7 +26,6 @@ namespace FirstProject
     {
         public IWebDriver driver;
 
-
         [SetUp]
         public void Setup()
         {
@@ -51,31 +50,6 @@ namespace FirstProject
             list.All((x) =>x != null);
 
             Assert.IsTrue(list.All((x) => x != null)); 
-
-            //for (int i = 0; i < CategoryListCount; i++)
-            //{
-            //    var elementCollection = driver.FindElements(By.Id("app-"));
-            //    var element = elementCollection[i];
-            //    element.Click();
-
-            //    var header = driver.FindElement(By.CssSelector("h1"));
-            //    var headerText = header.Text;
-            //    Assert.IsNotNull(headerText);
-
-            //    // Move along Subcategory inside Category
-            //    int subCategoryCount = driver.FindElements(By.CssSelector("[id^='doc-']")).Count();
-
-            //    for (int j = 0; j < subCategoryCount; j++)
-            //    {
-            //        var subCategoryCollection = driver.FindElements(By.CssSelector("[id^='doc-']"));
-            //        var subCategoryElement = subCategoryCollection[j];
-            //        subCategoryElement.Click();
-
-            //        var headerSubCategory = driver.FindElement(By.CssSelector("h1"));
-            //        var headerheaderSubCategoryText = headerSubCategory.Text;
-            //        Assert.IsNotNull(headerheaderSubCategoryText);
-            //    }
-            //}
         }
 
         [TearDown]

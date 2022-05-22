@@ -19,8 +19,9 @@ namespace Litecart.UI.Client.Pages.AdminApp
 
         [FindsBy(How = How.CssSelector, Using = "[id^='doc-']")]
         public IList<IWebElement> SubCategoryList { get; set; }
+        
 
-       
+        // Move along category and theirs subCategories and create a list of Headers of appeared pages
         public List<string> MoveAlongListAndClickEveryElement(IList<IWebElement> listOfElements)
         {
             List<string> listOfHeaders = new List<string>();

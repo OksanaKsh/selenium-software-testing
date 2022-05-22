@@ -24,8 +24,7 @@ namespace Litecart.UI.Client.Pages.AdminApp
         [FindsBy(How = How.Name, Using = "login")]
         public IWebElement Login { get; set; }
 
-      
-
+        // Login to AdminApp
         public void LoginAdminApp(string username, string password)
         {
             //IWebElement Username = driver.FindElement(By.Name("username"));
