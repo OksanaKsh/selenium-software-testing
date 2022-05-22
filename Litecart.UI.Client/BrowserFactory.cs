@@ -1,6 +1,6 @@
 ﻿namespace Litecart.UI.Client
 {
-    public class Class1
+    public class BrowserFactory
     {
 
     }
