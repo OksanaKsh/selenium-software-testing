@@ -11,54 +11,54 @@
 //Уложите созданный файл, содержащий сценарий, в ранее созданный репозиторий.
 //В качестве ответа на задание отправьте ссылку на свой репозиторий и указание, какой именно файл содержит нужный сценарий.
 
+using Litecart.UI.Client;
+using Litecart.UI.Client.Pages.UserApp;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.PageObjects;
 using System;
 using System.Linq;
+using static Litecart.UI.Client.DriverFactory;
 
 namespace FirstProject
 {
-    public class PresenceOfAllStickers
+    public class PresenceOfAllStickersTest
     {
-        IWebDriver webDriver;
+        public IWebDriver driver;
 
         [SetUp]
         public void Setup()
         {
-            webDriver = new ChromeDriver();
-            webDriver.Url = "http://localhost/litecart/en/"; //open page (the same as get in Javascript)
-            webDriver.Navigate();
+            driver = DriverFactory.StartBrowser("Chrome", "http://localhost/litecart/en/");
         }
 
         [Test]
+        [Repeat(5)]
         //[Ignore ("Ignore a test not ready yet")]
-        public void Test()
+        public void VerifyThatAllImagesHaveStickers()
         {
-            WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(10));
-            //Find a list of images and verify that all item have stickers
-            var listCategory = wait.Until(d => d.FindElements(By.CssSelector(".image-wrapper")));
-            int listCount = listCategory.Count();
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));//How to move it to driver factory
 
-            for (int i = 0; i < listCount; i++)
+            // Arrange?
+            HomePageLitecart homePage = new HomePageLitecart(driver);
+            PageFactory.InitElements(driver, homePage);
+
+            // Act
+            var textOfStickersList = homePage.FindTextOfStickersForEveryImage();
+
+            // Assert
+            foreach (var itemText in textOfStickersList)
             {
-                var elementCollection = webDriver.FindElements(By.CssSelector(".image-wrapper"));
-                var element = elementCollection[i];
-                var sticker = element.FindElement(By.CssSelector("[class^='sticker']"));
-                Assert.IsNotNull(sticker);
+                Assert.That(itemText, Is.Not.Null);
             }
         }
-
-        //foreach
-        //Assert Text of found element Assert That
-        //Repeat []
-        // Private methods usege (Assert)
 
         [TearDown]
         public void closeBrowser()
         {
-            webDriver.Quit();
+            driver.Quit();
         }
     }
 }
