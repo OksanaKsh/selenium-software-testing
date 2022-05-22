@@ -2,7 +2,6 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Threading;
-using OpenQA.Selenium.Support.UI;
 
 
 namespace FirstProject
@@ -10,7 +9,6 @@ namespace FirstProject
     public class OpenAndCloseBrowser
     {
         IWebDriver webDriver;
-
 
         [SetUp]
         public void Setup()

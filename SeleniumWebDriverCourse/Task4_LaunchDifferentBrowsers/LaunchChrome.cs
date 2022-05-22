@@ -38,18 +38,13 @@ namespace FirstProject
         [Test]
         public void Test()
         {
-            try
-            {
-                webDriver.FindElement(By.Name("username")).SendKeys(adminUsername);
+            
+            var element = webDriver.FindElement(By.Name("username"));
+            webDriver.FindElement(By.Name("username")).SendKeys(adminUsername);
 
-                webDriver.FindElement(By.Name("password")).SendKeys(adminPassword);
+            webDriver.FindElement(By.Name("password")).SendKeys(adminPassword);
 
-                webDriver.FindElement(By.Name("login")).Click();
-            }
-            catch (System.Exception)
-            {
-                webDriver.Quit();
-            }
+            webDriver.FindElement(By.Name("login")).Click();
 
         }
 

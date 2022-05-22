@@ -15,8 +15,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Threading;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace FirstProject
 {
@@ -38,47 +37,46 @@ namespace FirstProject
 
             webDriver.Url = "http://localhost/litecart/admin/"; //open page (the same as get in Javascript)
             webDriver.Navigate();
-            //Thread.Sleep(3000);
         }
 
         [Test]
-        [Ignore ("Ignore a test not ready yet")]
+        [Repeat(5)]
+        //[Ignore ("Ignore a test not ready yet")]
         public void Test()
         {
-            try
+            //Login
+            webDriver.FindElement(By.Name("username")).SendKeys(adminUsername);
+            webDriver.FindElement(By.Name("password")).SendKeys(adminPassword);
+            webDriver.FindElement(By.Name("login")).Click();
+
+            //Move along category
+            var listCategory = webDriver.FindElements(By.CssSelector("li#app-"));
+            int listCount = listCategory.Count();
+
+            for (int i = 0; i < listCount; i++)
             {
-                //Login
-                webDriver.FindElement(By.Name("username")).SendKeys(adminUsername);
+                var elementCollection = webDriver.FindElements(By.Id("app-"));
+                var element = elementCollection[i];
+                element.Click();
 
-                webDriver.FindElement(By.Name("password")).SendKeys(adminPassword);
+                var header = webDriver.FindElement(By.CssSelector("h1"));
+                var headerText = header.Text;
+                Assert.IsNotNull(headerText);
 
-                webDriver.FindElement(By.Name("login")).Click();
-                Thread.Sleep(2000);
+                // Move along Subcategory inside Category
+                int subCategoryCount = webDriver.FindElements(By.CssSelector("[id^='doc-']")).Count();
 
-                //Move along category
-                ReadOnlyCollection<IWebElement> listCategory = webDriver.FindElements(By.Id("app-"));
-                foreach(IWebElement element in listCategory) 
+                for (int j = 0; j < subCategoryCount; j++)
                 {
-                    element.Click();
-                    Thread.Sleep(2000);
-                } ReadOnlyCollection<IWebElement> listSubCategory = webDriver.FindElements(By.CssSelector("[id^=doc-]"));
-                foreach(IWebElement element in listSubCategory) 
-                {
-                    element.Click();
-                    Thread.Sleep(2000);
+                    var subCategoryCollection = webDriver.FindElements(By.CssSelector("[id^='doc-']"));
+                    var subCategoryElement = subCategoryCollection[j];
+                    subCategoryElement.Click();
+
+                    var headerSubCategory = webDriver.FindElement(By.CssSelector("h1"));
+                    var headerheaderSubCategoryText = headerSubCategory.Text;
+                    Assert.IsNotNull(headerheaderSubCategoryText);
                 }
-
-                //section[//h1[@id='hi']] 
-                //webDriver.FindElement(By.Name("Appearence")).Click();
-                //webDriver.FindElement(By.Name("Template")).Click();
-
-
             }
-            catch (System.Exception)
-            {
-                webDriver.Quit();
-            }
-
         }
 
         [TearDown]

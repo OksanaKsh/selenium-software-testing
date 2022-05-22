@@ -23,4 +23,8 @@
     <PackageReference Include="Selenium.WebDriver.MSEdgeDriver" Version="100.0.1185.50" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Task11_RegistrationOfUser\" />
+  </ItemGroup>
+
 </Project>
