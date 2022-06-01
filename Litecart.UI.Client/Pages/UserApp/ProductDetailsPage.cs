@@ -15,11 +15,11 @@ namespace Litecart.UI.Client.Pages.UserApp
 
         //Find product name in Campaign Block
         IWebElement NameOfProductDetailedPage = DriverFactory.driver.FindElement(By.CssSelector("h1.title"));
+        public IWebElement MyProperty => driver.FindElement(By.CssSelector("h1.title"));
+                             
 
-        //Find RegularPrice in Campaign Block
         IWebElement RegularPriceOfProductOnDetailedPage = DriverFactory.driver.FindElement(By.CssSelector(".regular-price"));
 
-        //Find CampaignPrice in Campaign Block
         IWebElement CampaignPriceProductOnDetailedPage = DriverFactory.driver.FindElement(By.CssSelector(".campaign-price"));
 
         // Read Name, Regular and Campaign price on Detailed Product Page
@@ -36,7 +36,7 @@ namespace Litecart.UI.Client.Pages.UserApp
                 CampaignPrice = CampaignPriceProductOnDetailedPage.Text,
                 CampaignPriceFont = Double.Parse(String.Concat(CampaignPriceProductOnDetailedPage.GetCssValue("font-size").Reverse().Skip(2).Reverse())),
                 CampaignPriceColor = ColorHelper.ParseColor(CampaignPriceProductOnDetailedPage.GetCssValue("color")),
-                IsBold = CampaignPriceProductOnDetailedPage.GetCssValue("font-weight").Equals("700") ? true : false
+                IsFontBold = CampaignPriceProductOnDetailedPage.GetCssValue("font-weight").Equals("700") ? true : false
             };
         }
     }

@@ -24,10 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Task11_RegistrationOfUser\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Litecart.UI.Client\Litecart.UI.Client.csproj" />
   </ItemGroup>
 

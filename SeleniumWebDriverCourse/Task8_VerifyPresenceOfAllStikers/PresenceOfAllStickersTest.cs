@@ -39,7 +39,6 @@ namespace FirstProject
         //[Ignore ("Ignore a test not ready yet")]
         public void VerifyThatAllImagesHaveStickers()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));//How to move it to driver factory
 
             // Arrange?
             HomePageLitecart homePage = new HomePageLitecart(driver);

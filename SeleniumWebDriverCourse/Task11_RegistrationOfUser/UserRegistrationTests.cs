@@ -19,15 +19,52 @@
 
 //В форме регистрации есть капча, её нужно отключить в админке учебного приложения
 //на вкладке Settings -> Security.
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Litecart.UI.Client;
+using Litecart.UI.Client.Pages.UserApp;
+using Litecart.UI.Client.Pages.UserApp.dto;
+using NUnit.Framework;
+using OpenQA.Selenium;
 
 namespace SeleniumWebDriverCourse.Task11_RegistrationOfUser
 {
-    internal class UserRegistration
+    public class UserRegistrationTests
     {
+        public IWebDriver driver;
+        //WebDriverWait wait;
+
+        [SetUp]
+        public void Setup()
+        {
+            driver = DriverFactory.StartBrowser("Chrome", "http://localhost/litecart/en/create_account");
+        }
+
+        [Test]
+        //[TestCaseSource(nameof(DataProvider.ValidCustomers))]
+        //[Ignore ("Ignore a test not ready yet")]
+        public void VerifyRegistrationNewUser(Customer customer)
+        {
+            // Arrange
+            RegistrationPage registrationPage = new RegistrationPage(driver);
+
+            // Act 
+
+
+            // Arrange
+        }
+
+
+
+
+
+
+
+        [TearDown]
+        public void closeBrowser()
+        {
+            driver.Quit();
+        }
+
+
     }
+
 }
