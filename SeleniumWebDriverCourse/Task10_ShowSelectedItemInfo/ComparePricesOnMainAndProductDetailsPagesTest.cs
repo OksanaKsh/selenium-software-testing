@@ -43,13 +43,13 @@ namespace FirstProject
             CampaignBlockOnMainPage campaignBlockOnMainPage = new CampaignBlockOnMainPage();
 
             // Act 
-            var mainPageInfo = campaignBlockOnMainPage.ReadInfo();
-            //campaignBlockOnMainPage.ReadInfo(campaignBlockOnMainPage);???
+            var mainPageInfo = LitecartBasePage.ReadInfo(campaignBlockOnMainPage);
+
             campaignBlockOnMainPage.ProductName.Click();
 
             ProductDetailsPage productDetailsPage = new ProductDetailsPage();
-            var detailedProductPageInfo = productDetailsPage.ReadInfo();
-        
+            var detailedProductPageInfo = LitecartBasePage.ReadInfo(productDetailsPage);    
+
             //Assert
             Assert.That(mainPageInfo.ProductName, Is.EqualTo(detailedProductPageInfo.ProductName), ProductDetailsErrors.ProductNameError);
             
@@ -67,8 +67,7 @@ namespace FirstProject
             AssertComparePrices.VerifyThatCampaignPriceIsRed(detailedProductPageInfo);
 
             AssertComparePrices.VerifyThatCampaignPriceFontIsGreaterThanRegularPriceFont(mainPageInfo);
-            AssertComparePrices.VerifyThatCampaignPriceFontIsGreaterThanRegularPriceFont(detailedProductPageInfo);
-            
+            AssertComparePrices.VerifyThatCampaignPriceFontIsGreaterThanRegularPriceFont(detailedProductPageInfo);          
         }
 
         [TearDown]
@@ -76,7 +75,5 @@ namespace FirstProject
         {
             Driver.Quit();
         }
-
-
     }
 }

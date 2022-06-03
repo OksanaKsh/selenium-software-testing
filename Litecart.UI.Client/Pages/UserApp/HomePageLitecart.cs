@@ -1,8 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using System.Collections.Generic;
-using SeleniumExtras.PageObjects;
-using System.Linq;
+﻿using OpenQA.Selenium;
 
 namespace Litecart.UI.Client.Pages.UserApp
 {

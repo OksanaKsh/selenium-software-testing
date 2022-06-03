@@ -17,7 +17,7 @@ namespace Litecart.UI.Client.Pages.UserApp
         public CampaignBlockOnMainPage CampaignBlockOnMainPage => new CampaignBlockOnMainPage();
         public LitecartBasePage? Site;
 
-        public ProductDetailsDto ReadInfo(IProductInfo productPage)
+        public static ProductDetailsDto ReadInfo(IProductInfo productPage)
         {
 
             return new ProductDetailsDto()

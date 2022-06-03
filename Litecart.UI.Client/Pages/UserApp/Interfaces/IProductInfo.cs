@@ -8,7 +8,5 @@ namespace Litecart.UI.Client.Pages.UserApp.Interfaces
         IWebElement ProductName { get;  }
         IWebElement RegularPrice { get;  }
         IWebElement CampaignPrice { get; }
-
-        ProductDetailsDto ReadInfo() ;
     }
 }
