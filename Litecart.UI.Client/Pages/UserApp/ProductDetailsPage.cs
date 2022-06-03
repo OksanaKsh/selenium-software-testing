@@ -15,6 +15,7 @@ namespace Litecart.UI.Client.Pages.UserApp
 
         public IWebElement CampaignPrice => DriverFactory.Driver.FindElement(By.CssSelector(".campaign-price"));
 
+
         public ProductDetailsDto ReadInfo()
         {
             ProductDetailsPage productDetailsPage = ProductDetailsPage;

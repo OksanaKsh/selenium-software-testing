@@ -16,6 +16,7 @@
 
 
 using Litecart.UI.Client;
+using Litecart.UI.Client.Helpers.ErrorMessages;
 using Litecart.UI.Client.Pages.UserApp;
 using Litecart.UI.Client.Pages.UserApp.Asserts;
 using Litecart.UI.Client.Pages.UserApp.Interfaces;
@@ -43,15 +44,17 @@ namespace FirstProject
 
             // Act 
             var mainPageInfo = campaignBlockOnMainPage.ReadInfo();
+            //campaignBlockOnMainPage.ReadInfo(campaignBlockOnMainPage);???
             campaignBlockOnMainPage.ProductName.Click();
 
             ProductDetailsPage productDetailsPage = new ProductDetailsPage();
             var detailedProductPageInfo = productDetailsPage.ReadInfo();
         
             //Assert
-            Assert.That(mainPageInfo.ProductName, Is.EqualTo(detailedProductPageInfo.ProductName));
+            Assert.That(mainPageInfo.ProductName, Is.EqualTo(detailedProductPageInfo.ProductName), ProductDetailsErrors.ProductNameError);
+            
 
-            Assert.That(mainPageInfo.RegularPrice.Amount, Is.EqualTo(detailedProductPageInfo.RegularPrice.Amount));
+            Assert.That(mainPageInfo.RegularPrice.Amount, Is.EqualTo(detailedProductPageInfo.RegularPrice.Amount),ProductDetailsErrors.PriceError);
 
             AssertComparePrices.VerifyThatRegularPriceIsLineThrough(mainPageInfo);
             AssertComparePrices.VerifyThatRegularPriceIsLineThrough(detailedProductPageInfo);
