@@ -44,7 +44,7 @@ namespace SeleniumWebDriverCourse.Task11_RegistrationOfUser
         public void VerifyRegistrationNewUser(Customer customer)
         {
             // Arrange
-            RegistrationPage registrationPage = new RegistrationPage(driver);
+            RegistrationPage registrationPage = new RegistrationPage();
 
             // Act 
 

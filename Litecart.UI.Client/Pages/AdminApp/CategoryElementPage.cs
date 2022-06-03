@@ -4,17 +4,8 @@ using SeleniumExtras.PageObjects;
 
 namespace Litecart.UI.Client.Pages.AdminApp
 {
-    public class CategoryElementPage
+    public class CategoryElementPage : AdminBasePage
     {
-        IWebDriver driver;
-
-        public CategoryElementPage(IWebDriver driver)
-        {
-            this.driver = driver;
-        }
-
-        [FindsBy(How = How.CssSelector, Using = "h1")]
-        public IWebElement Header { get; set; }
-
+         public IWebElement Header => DriverFactory.Driver.FindElement(By.CssSelector("h1"));
     }
 }

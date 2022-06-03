@@ -5,46 +5,28 @@ using SeleniumExtras.PageObjects;
 
 namespace Litecart.UI.Client.Pages.AdminApp
 {
-    public class HomePage
+    public class HomePage: AdminBasePage
     {
-        IWebDriver driver;
+        IList<IWebElement> CategoryList => DriverFactory.Driver.FindElements(By.CssSelector("li#app-"));
+        IList<IWebElement> SubCategoryList => DriverFactory.Driver.FindElements(By.CssSelector("[id^='doc-']"));
 
-        public HomePage(IWebDriver driver)
+        public void  EveryCategoryAndSubCategoryHasHeader()
         {
-            this.driver = driver;
-    }
-
-        [FindsBy(How = How.CssSelector, Using = "li#app-")]
-        public IList<IWebElement> CategoryList { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = "[id^='doc-']")]
-        public IList<IWebElement> SubCategoryList { get; set; }
-        
-
-        // Move along category and theirs subCategories and create a list of Headers of appeared pages
-        public List<string> MoveAlongListAndClickEveryElement(IList<IWebElement> listOfElements)
-        {
-            List<string> listOfHeaders = new List<string>();
-            CategoryElementPage categoryPage = new CategoryElementPage(driver);
-            PageFactory.InitElements(driver, categoryPage);
-            for (int i = 0; i < listOfElements.Count; i++)
+            CategoryElementPage categoryPage = CategoryElementPage; 
+  
+            for (int i = 0; i < CategoryList.Count; i++)
             {
-                var element = listOfElements[i];
+                var element = CategoryList[i];
                 element.Click();
-
-                //Add headers to the list of headers
-                listOfHeaders.Add(categoryPage.Header.Text);
+                Assert.That(categoryPage.Header.Text, Is.Not.Null);
 
                 for (int j = 0; j < SubCategoryList.Count; j++)
                 {
                     var subCategoryElement = SubCategoryList[j];
                     subCategoryElement.Click();
-                    
-                    //Add headers to the list of headers
-                    listOfHeaders.Add(categoryPage.Header.Text);
+                    Assert.That(categoryPage.Header.Text, Is.Not.Null);
                 }
             }
-            return listOfHeaders;   
         }
     }
 }

@@ -6,28 +6,14 @@ using SeleniumExtras.PageObjects;
 
 namespace Litecart.UI.Client.Pages.AdminApp
 {
-    public  class LoginPage
+    public  class LoginPage : AdminBasePage
     {
-        IWebDriver driver;
+        IWebElement Username => DriverFactory.Driver.FindElement(By.Name("username"));
+        IWebElement Password => DriverFactory.Driver.FindElement(By.Name("password"));
+        IWebElement Login => DriverFactory.Driver.FindElement(By.Name("login"));
 
-        public LoginPage(IWebDriver driver)
-        {
-            this.driver = driver;
-        }
-
-        [FindsBy(How = How.Name, Using = "username")]
-        private IWebElement Username { get; set; }
-
-        [FindsBy(How = How.Name, Using = "password")]
-        public IWebElement Password { get; set; }
-
-        [FindsBy(How = How.Name, Using = "login")]
-        public IWebElement Login { get; set; }
-
-        // Login to AdminApp
         public void LoginAdminApp(string username, string password)
         {
-            //IWebElement Username = driver.FindElement(By.Name("username"));
             Username.SendKeys(username);
             Password.SendKeys(password);
             Login.Click();

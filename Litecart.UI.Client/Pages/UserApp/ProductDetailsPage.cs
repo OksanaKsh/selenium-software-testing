@@ -1,42 +1,42 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using Litecart.UI.Client.Pages.UserApp.Dto;
+using Litecart.UI.Client.Pages.UserApp.dto;
+using Litecart.UI.Client.Pages.UserApp.Interfaces;
+using Litecart.UI.Client.Helpers;
 
 namespace Litecart.UI.Client.Pages.UserApp
 {
-    public class ProductDetailsPage
+    public class ProductDetailsPage: LitecartBasePage,IProductInfo
     {
-        public IWebDriver driver;
+        public IWebElement ProductName => DriverFactory.Driver.FindElement(By.CssSelector("h1.title"));
 
-        public ProductDetailsPage(IWebDriver driver)
+        public IWebElement RegularPrice => DriverFactory.Driver.FindElement(By.CssSelector(".regular-price"));
+
+        public IWebElement CampaignPrice => DriverFactory.Driver.FindElement(By.CssSelector(".campaign-price"));
+
+        public ProductDetailsDto ReadInfo()
         {
-            this.driver = driver;
-        }
+            ProductDetailsPage productDetailsPage = ProductDetailsPage;
 
-        //Find product name in Campaign Block
-        IWebElement NameOfProductDetailedPage = DriverFactory.driver.FindElement(By.CssSelector("h1.title"));
-        public IWebElement MyProperty => driver.FindElement(By.CssSelector("h1.title"));
-                             
-
-        IWebElement RegularPriceOfProductOnDetailedPage = DriverFactory.driver.FindElement(By.CssSelector(".regular-price"));
-
-        IWebElement CampaignPriceProductOnDetailedPage = DriverFactory.driver.FindElement(By.CssSelector(".campaign-price"));
-
-        // Read Name, Regular and Campaign price on Detailed Product Page
-        public  ProductDetailsOnDetailedPageDto ReadInfo()
-        {
-            return new ProductDetailsOnDetailedPageDto()
+            return new ProductDetailsDto()
             {
-                ProductName = NameOfProductDetailedPage.Text,// or .GetAttribute("textContent")
-                RegularPrice = RegularPriceOfProductOnDetailedPage.Text,
-                RegularPriceColor = ColorHelper.ParseColor(RegularPriceOfProductOnDetailedPage.GetCssValue("color")),
-                IsLineThrough = RegularPriceOfProductOnDetailedPage.GetCssValue("text-decoration") != null ? true : false,
-                RegularPriceFont = Double.Parse(String.Concat(RegularPriceOfProductOnDetailedPage.GetCssValue("font-size").Reverse().Skip(2).Reverse())),
+                ProductName = ProductName.Text,
+                RegularPrice = new RegularPriceDto()
+                {
+                    Amount = productDetailsPage.GetPrice(RegularPrice),
+                    Color = productDetailsPage.GetColor(RegularPrice),
+                    Font = productDetailsPage.ToDouble(productDetailsPage.GetSize(RegularPrice)),
+                    IsLineThrough = productDetailsPage.IsLineThrough(RegularPrice)
+                },
 
-                CampaignPrice = CampaignPriceProductOnDetailedPage.Text,
-                CampaignPriceFont = Double.Parse(String.Concat(CampaignPriceProductOnDetailedPage.GetCssValue("font-size").Reverse().Skip(2).Reverse())),
-                CampaignPriceColor = ColorHelper.ParseColor(CampaignPriceProductOnDetailedPage.GetCssValue("color")),
-                IsFontBold = CampaignPriceProductOnDetailedPage.GetCssValue("font-weight").Equals("700") ? true : false
+                CampaignPrice = new CampaignPriceDto()
+                {
+                    Amount = productDetailsPage.GetPrice(CampaignPrice),
+                    Color = productDetailsPage.GetColor(CampaignPrice),
+                    Font = productDetailsPage.ToDouble(productDetailsPage.GetSize(CampaignPrice)),
+                    IsFontBold = productDetailsPage.IsBold(CampaignPrice),
+                }
             };
         }
     }

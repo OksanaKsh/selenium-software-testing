@@ -6,23 +6,12 @@ using System.Linq;
 
 namespace Litecart.UI.Client.Pages.UserApp
 {
-    public class HomePageLitecart
+    public class HomePageLitecart: LitecartBasePage
     {
-        public IWebDriver driver;
+        IList<IWebElement> ListOfImages => DriverFactory.Driver.FindElements(By.CssSelector(".image-wrapper"));
+        By locatorOfSticker = By.CssSelector("[class^='sticker']");
 
-        public HomePageLitecart(IWebDriver driver)
-        {
-            this.driver = driver;
-        }
-
-        //Find list of Images withDuck
-        [FindsBy(How = How.CssSelector, Using = ".image-wrapper")]
-        public IList<IWebElement> ListOfImages { get; set; }
-
-     
-
-        // FindText for every sticker Image and write it to the list
-        public List<string> FindTextOfStickersForEveryImage()
+        public List<string> FindValuesOfStickersForImages()
         {
             List<string> textOfStickers = new List<string>();
 
@@ -34,8 +23,6 @@ namespace Litecart.UI.Client.Pages.UserApp
             return textOfStickers;
         }
 
-        //locator of Sticker Inside image with Duck
-        By locatorOfSticker = By.CssSelector("[class^='sticker']");
     }
 }
 

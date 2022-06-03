@@ -15,49 +15,35 @@ using Litecart.UI.Client;
 using Litecart.UI.Client.Pages.UserApp;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.PageObjects;
-using System;
-using System.Linq;
-using static Litecart.UI.Client.DriverFactory;
 
 namespace FirstProject
 {
     public class PresenceOfAllStickersTest
     {
-        public IWebDriver driver;
+        public IWebDriver? Driver;
 
         [SetUp]
         public void Setup()
         {
-            driver = DriverFactory.StartBrowser("Chrome", "http://localhost/litecart/en/");
+            Driver = DriverFactory.StartBrowser("Chrome", "http://localhost/litecart/en/");
         }
 
         [Test]
-        [Repeat(5)]
+        //[Repeat(5)]
         //[Ignore ("Ignore a test not ready yet")]
         public void VerifyThatAllImagesHaveStickers()
         {
+            // Arrange
+            HomePageLitecart homePage = new HomePageLitecart();
 
-            // Arrange?
-            HomePageLitecart homePage = new HomePageLitecart(driver);
-            PageFactory.InitElements(driver, homePage);
-
-            // Act
-            var textOfStickersList = homePage.FindTextOfStickersForEveryImage();
-
-            // Assert
-            foreach (var itemText in textOfStickersList)
-            {
-                Assert.That(itemText, Is.Not.Null);
-            }
+            // Act & Assert
+            Assert.That(homePage.FindValuesOfStickersForImages(), Has.No.Null);
         }
 
         [TearDown]
-        public void closeBrowser()
+        public void CloseBrowser()
         {
-            driver.Quit();
+            Driver?.Quit();
         }
     }
 }

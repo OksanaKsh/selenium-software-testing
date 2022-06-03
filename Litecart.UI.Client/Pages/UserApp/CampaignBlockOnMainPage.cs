@@ -1,56 +1,46 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using Litecart.UI.Client.Pages.UserApp.Dto;
+using static Litecart.UI.Client.Helpers.ParseText;
+using Litecart.UI.Client.Pages.UserApp.dto;
+using Litecart.UI.Client.Pages.UserApp.Interfaces;
 
 namespace Litecart.UI.Client.Pages.UserApp
 {
-    public class CampaignBlockOnMainPage
+    public class CampaignBlockOnMainPage : LitecartBasePage, IProductInfo
     {
-        public IWebDriver driver;
+        public IWebElement ProductName => DriverFactory.Driver.FindElement(By.CssSelector("#box-campaigns.box .product .name"));
 
-        public CampaignBlockOnMainPage(IWebDriver driver)
+        public IWebElement RegularPrice => DriverFactory.Driver.FindElement(By.CssSelector("#box-campaigns.box .product .price-wrapper .regular-price"));
+
+        public IWebElement CampaignPrice => DriverFactory.Driver.FindElement(By.CssSelector("#box-campaigns.box .product .price-wrapper .campaign-price"));
+
+        public object ProductDetailsDto { get; internal set; }
+
+        public ProductDetailsDto ReadInfo()
         {
-            this.driver = driver;
-        }
-        //List<IWebElement> listOfProductOnCampaignBlock = new List<IWebElement>();   
-        //listOfProductOnCampaignBlock = driver.FindElements(By.CssSelector("#box-campaigns.box"));
+            CampaignBlockOnMainPage campaignBlock = CampaignBlockOnMainPage;
 
-        //Find product name in Campaign Block
-        public IWebElement NameOfProductOnMainPage = DriverFactory.driver.FindElement(By.CssSelector("#box-campaigns.box .product .name"));
-
-        //Find RegularPrice in Campaign Block
-        IWebElement RegularPriceOfProductOnMainPage = DriverFactory.driver.FindElement(By.CssSelector("#box-campaigns.box .product .price-wrapper .regular-price"));
-
-        //Find CampaignPrice in Campaign Block
-        IWebElement CampaignPriceProductOnMainPage= DriverFactory.driver.FindElement(By.CssSelector("#box-campaigns.box .product .price-wrapper .campaign-price"));
-
-        // Read Name, Regular and Campaign price from CampaignBlock OnMain Page
-        public ProductDetailsOnMainPageDto ReadInfo()
-        {
-            return new ProductDetailsOnMainPageDto()
+            return new ProductDetailsDto()
             {
-                ProductName = NameOfProductOnMainPage.Text,// or .GetAttribute("textContent")
-                RegularPrice = RegularPriceOfProductOnMainPage.Text,
-                RegularPriceColor = ColorHelper.ParseColor(RegularPriceOfProductOnMainPage.GetCssValue("color")),
-                IsLineThrough = RegularPriceOfProductOnMainPage.GetCssValue("text-decoration")!= null ? true : false,
-                RegularPriceFont = Double.Parse(String.Concat(RegularPriceOfProductOnMainPage.GetCssValue("font-size").Reverse().Skip(2).Reverse())),
+                ProductName = ProductName.Text,
+                RegularPrice = new RegularPriceDto()
+                {
+                    Amount = campaignBlock.GetPrice(RegularPrice),
+                    Color = campaignBlock.GetColor(RegularPrice),
+                    Font = campaignBlock.ToDouble(campaignBlock.GetSize(RegularPrice)),
+                    IsLineThrough = campaignBlock.IsLineThrough(RegularPrice)
+                },
 
-                CampaignPrice = CampaignPriceProductOnMainPage.Text,
-                CampaignPriceFont = Double.Parse(String.Concat(CampaignPriceProductOnMainPage.GetCssValue("font-size").Reverse().Skip(2).Reverse())),
-                CampaignPriceColor = ColorHelper.ParseColor(CampaignPriceProductOnMainPage.GetCssValue("color")),
-                IsBold = CampaignPriceProductOnMainPage.GetCssValue("font-weight").Equals("700") ? true : false
+                CampaignPrice = new CampaignPriceDto()
+                {
+                    Amount = campaignBlock.GetPrice(CampaignPrice),
+                    Color = campaignBlock.GetColor(CampaignPrice),
+                    Font = campaignBlock.ToDouble(campaignBlock.GetSize(CampaignPrice)),
+                    IsFontBold = campaignBlock.IsBold(CampaignPrice),
+                }
             };
-            }
-        //Select the first product in Campaign block
-        //public IWebElement SelectFirstElementInCampaign()
-        //{
-        //    return ListOfProductsInCampaign[0];
-        //}
-
-
-        //IWebElement firstProduct = ListOfProductsInCampaign[0]; - Why it is not allowed
-
+        }
+     
     }
-
-    }
-
+}

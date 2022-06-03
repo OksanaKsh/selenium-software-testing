@@ -15,56 +15,45 @@ using Litecart.UI.Client;
 using Litecart.UI.Client.Pages.UserApp;
 using Litecart.UI.Client.Helpers;
 using Litecart.UI.Client.Pages.AdminApp;
-using SeleniumExtras.PageObjects;
 
 namespace FirstProject
 {
     public class SortCountries
     {
-        IWebDriver driver;
-
+        IWebDriver Driver;
 
         [SetUp]
         public void Setup()
         {
-            driver = DriverFactory.StartBrowser("Chrome", "http://localhost/litecart/admin/?app=countries&doc=countries");
-            
+            Driver = DriverFactory.StartBrowser("Chrome", CountriesPage.UrlCountries);            
         }
 
         [Test]
         //[Ignore("Ignore a test not ready yet")]
         public void CountriesAndZonesNameSorting()
         {
-            //Login
-            //PageFactory.InitElements(driver, this);
-            LoginPage loginPage = new LoginPage(driver);
-            PageFactory.InitElements(driver, loginPage);
+            LoginPage loginPage = new LoginPage();
             loginPage.LoginAdminApp("admin", "admin");
 
             // Arrange
-            CountriesPage countriesPage = new CountriesPage(driver);
-            //GeoZonesPage geoZonesPage = new GeoZonesPage(driver);
+            CountriesPage countriesPage = new CountriesPage();
 
-            //проверить, что страны расположены в алфавитном порядке
+            // Act && Assert
             AlphabeticalOrderSorting.VerifyThatItemsAreSortedInAlphabeticalOrder(countriesPage.ListOfCountries);
 
-            //б) для тех стран, у которых количество зон отлично от нуля -- открыть страницу этой страны и
-            //там проверить, что зоны расположены в алфавитном порядке
-            countriesPage.VerifyZonesAreSortedForCountryWhereZonesGreaterThanZero();
+            countriesPage.VerifyZonesAreSortedForCountryWhenAmountOfZonesGreaterThanZero();
 
+            Driver.Navigate().GoToUrl(GeoZonesPage.UrlGeoZones);
+            GeoZonesPage geoZonesPage = new GeoZonesPage();
 
-            ////2) на странице http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones
-            //зайти в каждую из стран и проверить, что зоны расположены в алфавитном порядке
-            driver.Navigate().GoToUrl(GeoZonesPage.urlGeoZones);
-            GeoZonesPage geoZonesPage = new GeoZonesPage(driver);
-            
+            // Act && Assert
             geoZonesPage.SelectEveryCountryAndVerifyThatZoneAreInAlphabeticalOrder();
         }
 
         [TearDown]
-        public void closeBrowser()
+        public void CloseBrowser()
         {
-            driver.Quit();
+            Driver.Quit();
         }
     }
 }

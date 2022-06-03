@@ -9,13 +9,8 @@
 //Если возникают проблемы с выбором локаторов для поиска элементов -- обращайтесь в чат за помощью.
 
 
-using System;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System.Threading;
-using OpenQA.Selenium.Support.UI;
-using System.Linq;
 using Litecart.UI.Client;
 using Litecart.UI.Client.Pages.AdminApp;
 using SeleniumExtras.PageObjects;
@@ -24,38 +19,33 @@ namespace FirstProject
 {
     public class MoveAlongAllMenuAdminPanelTest
     {
-        public IWebDriver driver;
+        public IWebDriver Driver;
 
         [SetUp]
         public void Setup()
         {
-            driver = DriverFactory.StartBrowser("Chrome", "http://localhost/litecart/admin/");
+            Driver = DriverFactory.StartBrowser("Chrome", "http://localhost/litecart/admin/");
         }
 
         [Test]
-        [Repeat(5)]
+        //[Repeat(5)]
         //[Ignore ("Ignore a test not ready yet")]
-        public void VerifyThatEveryCategoryAndSubCategoryAreClickableAndHaveHeader()
+        public void CategoryAndSubCategoryAreClickableAndHaveHeader()
         {
-            //Login
-            LoginPage loginPage = new LoginPage(driver);
-            PageFactory.InitElements(driver, loginPage);
+            LoginPage loginPage = new LoginPage();
             loginPage.LoginAdminApp("admin", "admin");
 
-            // CategoryList
-            HomePage homePage = new HomePage(driver);
-            PageFactory.InitElements(driver, homePage);
-            
-            // Act & Assert
-            var list = homePage.MoveAlongListAndClickEveryElement(homePage.CategoryList);
-            //Assert.That(list.All((x) => x != null), Has.No); 
+            // Arrange
+            HomePage homePage = new HomePage();
 
+            // Act & Assert
+            homePage.EveryCategoryAndSubCategoryHasHeader();
         }
 
         [TearDown]
         public void CloseBrowser()
         {
-            driver.Quit();
+            Driver.Quit();
         }
     }
 }

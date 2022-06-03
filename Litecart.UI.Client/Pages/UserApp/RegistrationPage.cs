@@ -7,62 +7,57 @@ using Litecart.UI.Client.Pages.UserApp.dto;
 
 namespace Litecart.UI.Client.Pages.UserApp
 {
-    public class RegistrationPage
+    public class RegistrationPage: LitecartBasePage
     {
         public IWebDriver driver;
 
-        public RegistrationPage(IWebDriver driver)
-        {
-            this.driver = driver;
-            //this.wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-        }
         // Title
-        IWebElement Title = DriverFactory.driver.FindElement(By.CssSelector("h1.title"));
+        IWebElement Title = DriverFactory.Driver.FindElement(By.CssSelector("h1.title"));
 
         // TaxId field
-        IWebElement TaxId = DriverFactory.driver.FindElement(By.CssSelector("input[name ='tax_id']"));
+        IWebElement TaxId = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='tax_id']"));
 
         // Company field
-        IWebElement Company = DriverFactory.driver.FindElement(By.CssSelector("input[name ='company']"));
+        IWebElement Company = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='company']"));
 
         // FirstName field
-        IWebElement FirstNameInput = DriverFactory.driver.FindElement(By.CssSelector("input[name ='firstname'"));
+        IWebElement FirstNameInput = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='firstname'"));
 
         // LastName field
-        IWebElement LastNameInput = DriverFactory.driver.FindElement(By.CssSelector("input[name ='lastname']"));
+        IWebElement LastNameInput = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='lastname']"));
 
         // Address1 field
-        IWebElement Address1 = DriverFactory.driver.FindElement(By.CssSelector("input[name ='address1']"));
+        IWebElement Address1 = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='address1']"));
 
         // Address2 field
-        IWebElement Address2 = DriverFactory.driver.FindElement(By.CssSelector("input[name ='address1']"));
+        IWebElement Address2 = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='address1']"));
 
         // PostCode field
-        IWebElement PostCode = DriverFactory.driver.FindElement(By.CssSelector("input[name ='postcode']"));
+        IWebElement PostCode = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='postcode']"));
 
         // City field
-        IWebElement City = DriverFactory.driver.FindElement(By.CssSelector("input[name ='city']"));
+        IWebElement City = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='city']"));
 
         // Country field
-        //IWebElement Country = DriverFactory.driver.FindElement(By.CssSelector("input[name ='postcode'"));?? Locator
+        //IWebElement Country = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='postcode'"));?? Locator
 
         // Email field
-        IWebElement Email = DriverFactory.driver.FindElement(By.CssSelector("input[name ='email']"));
+        IWebElement Email = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='email']"));
 
         // Phone field]
-        IWebElement Phone = DriverFactory.driver.FindElement(By.CssSelector("input[name ='phone']"));
+        IWebElement Phone = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='phone']"));
 
         // Newsletter subscribe field
-        IWebElement Subscribe = DriverFactory.driver.FindElement(By.CssSelector("input[name ='newsletter']"));
+        IWebElement Subscribe = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='newsletter']"));
 
         // DesiredPassword field
-        IWebElement DesiredPassword = DriverFactory.driver.FindElement(By.CssSelector("input[name ='password']"));
+        IWebElement DesiredPassword = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='password']"));
 
         // ConfirmedPassword field
-        IWebElement ConfirmedPassword = DriverFactory.driver.FindElement(By.CssSelector("input[name ='confirmed_password']"));
+        IWebElement ConfirmedPassword = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='confirmed_password']"));
 
         // Create Account button
-        IWebElement CreateAccountButton = DriverFactory.driver.FindElement(By.CssSelector("input[name ='create_account']"));
+        IWebElement CreateAccountButton = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='create_account']"));
 
         public string GenerateUniqueEmail()
         {
