@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Litecart.UI.Client.Pages.UserApp.dto
+namespace FirstProject.dto
 {
     public class CampaignPriceDto
     {
-        public int Amount { get; set; }
+        public double Amount { get; set; }
         public double Font { get; set; }
         public Color Color { get; set; }
         public bool IsFontBold { get; set; }

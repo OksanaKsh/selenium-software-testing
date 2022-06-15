@@ -15,65 +15,37 @@
 //д) акционная цена крупнее, чем обычная (это тоже надо проверить на каждой странице независимо)
 
 
-using Litecart.UI.Client;
+using FirstProject.Asserts;
 using Litecart.UI.Client.Helpers.ErrorMessages;
-using Litecart.UI.Client.Pages.UserApp;
-using Litecart.UI.Client.Pages.UserApp.Asserts;
-using Litecart.UI.Client.Pages.UserApp.Interfaces;
 using NUnit.Framework;
-using OpenQA.Selenium;
 
 namespace FirstProject
 {
-    public class ComparePricesOnMainAndProductDetailsPagesTest
+    public class ComparePricesOnMainAndProductDetailsPagesTest: UserBaseUiTest
     {
-        public IWebDriver Driver;
-
-        [SetUp]
-        public void Setup()
-        {
-            Driver = DriverFactory.StartBrowser("Chrome", "http://localhost/litecart/en/");
-        }
-
         [Test]
         //[Ignore ("Ignore a test not ready yet")]
         public void VerifyDataOnMainPageAndDetailedProductPageAreSame()
         {
             // Arrange
-            CampaignBlockOnMainPage campaignBlockOnMainPage = new CampaignBlockOnMainPage();
+            var campaignBlockOnMainPage = Site.MainLitecartPage.CampaignBlockOnMainPage;
 
             // Act 
-            var mainPageInfo = LitecartBasePage.ReadInfo(campaignBlockOnMainPage);
+            var mainPageInfo = campaignBlockOnMainPage.ReadInfo();
 
             campaignBlockOnMainPage.ProductName.Click();
 
-            ProductDetailsPage productDetailsPage = new ProductDetailsPage();
-            var detailedProductPageInfo = LitecartBasePage.ReadInfo(productDetailsPage);    
+            ProductDetailsPage productDetailsPage = Site.ProductDetailsPage;
+            var detailedProductPageInfo = productDetailsPage.ReadInfo();    
 
             //Assert
-            Assert.That(mainPageInfo.ProductName, Is.EqualTo(detailedProductPageInfo.ProductName), ProductDetailsErrors.ProductNameError);
-            
-
+            Assert.That(mainPageInfo.ProductName, Is.EqualTo(detailedProductPageInfo.ProductName), ProductDetailsErrors.ProductNameError);            
             Assert.That(mainPageInfo.RegularPrice.Amount, Is.EqualTo(detailedProductPageInfo.RegularPrice.Amount),ProductDetailsErrors.PriceError);
-
-            AssertComparePrices.VerifyThatRegularPriceIsLineThrough(mainPageInfo);
-            AssertComparePrices.VerifyThatRegularPriceIsLineThrough(detailedProductPageInfo);
-            AssertComparePrices.VerifyThatRegularPriceIsGrey(mainPageInfo);
-            AssertComparePrices.VerifyThatRegularPriceIsGrey(detailedProductPageInfo);
-
-            AssertComparePrices.VerifyThatRegularPriceIsBold(mainPageInfo);
-            AssertComparePrices.VerifyThatRegularPriceIsBold(detailedProductPageInfo);
-            AssertComparePrices.VerifyThatCampaignPriceIsRed(mainPageInfo);
-            AssertComparePrices.VerifyThatCampaignPriceIsRed(detailedProductPageInfo);
-
-            AssertComparePrices.VerifyThatCampaignPriceFontIsGreaterThanRegularPriceFont(mainPageInfo);
-            AssertComparePrices.VerifyThatCampaignPriceFontIsGreaterThanRegularPriceFont(detailedProductPageInfo);          
-        }
-
-        [TearDown]
-        public void СloseBrowser()
-        {
-            Driver.Quit();
+            AssertComparePrices.VerifyThatRegularPriceIsLineThrough(mainPageInfo, detailedProductPageInfo);
+            AssertComparePrices.VerifyThatRegularPriceIsGrey(mainPageInfo, detailedProductPageInfo);
+            AssertComparePrices.VerifyThatRegularPriceIsBold(mainPageInfo, detailedProductPageInfo);
+            AssertComparePrices.VerifyThatCampaignPriceIsRed(mainPageInfo, detailedProductPageInfo);
+            AssertComparePrices.VerifyThatCampaignPriceFontIsGreaterThanRegularPriceFont(mainPageInfo, detailedProductPageInfo);        
         }
     }
 }

@@ -10,50 +10,31 @@
 //зайти в каждую из стран и проверить, что зоны расположены в алфавитном порядке
 
 using NUnit.Framework;
-using OpenQA.Selenium;
-using Litecart.UI.Client;
-using Litecart.UI.Client.Pages.UserApp;
 using Litecart.UI.Client.Helpers;
-using Litecart.UI.Client.Pages.AdminApp;
 
 namespace FirstProject
 {
-    public class SortCountries
+    public class SortCountriesTest: AdminBaseUiTest
     {
-        IWebDriver Driver;
-
-        [SetUp]
-        public void Setup()
-        {
-            Driver = DriverFactory.StartBrowser("Chrome", CountriesPage.UrlCountries);            
-        }
-
         [Test]
         //[Ignore("Ignore a test not ready yet")]
         public void CountriesAndZonesNameSorting()
         {
-            LoginPage loginPage = new LoginPage();
-            loginPage.LoginAdminApp("admin", "admin");
+            LoginAdminApp();
+            DriverFactory.Driver.Navigate().GoToUrl(CountriesPage.UrlCountries);
 
             // Arrange
-            CountriesPage countriesPage = new CountriesPage();
-
+            CountriesPage countriesPage = AdminSite.CountriesPage;
+            
             // Act && Assert
-            AlphabeticalOrderSorting.VerifyThatItemsAreSortedInAlphabeticalOrder(countriesPage.ListOfCountries);
+            AlphabeticalOrderSorting.VerifyThatItemsAreSortedInAlphabeticalOrder(CountriesPage.ListOfCountries);
 
             countriesPage.VerifyZonesAreSortedForCountryWhenAmountOfZonesGreaterThanZero();
 
-            Driver.Navigate().GoToUrl(GeoZonesPage.UrlGeoZones);
-            GeoZonesPage geoZonesPage = new GeoZonesPage();
+            DriverFactory.Driver.Navigate().GoToUrl(GeoZonesPage.UrlGeoZones);
 
             // Act && Assert
-            geoZonesPage.SelectEveryCountryAndVerifyThatZoneAreInAlphabeticalOrder();
-        }
-
-        [TearDown]
-        public void CloseBrowser()
-        {
-            Driver.Quit();
+            GeoZonesPage.SelectEveryCountryAndVerifyThatZoneAreInAlphabeticalOrder();
         }
     }
 }

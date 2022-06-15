@@ -2,7 +2,7 @@
 using SeleniumExtras.PageObjects;
 
 
-namespace Litecart.UI.Client.Pages.AdminApp
+namespace FirstProject
 {
     public class CategoryElementPage : AdminBasePage
     {

@@ -1,7 +1,7 @@
-﻿using Litecart.UI.Client.Pages.UserApp.Dto;
+﻿using FirstProject.Dto;
 using OpenQA.Selenium;
 
-namespace Litecart.UI.Client.Pages.UserApp.Interfaces
+namespace FirstProject.Interfaces
 {
     public interface IProductInfo
     {

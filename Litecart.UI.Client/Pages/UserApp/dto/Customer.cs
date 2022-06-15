@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Litecart.UI.Client.Pages.UserApp.dto
+namespace FirstProject.dto
 {
    
-        public class Customer
+        public class RegistrationPageDto
         {
             public string Address { get;  set; }
             public string City { get; set; }

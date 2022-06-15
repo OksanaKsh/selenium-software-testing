@@ -11,22 +11,13 @@
 //Уложите созданный файл, содержащий сценарий, в ранее созданный репозиторий.
 //В качестве ответа на задание отправьте ссылку на свой репозиторий и указание, какой именно файл содержит нужный сценарий.
 
-using Litecart.UI.Client;
-using Litecart.UI.Client.Pages.UserApp;
 using NUnit.Framework;
-using OpenQA.Selenium;
+using System.Collections.Generic;
 
 namespace FirstProject
 {
-    public class PresenceOfAllStickersTest
+    public class PresenceOfAllStickersTest : UserBaseUiTest
     {
-        public IWebDriver? Driver;
-
-        [SetUp]
-        public void Setup()
-        {
-            Driver = DriverFactory.StartBrowser("Chrome", "http://localhost/litecart/en/");
-        }
 
         [Test]
         //[Repeat(5)]
@@ -34,16 +25,19 @@ namespace FirstProject
         public void VerifyThatAllImagesHaveStickers()
         {
             // Arrange
-            HomePageLitecart homePage = new HomePageLitecart();
+            HomePageLitecart homePage = Site.HomePageLitecart;
 
             // Act & Assert
-            Assert.That(homePage.FindValuesOfStickersForImages(), Has.No.Null);
+            //Assert.That(homePage.FindValuesOfStickersForImages(), Has.None.Null);
+            Assert.That(homePage.FindValuesOfStickersForImagesLinq(), Has.None.Null);
         }
-
-        [TearDown]
-        public void CloseBrowser()
+        [Test]
+        public void VerifyThatAllImagesHaveStickersTest()
         {
-            Driver?.Quit();
+            var list = new List<string>() { "123", null };
+
+            // Act & Assert
+            Assert.That(list, Has.None.Null);
         }
     }
 }

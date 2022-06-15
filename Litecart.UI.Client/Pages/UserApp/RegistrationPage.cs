@@ -1,83 +1,89 @@
-﻿using NUnit.Framework;
+﻿using FirstProject.dto;
 using OpenQA.Selenium;
-using System.Collections.Generic;
-using SeleniumExtras.PageObjects;
-using System.Linq;
-using Litecart.UI.Client.Pages.UserApp.dto;
+using OpenQA.Selenium.Support.UI;
 
-namespace Litecart.UI.Client.Pages.UserApp
+namespace FirstProject
 {
-    public class RegistrationPage: LitecartBasePage
+    public class RegistrationPage : LitecartBasePage
     {
-        public IWebDriver driver;
+        
+        WebDriverWait wait = new WebDriverWait(DriverFactory.Driver, TimeSpan.FromSeconds(10));
 
-        // Title
-        IWebElement Title = DriverFactory.Driver.FindElement(By.CssSelector("h1.title"));
+        public static string UrlCreateAccount = "http://localhost/litecart/en/create_account";
 
-        // TaxId field
-        IWebElement TaxId = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='tax_id']"));
+        IWebElement LogoutLink => DriverFactory.Driver.FindElement(By.CssSelector("logout"));
 
-        // Company field
-        IWebElement Company = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='company']"));
+        IWebElement Title => DriverFactory.Driver.FindElement(By.CssSelector("h1.title"));
 
-        // FirstName field
-        IWebElement FirstNameInput = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='firstname'"));
+        IWebElement TaxIdInput => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='tax_id']"));
 
-        // LastName field
-        IWebElement LastNameInput = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='lastname']"));
+        IWebElement CompanyInput => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='company']"));
 
-        // Address1 field
-        IWebElement Address1 = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='address1']"));
+        IWebElement FirstNameInput => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='firstname'"));
 
-        // Address2 field
-        IWebElement Address2 = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='address1']"));
+        IWebElement LastNameInput => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='lastname']"));
 
-        // PostCode field
-        IWebElement PostCode = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='postcode']"));
+        IWebElement Address1Input => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='address1']"));
 
-        // City field
-        IWebElement City = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='city']"));
+        IWebElement Address2Input => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='address1']"));
 
-        // Country field
-        //IWebElement Country = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='postcode'"));?? Locator
+        IWebElement PostcodeInput => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='postcode']"));
 
-        // Email field
-        IWebElement Email = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='email']"));
+        IWebElement CityInput => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='city']"));
 
-        // Phone field]
-        IWebElement Phone = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='phone']"));
+        IWebElement CountryInput => DriverFactory.Driver.FindElement(By.CssSelector("span[class ='selection'"));
 
-        // Newsletter subscribe field
-        IWebElement Subscribe = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='newsletter']"));
+        IWebElement EmailInput => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='email']"));
 
-        // DesiredPassword field
-        IWebElement DesiredPassword = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='password']"));
+        IWebElement PhoneInput => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='phone']"));
 
-        // ConfirmedPassword field
-        IWebElement ConfirmedPassword = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='confirmed_password']"));
+        IWebElement Subscribe => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='newsletter']"));
 
-        // Create Account button
-        IWebElement CreateAccountButton = DriverFactory.Driver.FindElement(By.CssSelector("input[name ='create_account']"));
+        IWebElement PasswordInput => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='password']"));
 
+        IWebElement ConfirmedPasswordInput => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='confirmed_password']"));
+
+        IWebElement CreateAccountButton => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='create_account']"));
+
+        public void SelectCountry(string country)
+        {
+            DriverFactory.Driver.FindElement(By.CssSelector("[id ^= select2-country_code]")).Click();
+            DriverFactory.Driver.FindElement(By.CssSelector(
+                    String.Format(".select2-results__option[id $= {0}]", country))).Click();
+        }
+
+
+        public void SelectZone(string zone)
+        {
+            wait.Until(d => d.FindElement(
+                    By.CssSelector(String.Format("select[name=zone_code] option[value={0}]", zone))));
+            new SelectElement(DriverFactory.Driver.FindElement(By.CssSelector("select[name=zone_code]"))).SelectByValue(zone);
+        }
         public string GenerateUniqueEmail()
         {
             Random random = new Random();
             return "user" + random.Next(5) + "@gmail.com";
         }
 
-        //public Customer EnterValidDataIntoRegistrationForm()
-        //{
-        //    return new Customer() 
-        //    {
+        public void FillRegistrationForm(CustomerDto customer)
+        {
+            FirstNameInput.SendKeys(customer.Firstname);
+            LastNameInput.SendKeys(customer.Lastname);
+            Address1Input.SendKeys(customer.Address);
+            PostcodeInput.SendKeys(customer.Postcode);
+            CityInput.SendKeys(customer.City);
+            SelectCountry(customer.Country);
+            SelectZone(customer.Zone);
+            EmailInput.SendKeys(customer.Email);
+            PhoneInput.SendKeys(customer.Phone);
+            PasswordInput.SendKeys(customer.Password);
+            ConfirmedPasswordInput.SendKeys(customer.Password);
+            CreateAccountButton.Click();
+        }
 
+        public void Logout()
+        {
 
-
-
-
-
-
-
-        //}
+        }
     }
-
 }

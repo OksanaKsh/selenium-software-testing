@@ -2,17 +2,13 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Litecart.UI.Client
+namespace FirstProject
 {
     public class DriverFactory
     {
         public static IWebDriver? Driver { get; set; }
+        WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
 
         public static IWebDriver StartBrowser(String browserName, string url)
         {
@@ -28,11 +24,11 @@ namespace Litecart.UI.Client
             Driver.Navigate().GoToUrl(url);
             return Driver;
         }
-        public WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));//Where to put it
         
-        public void CloseBrowser()
+        public static void CloseBrowser()
         {
             Driver.Quit();
+            Driver.Dispose();
         }
     }
 }

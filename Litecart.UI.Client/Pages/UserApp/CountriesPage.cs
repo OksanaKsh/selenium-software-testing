@@ -1,13 +1,13 @@
 ﻿using OpenQA.Selenium;
 using Litecart.UI.Client.Helpers;
 
-namespace Litecart.UI.Client.Pages.UserApp
+namespace FirstProject
 {
     public class CountriesPage : LitecartBasePage
     {
         public static string UrlCountries => "http://localhost/litecart/admin/?app=countries&doc=countries";
         IList<IWebElement> TableRows => DriverFactory.Driver.FindElements(By.CssSelector("table.dataTable tr.row"));
-        public IList<IWebElement> ListOfCountries => DriverFactory.Driver.FindElements(By.XPath("//table[@class='dataTable']//td[5]")).ToList();
+        public static IList<IWebElement> ListOfCountries => DriverFactory.Driver.FindElements(By.XPath("//table[@class='dataTable']//td[5]")).ToList();
         IList<IWebElement> ListOfZones => DriverFactory.Driver.FindElements(By.XPath("//table[@class='dataTable']/td[2]")).ToList();
 
         By zoneLocator = By.XPath(".//td[6]");

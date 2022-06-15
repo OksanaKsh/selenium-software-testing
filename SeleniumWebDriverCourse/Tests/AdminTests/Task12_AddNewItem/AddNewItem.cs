@@ -18,12 +18,6 @@
 //что он появился в каталоге (в админке).
 //Клиентскую часть магазина можно не проверять.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace SeleniumWebDriverCourse.Task12_AddNewItem
 {
     internal class AddNewItem

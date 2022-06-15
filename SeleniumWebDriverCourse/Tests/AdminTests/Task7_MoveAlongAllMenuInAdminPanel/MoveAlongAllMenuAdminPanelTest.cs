@@ -10,42 +10,21 @@
 
 
 using NUnit.Framework;
-using OpenQA.Selenium;
-using Litecart.UI.Client;
-using Litecart.UI.Client.Pages.AdminApp;
-using SeleniumExtras.PageObjects;
 
 namespace FirstProject
 {
-    public class MoveAlongAllMenuAdminPanelTest
+    public class MoveAlongAllMenuAdminPanelTest: AdminBaseUiTest
     {
-        public IWebDriver Driver;
-
-        [SetUp]
-        public void Setup()
-        {
-            Driver = DriverFactory.StartBrowser("Chrome", "http://localhost/litecart/admin/");
-        }
-
         [Test]
         //[Repeat(5)]
         //[Ignore ("Ignore a test not ready yet")]
         public void CategoryAndSubCategoryAreClickableAndHaveHeader()
         {
-            LoginPage loginPage = new LoginPage();
-            loginPage.LoginAdminApp("admin", "admin");
-
             // Arrange
-            HomePage homePage = new HomePage();
+            LoginAdminApp();
 
             // Act & Assert
-            homePage.EveryCategoryAndSubCategoryHasHeader();
-        }
-
-        [TearDown]
-        public void CloseBrowser()
-        {
-            Driver.Quit();
+            AdminSite.HomePage.EveryCategoryAndSubCategoryHasHeader();
         }
     }
 }
