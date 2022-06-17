@@ -31,11 +31,13 @@ namespace FirstProject
             var campaignBlockOnMainPage = Site.MainLitecartPage.CampaignBlockOnMainPage;
 
             // Act 
+            //var mainPageInfo = campaignBlockOnMainPage.ReadInfo(); //Initial variant
             var mainPageInfo = campaignBlockOnMainPage.ReadInfo();
 
             campaignBlockOnMainPage.ProductName.Click();
 
             ProductDetailsPage productDetailsPage = Site.ProductDetailsPage;
+            //var detailedProductPageInfo = productDetailsPage.ReadInfo();    //Initial variant
             var detailedProductPageInfo = productDetailsPage.ReadInfo();    
 
             //Assert

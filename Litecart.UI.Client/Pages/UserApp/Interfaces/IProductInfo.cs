@@ -8,5 +8,6 @@ namespace FirstProject.Interfaces
         IWebElement ProductName { get;  }
         IWebElement RegularPrice { get;  }
         IWebElement CampaignPrice { get; }
+       // public ProductDetailsDto ReadInfo();
     }
 }
