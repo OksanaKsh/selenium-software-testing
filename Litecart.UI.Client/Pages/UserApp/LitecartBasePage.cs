@@ -6,7 +6,8 @@
         public HomePageLitecart HomePageLitecart => new HomePageLitecart();
         public ProductDetailsPage ProductDetailsPage => new ProductDetailsPage();
         public RegistrationPage RegistrationPage => new RegistrationPage();
-        public MainLitecartPage MainLitecartPage => new MainLitecartPage();        
+        public MainLitecartPage MainLitecartPage => new MainLitecartPage();
+        
         //public CampaignBlockOnMainPage CampaignBlockOnMainPage => new CampaignBlockOnMainPage();
         //public static LitecartBasePage? Site { get; set; }  
     }

@@ -6,12 +6,12 @@ namespace FirstProject
 {
     public class RegistrationPage : LitecartBasePage
     {
-        
+
         WebDriverWait wait = new WebDriverWait(DriverFactory.Driver, TimeSpan.FromSeconds(10));
 
         public static string UrlCreateAccount = "http://localhost/litecart/en/create_account";
 
-        IWebElement LogoutLink => DriverFactory.Driver.FindElement(By.CssSelector("logout"));
+        IWebElement LogoutLink => DriverFactory.Driver.FindElement(By.CssSelector("a[href='http://localhost/litecart/en/logout'"));
 
         IWebElement Title => DriverFactory.Driver.FindElement(By.CssSelector("h1.title"));
 
@@ -43,7 +43,7 @@ namespace FirstProject
 
         IWebElement ConfirmedPasswordInput => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='confirmed_password']"));
 
-        IWebElement CreateAccountButton => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='create_account']"));
+        IWebElement CreateAccountButton => DriverFactory.Driver.FindElement(By.CssSelector("button[name ='create_account']"));
 
         public void SelectCountry(string country)
         {
@@ -52,13 +52,17 @@ namespace FirstProject
                     String.Format(".select2-results__option[id $= {0}]", country))).Click();
         }
 
-
         public void SelectZone(string zone)
         {
-            wait.Until(d => d.FindElement(
-                    By.CssSelector(String.Format("select[name=zone_code] option[value={0}]", zone))));
-            new SelectElement(DriverFactory.Driver.FindElement(By.CssSelector("select[name=zone_code]"))).SelectByValue(zone);
+            //String zoneVariable = String.Format("select[name='zone_code'] option[value='{0}']", zone);
+            DriverFactory.Driver.FindElement(By.CssSelector("select[name='zone_code']")).Click();
+            DriverFactory.Driver.FindElement(By.CssSelector(
+                   String.Format("select[name='zone_code'] option[value='{0}']", zone))).Click();
+
+            //wait.Until(d => d.FindElement( By.CssSelector(zoneVariable)));
+            //new SelectElement(DriverFactory.Driver.FindElement(By.CssSelector("select[name=zone_code]"))).SelectByValue(zone);
         }
+
         public string GenerateUniqueEmail()
         {
             Random random = new Random();
@@ -73,6 +77,7 @@ namespace FirstProject
             PostcodeInput.SendKeys(customer.Postcode);
             CityInput.SendKeys(customer.City);
             SelectCountry(customer.Country);
+            Thread.Sleep(2000);
             SelectZone(customer.Zone);
             EmailInput.SendKeys(customer.Email);
             PhoneInput.SendKeys(customer.Phone);
@@ -83,7 +88,7 @@ namespace FirstProject
 
         public void Logout()
         {
-
+            LogoutLink.Click();
         }
     }
 }

@@ -4,7 +4,7 @@ namespace FirstProject
 {
     public class AdminBaseUiTest
     {
-        public AdminBasePage AdminSite { get; }=  new AdminBasePage(); 
+        public AdminBasePage AdminSite { get; } =  new AdminBasePage(); 
         public void LoginAdminApp()
         {
             LoginPage loginPage = new LoginPage();

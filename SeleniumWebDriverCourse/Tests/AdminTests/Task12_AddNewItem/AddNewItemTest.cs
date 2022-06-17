@@ -17,10 +17,24 @@
 //После сохранения товара нужно убедиться,
 //что он появился в каталоге (в админке).
 //Клиентскую часть магазина можно не проверять.
-
-namespace SeleniumWebDriverCourse.Task12_AddNewItem
+using NUnit.Framework;
+namespace FirstProject
 {
-    internal class AddNewItem
-    {
+    public class AddNewItemTest : AdminBaseUiTest
+    {       
+        [TestCaseSource(typeof(DataProviderNewProductTest1),nameof(DataProviderNewProductTest1.AddNewProductData))]       
+        public void AddNewItem(GeneralProductDto generalProductInfo, InformationProductDto informationDataProduct, DataProductDto dataProduct)
+        {
+            // Arrange
+            LoginAdminApp();
+            DriverFactory.Driver.Navigate().GoToUrl(CatalogPage.CatalogPageUrl);
+            CatalogPage catalogPage = this.AdminSite.CatalogPage;
+
+            // Act
+            catalogPage.AddNewProduct(generalProductInfo, informationDataProduct, dataProduct);
+
+            // Arrange
+            Assert.That(catalogPage.VerifyThatAddedProductIsPresentInTable, Is.True);
+        }
     }
 }

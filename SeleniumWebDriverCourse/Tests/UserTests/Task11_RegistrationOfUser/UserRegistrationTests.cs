@@ -20,7 +20,6 @@
 //В форме регистрации есть капча, её нужно отключить в админке учебного приложения
 //на вкладке Settings -> Security.
 
-using FirstProject.dto;
 using NUnit.Framework;
 
 namespace FirstProject
@@ -28,16 +27,16 @@ namespace FirstProject
     public class UserRegistrationTests: UserBaseUiTest
     {
         [Test]
-        [TestCaseSource(nameof(DataProvider.ValidCustomers))]      
+        [TestCaseSource(typeof(DataProvider), nameof(DataProvider.ValidCustomers))]      
         //[Ignore ("Ignore a test not ready yet")]
-        public void VerifyRegistrationNewUser()
+        public void VerifyRegistrationNewUser(CustomerDto customer)
         {
             // Arrange
             DriverFactory.Driver.Navigate().GoToUrl(RegistrationPage.UrlCreateAccount);
-            RegistrationPage registrationPage = new RegistrationPage();
+            RegistrationPage registrationPage = this.Site.RegistrationPage;
 
             // Act && Arrange
-            registrationPage.FillRegistrationForm((CustomerDto)DataProvider.ValidCustomers);    
+            registrationPage.FillRegistrationForm(customer);    
             registrationPage.Logout();
             LoginPanel.LogIn(DataProvider.EmailValue,DataProvider.PasswordValue);
             registrationPage.Logout();
