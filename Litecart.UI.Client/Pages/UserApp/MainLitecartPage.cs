@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace FirstProject
 {
-    public class MainLitecartPage: LitecartBasePage
+    public class MainLitecartPage : LitecartBasePage
     {
         public LoginPanel LoginPanel => new LoginPanel();
-      
-        public CampaignBlockOnMainPage CampaignBlockOnMainPage => new CampaignBlockOnMainPage();
 
         public BaseListProductsBlock MostPopularBlock => new BaseListProductsBlock() { Name = "MostPopular" };
-        public BaseListProductsBlock CampaignBlock => new BaseListProductsBlock() { Name = "Campaign" };
+        public BaseListProductsBlock CampaignBlock => new BaseListProductsBlock()
+        {
+            Name = "Campaign",
+            Locator = DriverFactory.Driver.FindElement(By.CssSelector("div[id='box-campaigns'][class='box']"))
+        };
         public BaseListProductsBlock RecentlyViewedBlock => new BaseListProductsBlock() { Name = "RecentlyViewed" };
     }
 }

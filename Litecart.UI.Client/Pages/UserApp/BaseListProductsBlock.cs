@@ -11,6 +11,7 @@ namespace FirstProject
     {
         public string Name { get; set; }
         public IWebElement Locator { get; set; }
+        public CampaignBlockProductInfo CampaignBlockProductInfo => new CampaignBlockProductInfo();
         public ProductDetailsDto ReadInfo(IProductInfo block)
         {
             return new ProductDetailsDto()
