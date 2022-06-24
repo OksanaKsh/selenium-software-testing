@@ -12,11 +12,10 @@ namespace FirstProject
             {
                 yield return new TestCaseData(new GeneralProductDto()
                 {
-                    Name = "TestName" + Guid.NewGuid().ToString(),
+                    Name = "TestName" + Guid.NewGuid(),
                     Code = "TestCode",
                     Quantity = 5.6,
-                    UploadImages = null,
-                    //UploadImages = "C:\\Users\\kshan\\OneDrive\\Desktop",
+                    UploadImages = "C:\\Users\\kshan\\OneDrive\\Desktop\\testImage.jpg",
                     DateValidFrom = DateTime.Now,
                     DateValidTo = DateTime.Now.AddDays(30)
                 },

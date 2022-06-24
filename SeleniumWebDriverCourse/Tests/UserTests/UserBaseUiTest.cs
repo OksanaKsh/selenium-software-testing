@@ -21,7 +21,7 @@ namespace FirstProject
         {
             if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
             {
-                var a = 2;
+                DriverFactory.MakeScreenshot(DriverFactory.Driver);
             }
             DriverFactory.CloseBrowser();
         }

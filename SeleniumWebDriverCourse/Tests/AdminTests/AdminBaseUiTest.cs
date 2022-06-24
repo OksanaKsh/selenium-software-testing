@@ -1,9 +1,12 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Interfaces;
+using OpenQA.Selenium;
 
 namespace FirstProject
 {
     public class AdminBaseUiTest
     {
+        public Proxy Proxy;
         public AdminBasePage AdminSite { get; } =  new AdminBasePage(); 
         public void LoginAdminApp()
         {
@@ -14,12 +17,18 @@ namespace FirstProject
         [SetUp]
         public void Setup()
         {
+            DriverFactory.SetProxy();
             DriverFactory.StartBrowser("Chrome", "http://localhost/litecart/admin/");
         }
 
         [TearDown]
         public void CloseBrowser()
         {
+            if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
+            {
+                //DriverFactory.Logging(DriverFactory.Driver);
+                DriverFactory.MakeScreenshot(DriverFactory.Driver);
+            }
             DriverFactory.CloseBrowser();
         }
     }

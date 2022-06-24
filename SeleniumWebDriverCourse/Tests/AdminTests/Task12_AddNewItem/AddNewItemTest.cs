@@ -21,7 +21,13 @@ using NUnit.Framework;
 namespace FirstProject
 {
     public class AddNewItemTest : AdminBaseUiTest
-    {       
+    {
+        [Test]
+        //public void GetBrowserLogs()
+        //{
+        //    Proxy.Kind;
+        //}
+
         [TestCaseSource(typeof(DataProviderNewProductTest1),nameof(DataProviderNewProductTest1.AddNewProductData))]       
         public void AddNewItem(GeneralProductDto generalProductInfo, InformationProductDto informationDataProduct, DataProductDto dataProduct)
         {
@@ -29,12 +35,13 @@ namespace FirstProject
             LoginAdminApp();
             DriverFactory.Driver.Navigate().GoToUrl(CatalogPage.CatalogPageUrl);
             CatalogPage catalogPage = this.AdminSite.CatalogPage;
+            var ItemAmountBeforeTest = CatalogPage.ListOfProductCount;
 
             // Act
             catalogPage.AddNewProduct(generalProductInfo, informationDataProduct, dataProduct);
 
             // Arrange
-            Assert.That(catalogPage.VerifyThatAddedProductIsPresentInTable, Is.True);
+            Assert.That(CatalogPage.ListOfProductCount - ItemAmountBeforeTest == 1, Is.True);
         }
     }
 }
