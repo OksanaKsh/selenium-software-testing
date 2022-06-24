@@ -1,5 +1,7 @@
 ﻿
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
+using NUnit.Framework.Internal;
 
 namespace FirstProject
 {
@@ -17,6 +19,10 @@ namespace FirstProject
         [TearDown]
         public void CloseBrowser()
         {
+            if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
+            {
+                var a = 2;
+            }
             DriverFactory.CloseBrowser();
         }
     }

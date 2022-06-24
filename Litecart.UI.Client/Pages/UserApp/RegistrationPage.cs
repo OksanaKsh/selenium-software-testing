@@ -7,7 +7,6 @@ namespace FirstProject
     public class RegistrationPage : LitecartBasePage
     {
 
-        WebDriverWait wait = new WebDriverWait(DriverFactory.Driver, TimeSpan.FromSeconds(10));
 
         public static string UrlCreateAccount = "http://localhost/litecart/en/create_account";
 
@@ -54,19 +53,15 @@ namespace FirstProject
 
         public void SelectZone(string zone)
         {
-            //String zoneVariable = String.Format("select[name='zone_code'] option[value='{0}']", zone);
+            string zoneVariable = String.Format("select[name='zone_code'] option[value='{0}']", zone);
+            // DriverFactory.Driver.FindElement(By.CssSelector("select[name='zone_code']")).Click();
+            ////wait.Until(d => d.FindElement(By.CssSelector("select[name='zone_code']")));
             DriverFactory.Driver.FindElement(By.CssSelector("select[name='zone_code']")).Click();
             DriverFactory.Driver.FindElement(By.CssSelector(
                    String.Format("select[name='zone_code'] option[value='{0}']", zone))).Click();
 
-            //wait.Until(d => d.FindElement( By.CssSelector(zoneVariable)));
+            //DriverFactory.Wait.Until(d => d.FindElement(By.CssSelector(zoneVariable)));
             //new SelectElement(DriverFactory.Driver.FindElement(By.CssSelector("select[name=zone_code]"))).SelectByValue(zone);
-        }
-
-        public string GenerateUniqueEmail()
-        {
-            Random random = new Random();
-            return "user" + random.Next(5) + "@gmail.com";
         }
 
         public void FillRegistrationForm(CustomerDto customer)

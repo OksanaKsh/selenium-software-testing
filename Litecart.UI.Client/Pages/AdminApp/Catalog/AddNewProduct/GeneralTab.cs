@@ -26,10 +26,10 @@ namespace FirstProject
             SelectCategories.Click();
             DefaultCategory.Click();
             Gender.Click();
-            Quantity.Clear();///?
+            Quantity.Clear();
             Quantity.SendKeys(generalProductInfo.Quantity.ToString());
             SoldOutStatus.Click();
-            //UploadImages.SendKeys(generalProductInfo.UploadImages);
+            UploadImages.SendKeys(generalProductInfo.UploadImages);
             DateValidFrom.SendKeys(generalProductInfo.DateValidFrom.ToString());  
             DateValidTo.SendKeys(generalProductInfo.DateValidTo.ToString()); 
         }

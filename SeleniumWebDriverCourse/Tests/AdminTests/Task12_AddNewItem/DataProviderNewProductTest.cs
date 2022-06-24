@@ -24,7 +24,7 @@ namespace FirstProject
                     Keywords = "TestKeywords",
                     ShortDescription = "TestShortDescription",
                     Description = "TestDescription",
-                    HeadTitle = "TestHeadtitle",
+                    HeadTitle = "TestHeadTitle",
                     MetaDescription = "TestMetaDescription"
                 },
 

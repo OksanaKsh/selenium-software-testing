@@ -16,8 +16,7 @@ namespace FirstProject
         {
             initialProductCount = GetInitialListCount();
             AddNewProductButton.Click();
-            GeneralTab generalTab = this.CatalogPage.AddNewProductPage.GeneralTab;
-            generalTab.FillGeneralInfoForNewProduct(generalProductInfo);
+            this.CatalogPage.AddNewProductPage.GeneralTab.FillGeneralInfoForNewProduct(generalProductInfo);
 
             AddNewProductPage.InformationTabElement.Click();
             InformationTab informationTab = this.CatalogPage.AddNewProductPage.InformationTab; ;

@@ -8,7 +8,15 @@ namespace FirstProject
     public class DriverFactory
     {
         public static IWebDriver? Driver { get; set; }
-        WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+        public static WebDriverWait Wait
+        {
+            get
+            {
+                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+                wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+                return wait;
+            }
+        }
 
         public static IWebDriver StartBrowser(String browserName, string url)
         {
@@ -24,7 +32,7 @@ namespace FirstProject
             Driver.Navigate().GoToUrl(url);
             return Driver;
         }
-        
+
         public static void CloseBrowser()
         {
             Driver.Quit();

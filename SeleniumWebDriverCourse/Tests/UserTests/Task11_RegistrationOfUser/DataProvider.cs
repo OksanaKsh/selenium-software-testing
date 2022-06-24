@@ -5,8 +5,13 @@ namespace FirstProject
 {
     public class DataProvider
     {
-        public static string EmailValue { get; set; } = "adam" + (long)(DateTime.Now - DateTime.MinValue).TotalMilliseconds + "@smith.me";
+        public static string EmailValue { get; set; } = GenerateUniqueEmail();
         public static string PasswordValue { get; set; } = "qwerty";
+        public static string GenerateUniqueEmail()
+        {
+            Random random = new Random();
+            return "user" + Guid.NewGuid().ToString() + "@gmail.com";
+        }
         public static IEnumerable ValidCustomers
         {
             get

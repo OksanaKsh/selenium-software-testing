@@ -27,6 +27,7 @@ namespace FirstProject
     public class UserRegistrationTests: UserBaseUiTest
     {
         [Test]
+        [Repeat(5)]
         [TestCaseSource(typeof(DataProvider), nameof(DataProvider.ValidCustomers))]      
         //[Ignore ("Ignore a test not ready yet")]
         public void VerifyRegistrationNewUser(CustomerDto customer)

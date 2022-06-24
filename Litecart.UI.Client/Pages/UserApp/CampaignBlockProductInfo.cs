@@ -1,9 +1,5 @@
-﻿using OpenQA.Selenium;
-using FirstProject.Interfaces;
-using FirstProject.Dto;
-using FirstProject.dto;
-using Litecart.UI.Client.Helpers;
-using Litecart.UI.Client.Helpers.Extensions.String;
+﻿using FirstProject.Interfaces;
+using OpenQA.Selenium;
 
 namespace FirstProject
 {
