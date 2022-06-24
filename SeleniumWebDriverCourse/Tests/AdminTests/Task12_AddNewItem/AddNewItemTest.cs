@@ -22,12 +22,6 @@ namespace FirstProject
 {
     public class AddNewItemTest : AdminBaseUiTest
     {
-        [Test]
-        //public void GetBrowserLogs()
-        //{
-        //    Proxy.Kind;
-        //}
-
         [TestCaseSource(typeof(DataProviderNewProductTest1),nameof(DataProviderNewProductTest1.AddNewProductData))]       
         public void AddNewItem(GeneralProductDto generalProductInfo, InformationProductDto informationDataProduct, DataProductDto dataProduct)
         {
