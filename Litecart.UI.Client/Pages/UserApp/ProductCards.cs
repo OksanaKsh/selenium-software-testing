@@ -27,9 +27,9 @@ namespace FirstProject
         public By RegularPriceLocator => By.XPath(".//div[@class ='price-wrapper']/s[@class ='regular-price']");
         public By CampaignPriceLocator => By.XPath(".//div[@class ='price-wrapper']/strong[@class ='campaign-price']");
 
-        public List<ProductInfo> IdentifyProductInfo(BaseListProductsBlock block)
+        public List<ProductInfo> IdentifyProductInfo()
         {
-            IdentifyListOfProductElementsInSelectedBlock(block);
+            //IdentifyListOfProductElementsInSelectedBlock(block);
 
             Products = new List<ProductInfo>();
 
