@@ -15,6 +15,7 @@
 //д) акционная цена крупнее, чем обычная (это тоже надо проверить на каждой странице независимо)
 
 
+using System.Linq;
 using FirstProject.Asserts;
 using Litecart.UI.Client.Helpers.ErrorMessages;
 using NUnit.Framework;
@@ -28,7 +29,7 @@ namespace FirstProject
         public void VerifyDataOnMainPageAndDetailedProductPageAreSame()
         {
             // Arrange
-            var firstProductOnCampaignBlock = Site.MainLitecartPage.CampaignBlock.ProductInfo.Products[0];
+            var firstProductOnCampaignBlock = Site.MainLitecartPage.CampaignBlock.ProductCards.IdentifyProductInfo().First();
            
             // Act 
             var productInfoOnCampaignBlock = firstProductOnCampaignBlock.ReadInfo();
