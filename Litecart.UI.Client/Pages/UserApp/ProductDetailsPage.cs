@@ -3,6 +3,8 @@ using FirstProject.Dto;
 using FirstProject.dto;
 using Litecart.UI.Client.Helpers;
 using Litecart.UI.Client.Helpers.Extensions.String;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace FirstProject
 {
@@ -13,6 +15,9 @@ namespace FirstProject
         public IWebElement RegularPrice => DriverFactory.Driver.FindElement(By.CssSelector(".regular-price"));
 
         public IWebElement CampaignPrice => DriverFactory.Driver.FindElement(By.CssSelector(".campaign-price"));
+
+        public IWebElement AddToCardButton => DriverFactory.Driver.FindElement(By.CssSelector("button[name='add_cart_product']"));
+        public IWebElement SizeDropdown => DriverFactory.Driver.FindElement(By.CssSelector("select[name='options[Size]']"));
 
         public ProductDetailsDto ReadInfo()
         {
@@ -31,9 +36,37 @@ namespace FirstProject
                     Amount = CampaignPrice.GetPrice(),
                     Color = CampaignPrice.GetColor(),
                     Font = CampaignPrice.GetSize().ToDouble(),
-                    IsFontBold =CampaignPrice.IsBold(),
+                    IsFontBold = CampaignPrice.IsBold(),
                 }
             };
+        }
+
+        public void AddItemToCart()
+        {
+            AddToCardButton.Click();
+        }
+
+        public void AddingThreeItemsToCart(Cart cart)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                var block = MainLitecartPage.MostPopularBlock;
+                var products = block.ProductCards.IdentifyListOfProductElementsInSelectedBlock(block);
+                products.First().Click();
+                var initialQuantity = cart.Quantity.Text.ToInt();
+                try
+                {
+                    var selectElement = new SelectElement(SizeDropdown);
+                    selectElement.SelectByIndex(1);
+                }
+                catch (NoSuchElementException e) { }
+
+                AddItemToCart();
+
+                DriverFactory.Wait.Until(ExpectedConditions.TextToBePresentInElement(cart.Quantity, (initialQuantity + 1).ToString()));
+                DriverFactory.Driver.Navigate().GoToUrl("http://localhost/litecart/en/");
+                DriverFactory.Wait.Until(ExpectedConditions.ElementExists(By.CssSelector("a[href='http://localhost/litecart/en/create_account']")));
+            }
         }
     }
 }

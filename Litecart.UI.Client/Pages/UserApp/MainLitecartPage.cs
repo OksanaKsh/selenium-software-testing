@@ -1,4 +1,5 @@
-﻿namespace FirstProject
+﻿
+namespace FirstProject
 {
     public class MainLitecartPage : LitecartBasePage
     {
@@ -10,5 +11,7 @@
         {
             Locator = "div[id='box-most-popular'][class='box']",
         };
+        public Cart Cart => new Cart();
+        public CheckoutPage CheckoutPage => new CheckoutPage(); 
     }
 }

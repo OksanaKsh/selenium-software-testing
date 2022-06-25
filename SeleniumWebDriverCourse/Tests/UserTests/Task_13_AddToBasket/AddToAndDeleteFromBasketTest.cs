@@ -1,31 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//Сделайте сценарий для добавления товаров в корзину и удаления товаров из корзины.
+
+//1) открыть главную страницу
+//2) открыть первый товар из списка
+//2) добавить его в корзину (при этом может случайно добавиться товар, который там уже есть, ничего страшного)
+//3) подождать, пока счётчик товаров в корзине обновится
+//4) вернуться на главную страницу, повторить предыдущие шаги ещё два раза, чтобы в общей сложности в корзине было 3 единицы товара
+//5) открыть корзину(в правом верхнем углу кликнуть по ссылке Checkout)
+//6) удалить все товары из корзины один за другим, после каждого удаления подождать, пока внизу обновится таблица
 using NUnit.Framework;
-using OpenQA.Selenium;
-using SeleniumExtras.WaitHelpers;
 
 namespace FirstProject
 {
     public class AddToAndDeleteFromBasketTest: UserBaseUiTest
     {
         [Test]
-        //[TestCaseSource(typeof(DataProvider), nameof(DataProvider.ValidCustomers))]
         //[Ignore ("Ignore a test not ready yet")]
-        public void VerifyAddingAndDeletingItemsToBasket(CustomerDto customer)
+        public void VerifyAddingAndDeletingItemsToBasket()
         {
-            // Arrange
-            DriverFactory.Driver.Navigate().GoToUrl(RegistrationPage.UrlCreateAccount);
-            RegistrationPage registrationPage = this.Site.RegistrationPage;
 
-            // Act && Arrange
-            registrationPage.FillRegistrationForm(customer);
-            DriverFactory.Wait.Until(ExpectedConditions.ElementExists(By.CssSelector("a[href='http://localhost/litecart/en/logout'")));
-            registrationPage.Logout();
-            LoginPanel.LogIn(DataProvider.EmailValue, DataProvider.PasswordValue);
-            registrationPage.Logout();
+            // Arrange
+            ProductDetailsPage productDetailsPage = Site.ProductDetailsPage;
+            var cart = Site.MainLitecartPage.Cart;
+            
+            //Act
+            productDetailsPage.AddingThreeItemsToCart(cart);
+
+            Site.MainLitecartPage.CheckoutPage.RemoveAddedItems(cart);
         }
     }
 }
