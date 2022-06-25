@@ -21,13 +21,14 @@
 //на вкладке Settings -> Security.
 
 using NUnit.Framework;
+using OpenQA.Selenium;
+using SeleniumExtras.WaitHelpers;
 
 namespace FirstProject
 {
     public class UserRegistrationTests: UserBaseUiTest
     {
         [Test]
-        [Repeat(5)]
         [TestCaseSource(typeof(DataProvider), nameof(DataProvider.ValidCustomers))]      
         //[Ignore ("Ignore a test not ready yet")]
         public void VerifyRegistrationNewUser(CustomerDto customer)
@@ -37,9 +38,10 @@ namespace FirstProject
             RegistrationPage registrationPage = this.Site.RegistrationPage;
 
             // Act && Arrange
-            registrationPage.FillRegistrationForm(customer);    
+            registrationPage.FillRegistrationForm(customer);
+            DriverFactory.Wait.Until(ExpectedConditions.ElementExists(By.CssSelector("a[href='http://localhost/litecart/en/logout'")));
             registrationPage.Logout();
-            LoginPanel.LogIn(DataProvider.EmailValue,DataProvider.PasswordValue);
+            LoginPanel.LogIn(DataProvider.EmailValue, DataProvider.PasswordValue);
             registrationPage.Logout();
         }
     }

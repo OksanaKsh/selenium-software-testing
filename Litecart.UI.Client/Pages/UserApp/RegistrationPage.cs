@@ -10,7 +10,7 @@ namespace FirstProject
 
         public static string UrlCreateAccount = "http://localhost/litecart/en/create_account";
 
-        IWebElement LogoutLink => DriverFactory.Driver.FindElement(By.CssSelector("a[href='http://localhost/litecart/en/logout'"));
+        public static IWebElement LogoutLink => DriverFactory.Driver.FindElement(By.CssSelector("a[href='http://localhost/litecart/en/logout'"));
 
         IWebElement Title => DriverFactory.Driver.FindElement(By.CssSelector("h1.title"));
 

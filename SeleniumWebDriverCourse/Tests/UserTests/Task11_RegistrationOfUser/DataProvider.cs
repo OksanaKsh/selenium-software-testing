@@ -5,15 +5,18 @@ namespace FirstProject
 {
     public class DataProvider
     {
-        public static string EmailValue { get; set; } = GenerateUniqueEmail();
+        public static string EmailValue;
+        public static string CurrentEmailValue = EmailValue;
         public static string PasswordValue { get; set; } = "qwerty";
         public static string GenerateUniqueEmail()
         {
-            Random random = new Random();
-            return "user" + Guid.NewGuid().ToString() + "@gmail.com";
+           // currentEmailValue = "user" + Guid.NewGuid() + "@gmail.com";
+           EmailValue = "user" + Guid.NewGuid() + "@gmail.com";
+            return EmailValue;
         }
         public static IEnumerable ValidCustomers
         {
+
             get
             {
                 yield return new CustomerDto()
@@ -26,7 +29,7 @@ namespace FirstProject
                     City = "New City",
                     Country = "US",
                     Zone = "KS",
-                    Email = EmailValue,
+                    Email = GenerateUniqueEmail(),
                     Password = PasswordValue
                 };
             }
