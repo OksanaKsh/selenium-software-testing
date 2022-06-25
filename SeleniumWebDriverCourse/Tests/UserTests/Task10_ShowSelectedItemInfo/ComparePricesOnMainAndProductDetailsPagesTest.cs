@@ -29,7 +29,8 @@ namespace FirstProject
         public void VerifyDataOnMainPageAndDetailedProductPageAreSame()
         {
             // Arrange
-            var firstProductOnCampaignBlock = Site.MainLitecartPage.CampaignBlock.ProductCards.IdentifyProductInfo().First();
+            var test = Site.MainLitecartPage.CampaignBlock;
+            var firstProductOnCampaignBlock = test.ProductCards.IdentifyProductInfo(test).First();
            
             // Act 
             var productInfoOnCampaignBlock = firstProductOnCampaignBlock.ReadInfo();

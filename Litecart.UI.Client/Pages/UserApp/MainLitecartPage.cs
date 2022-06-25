@@ -4,7 +4,7 @@
     {
         public BaseListProductsBlock CampaignBlock => new BaseListProductsBlock()
         {
-            Locator = "div[id='box-campaigns'][class='box']",
+            Locator = "div#box-campaigns.box",
         };
         public BaseListProductsBlock MostPopularBlock => new BaseListProductsBlock()
         {
