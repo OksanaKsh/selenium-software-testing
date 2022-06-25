@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using FirstProject.Interfaces;
 using FirstProject.Dto;
 using FirstProject.dto;
 using Litecart.UI.Client.Helpers;
@@ -7,7 +6,7 @@ using Litecart.UI.Client.Helpers.Extensions.String;
 
 namespace FirstProject
 {
-    public class ProductDetailsPage : LitecartBasePage, IProductInfo
+    public class ProductDetailsPage : LitecartBasePage
     {
         public IWebElement ProductName => DriverFactory.Driver.FindElement(By.CssSelector("h1.title"));
 

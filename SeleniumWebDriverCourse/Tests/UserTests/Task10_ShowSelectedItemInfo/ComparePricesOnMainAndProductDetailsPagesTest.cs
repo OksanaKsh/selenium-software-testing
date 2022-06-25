@@ -28,24 +28,23 @@ namespace FirstProject
         public void VerifyDataOnMainPageAndDetailedProductPageAreSame()
         {
             // Arrange
-            var campaignBlockProductInfo = Site.MainLitecartPage.CampaignBlock.CampaignBlockProductInfo;
+            var firstProductOnCampaignBlock = Site.MainLitecartPage.CampaignBlock.ProductInfo.Products[0];
            
             // Act 
-            var mainPageInfo = Site.MainLitecartPage.CampaignBlock.ReadInfo(campaignBlockProductInfo);
-
-            campaignBlockProductInfo.ProductName.Click();
+            var productInfoOnCampaignBlock = firstProductOnCampaignBlock.ReadInfo();
+            firstProductOnCampaignBlock.ProductName.Click();
 
             ProductDetailsPage productDetailsPage = Site.ProductDetailsPage;
             var detailedProductPageInfo = productDetailsPage.ReadInfo();    
 
             //Assert
-            Assert.That(mainPageInfo.ProductName, Is.EqualTo(detailedProductPageInfo.ProductName), ProductDetailsErrors.ProductNameError);            
-            Assert.That(mainPageInfo.RegularPrice.Amount, Is.EqualTo(detailedProductPageInfo.RegularPrice.Amount),ProductDetailsErrors.PriceError);
-            AssertComparePrices.VerifyThatRegularPriceIsLineThrough(mainPageInfo, detailedProductPageInfo);
-            AssertComparePrices.VerifyThatRegularPriceIsGrey(mainPageInfo, detailedProductPageInfo);
-            AssertComparePrices.VerifyThatRegularPriceIsBold(mainPageInfo, detailedProductPageInfo);
-            AssertComparePrices.VerifyThatCampaignPriceIsRed(mainPageInfo, detailedProductPageInfo);
-            AssertComparePrices.VerifyThatCampaignPriceFontIsGreaterThanRegularPriceFont(mainPageInfo, detailedProductPageInfo);        
+            Assert.That(productInfoOnCampaignBlock.ProductName, Is.EqualTo(detailedProductPageInfo.ProductName), ProductDetailsErrors.ProductNameError);            
+            Assert.That(productInfoOnCampaignBlock.RegularPrice.Amount, Is.EqualTo(detailedProductPageInfo.RegularPrice.Amount),ProductDetailsErrors.PriceError);
+            AssertComparePrices.VerifyThatRegularPriceIsLineThrough(productInfoOnCampaignBlock, detailedProductPageInfo);
+            AssertComparePrices.VerifyThatRegularPriceIsGrey(productInfoOnCampaignBlock, detailedProductPageInfo);
+            AssertComparePrices.VerifyThatRegularPriceIsBold(productInfoOnCampaignBlock, detailedProductPageInfo);
+            AssertComparePrices.VerifyThatCampaignPriceIsRed(productInfoOnCampaignBlock, detailedProductPageInfo);
+            AssertComparePrices.VerifyThatCampaignPriceFontIsGreaterThanRegularPriceFont(productInfoOnCampaignBlock, detailedProductPageInfo);        
         }
     }
 }

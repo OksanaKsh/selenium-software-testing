@@ -8,7 +8,7 @@
         public RegistrationPage RegistrationPage => new RegistrationPage();
         public MainLitecartPage MainLitecartPage => new MainLitecartPage();
         
-        //public CampaignBlockProductInfo CampaignBlockProductInfo => new CampaignBlockProductInfo();
+        //public Products Products => new Products();
         //public static LitecartBasePage? Site { get; set; }  
     }
 }
