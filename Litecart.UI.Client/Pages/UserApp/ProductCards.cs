@@ -29,7 +29,6 @@ namespace FirstProject
 
         public List<ProductInfo> IdentifyProductInfo()
         {
-            //IdentifyListOfProductElementsInSelectedBlock(block);
 
             Products = new List<ProductInfo>();
 
