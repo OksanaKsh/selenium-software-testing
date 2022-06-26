@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class DataProviderNewProductTest1
     {

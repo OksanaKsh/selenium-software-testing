@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class HomePageLitecart: LitecartBasePage
     {

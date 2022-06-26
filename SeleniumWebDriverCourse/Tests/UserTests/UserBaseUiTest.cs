@@ -3,7 +3,7 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class UserBaseUiTest
     {

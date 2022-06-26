@@ -1,12 +1,12 @@
 ﻿using OpenQA.Selenium;
-using FirstProject.Dto;
-using FirstProject.dto;
 using Litecart.UI.Client.Helpers;
 using Litecart.UI.Client.Helpers.Extensions.String;
+using LitecartUITests.dto;
+using LitecartUITests.Dto;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class ProductDetailsPage : LitecartBasePage
     {

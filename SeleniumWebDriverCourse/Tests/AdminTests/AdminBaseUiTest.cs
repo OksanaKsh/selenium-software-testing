@@ -2,7 +2,7 @@
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class AdminBaseUiTest
     {

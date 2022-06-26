@@ -1,7 +1,7 @@
-﻿using FirstProject.Dto;
+﻿using LitecartUITests.Dto;
 using NUnit.Framework;
 
-namespace FirstProject.Asserts
+namespace LitecartUITests.Asserts
 {
     public class AssertComparePrices
     {

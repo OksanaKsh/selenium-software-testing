@@ -2,7 +2,7 @@
 using SeleniumExtras.PageObjects;
 
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class CategoryElementPage : AdminBasePage
     {

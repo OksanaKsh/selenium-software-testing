@@ -12,7 +12,7 @@
 using NUnit.Framework;
 using Litecart.UI.Client.Helpers;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class SortCountriesTest: AdminBaseUiTest
     {

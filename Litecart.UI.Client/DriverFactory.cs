@@ -5,7 +5,7 @@ using OpenQA.Selenium.Support.Events;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Remote;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class DriverFactory
     {
@@ -31,6 +31,7 @@ namespace FirstProject
                 //SetProxy();
                 Driver = new ChromeDriver();
             }
+            Driver.Manage().Window.Maximize();
             Driver.Navigate().GoToUrl(url);
             return Driver;
         }
@@ -53,9 +54,8 @@ namespace FirstProject
 
         public static void MakeScreenshot(WebDriver driver)
         {
-            string path1 = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug\\net6.0", "");
-            string path = path1 + "Screenshot\\" + DateTime.Now.Millisecond + ".png";
-            driver.GetScreenshot().SaveAsFile(path, ScreenshotImageFormat.Png);
+            string screenshotStorage = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug\\net6.0", "") + "Screenshot\\" + DateTime.Now.Millisecond + ".png";
+            driver.GetScreenshot().SaveAsFile(screenshotStorage, ScreenshotImageFormat.Png);
         }
 
         public void GetBrowserLogs()

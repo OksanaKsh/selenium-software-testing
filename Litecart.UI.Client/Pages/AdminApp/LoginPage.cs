@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public  class LoginPage : AdminBasePage
     {

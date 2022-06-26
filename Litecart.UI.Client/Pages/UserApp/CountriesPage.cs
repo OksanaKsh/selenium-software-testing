@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using Litecart.UI.Client.Helpers;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class CountriesPage : LitecartBasePage
     {

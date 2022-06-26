@@ -1,4 +1,4 @@
-﻿namespace FirstProject
+﻿namespace LitecartUITests
 {
     public class LitecartBasePage
     {
@@ -7,8 +7,5 @@
         public ProductDetailsPage ProductDetailsPage => new ProductDetailsPage();
         public RegistrationPage RegistrationPage => new RegistrationPage();
         public MainLitecartPage MainLitecartPage => new MainLitecartPage();
-        
-        //public Products Products => new Products();
-        //public static LitecartBasePage? Site { get; set; }  
     }
 }

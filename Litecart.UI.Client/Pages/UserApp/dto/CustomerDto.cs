@@ -1,5 +1,5 @@
 ﻿
-namespace FirstProject
+namespace LitecartUITests
 {
     public class CustomerDto
     {

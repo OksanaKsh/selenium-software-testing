@@ -14,7 +14,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class PresenceOfAllStickersTest : UserBaseUiTest
     {

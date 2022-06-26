@@ -9,7 +9,7 @@
 //6) удалить все товары из корзины один за другим, после каждого удаления подождать, пока внизу обновится таблица
 using NUnit.Framework;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class AddToAndDeleteFromBasketTest: UserBaseUiTest
     {

@@ -15,7 +15,7 @@ using System.Threading;
 using OpenQA.Selenium.Support.UI;
 using System;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class LaunchFirefox
     {

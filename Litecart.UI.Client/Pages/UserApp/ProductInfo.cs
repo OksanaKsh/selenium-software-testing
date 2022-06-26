@@ -1,10 +1,10 @@
-﻿using FirstProject.dto;
-using FirstProject.Dto;
-using Litecart.UI.Client.Helpers;
+﻿using Litecart.UI.Client.Helpers;
 using Litecart.UI.Client.Helpers.Extensions.String;
+using LitecartUITests.dto;
+using LitecartUITests.Dto;
 using OpenQA.Selenium;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class ProductInfo : LitecartBasePage
     {

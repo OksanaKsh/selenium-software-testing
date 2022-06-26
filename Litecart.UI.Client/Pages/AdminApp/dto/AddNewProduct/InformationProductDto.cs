@@ -1,4 +1,4 @@
-﻿namespace FirstProject
+﻿namespace LitecartUITests
 {
     public class InformationProductDto
     {

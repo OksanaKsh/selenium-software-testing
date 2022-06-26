@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class DataProviderNewProduct
     {

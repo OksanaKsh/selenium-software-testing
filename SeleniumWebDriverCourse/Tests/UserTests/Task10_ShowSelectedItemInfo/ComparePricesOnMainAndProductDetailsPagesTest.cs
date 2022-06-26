@@ -16,11 +16,11 @@
 
 
 using System.Linq;
-using FirstProject.Asserts;
 using Litecart.UI.Client.Helpers.ErrorMessages;
+using LitecartUITests.Asserts;
 using NUnit.Framework;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class ComparePricesOnMainAndProductDetailsPagesTest: UserBaseUiTest
     {

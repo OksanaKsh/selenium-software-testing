@@ -1,10 +1,10 @@
 ﻿using OpenQA.Selenium;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class AddNewProductPage
     {
-        public GeneralTab GeneralTab => new GeneralTab();
+        public  GeneralTab GeneralTab => new GeneralTab();
         public DataTab DataTab => new DataTab();
         public InformationTab InformationTab => new InformationTab();
         public ActionPanel ActionPanel => new ActionPanel();

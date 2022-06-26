@@ -24,7 +24,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class UserRegistrationTests: UserBaseUiTest
     {

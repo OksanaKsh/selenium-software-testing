@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class DataProviderNewProductTest
     {

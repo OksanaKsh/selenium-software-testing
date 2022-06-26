@@ -1,7 +1,7 @@
-﻿using FirstProject.dto;
-using System.Drawing;
+﻿using System.Drawing;
+using LitecartUITests.dto;
 
-namespace FirstProject.Dto
+namespace LitecartUITests.Dto
 {
     public class ProductDetailsDto
     {

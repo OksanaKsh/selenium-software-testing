@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class CheckoutPage
     {

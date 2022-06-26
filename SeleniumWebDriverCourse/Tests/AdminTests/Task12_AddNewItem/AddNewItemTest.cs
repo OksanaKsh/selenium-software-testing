@@ -18,7 +18,7 @@
 //что он появился в каталоге (в админке).
 //Клиентскую часть магазина можно не проверять.
 using NUnit.Framework;
-namespace FirstProject
+namespace LitecartUITests
 {
     public class AddNewItemTest : AdminBaseUiTest
     {

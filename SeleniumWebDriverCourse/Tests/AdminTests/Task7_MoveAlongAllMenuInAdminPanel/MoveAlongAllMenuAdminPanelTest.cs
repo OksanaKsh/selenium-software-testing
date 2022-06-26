@@ -11,7 +11,7 @@
 
 using NUnit.Framework;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class MoveAlongAllMenuAdminPanelTest: AdminBaseUiTest
     {

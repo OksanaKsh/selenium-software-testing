@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class InformationTab
     {

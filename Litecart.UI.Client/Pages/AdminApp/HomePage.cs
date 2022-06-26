@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class HomePage: AdminBasePage
     {

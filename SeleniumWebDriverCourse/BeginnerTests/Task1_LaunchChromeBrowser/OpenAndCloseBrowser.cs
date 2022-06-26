@@ -4,7 +4,7 @@ using OpenQA.Selenium.Chrome;
 using System.Threading;
 
 
-namespace FirstProject
+namespace LitecartUITests
 {
     public class OpenAndCloseBrowser
     {
