@@ -25,7 +25,6 @@ using Litecart.UI.Client.Pages.UserApp;
 using Litecart.UI.Client.Pages.UserApp.dto;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using SeleniumExtras.WaitHelpers;
 
 namespace SeleniumWebDriverCourse.UserTests
 {
@@ -42,7 +41,7 @@ namespace SeleniumWebDriverCourse.UserTests
 
             // Act && Arrange
             registrationPage.FillRegistrationForm(customer);
-            DriverFactory.Wait.Until(ExpectedConditions.ElementExists(By.XPath("//a[contains(text(),'Logout')]")));
+            DriverFactory.Wait.Until(x=> x.FindElement(By.XPath("//div[@id='box-account']//a[contains(text(),'Logout')]")));
             registrationPage.Logout();
             LoginPanel.LogIn(DataProvider.EmailValue, DataProvider.PasswordValue);
             registrationPage.Logout();
