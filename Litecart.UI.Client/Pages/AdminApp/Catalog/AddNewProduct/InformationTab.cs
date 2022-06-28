@@ -6,6 +6,11 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct
 {
     public class InformationTab
     {
+        IWebElement InformationTabElement => DriverFactory.Driver.FindElement(By.CssSelector("a[href ='#tab-information']"));
+        public void Open()
+        {
+            InformationTabElement.Click();
+        }
         IWebElement ManufacturerDropdown => DriverFactory.Driver.FindElement(By.CssSelector("select[name='manufacturer_id']"));
         IWebElement Supplier => DriverFactory.Driver.FindElement(By.CssSelector("select[name='supplier_id']"));//? empty dropdown what to do when fill form , just do not touch?
         IWebElement Keywords => DriverFactory.Driver.FindElement(By.CssSelector("input[name='keywords']"));

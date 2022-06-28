@@ -5,6 +5,12 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct
 {
     public class GeneralTab
     {
+        public IWebElement GeneralTabElement => DriverFactory.Driver.FindElement(By.CssSelector("a[href ='#tab-general']"));
+
+        public void OpenTab(IWebElement tabElement)
+        {
+            tabElement.Click();
+        }
         IWebElement Status => DriverFactory.Driver.FindElement(By.CssSelector("input[name='status'][value='0']"));//? how to add value 1
         IWebElement NameInput => DriverFactory.Driver.FindElement(By.CssSelector("input[name='name[en]']"));
         IWebElement CodeInput => DriverFactory.Driver.FindElement(By.CssSelector("input[name='code']"));

@@ -16,10 +16,10 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog
             AddNewProductButton.Click();
             this.CatalogPage.AddNewProductPage.GeneralTab.FillGeneralInfoForNewProduct(generalProductInfo);
 
-            AddNewProductPage.InformationTabElement.Click();
+            AddNewProductPage.InformationTab.Open();
             this.CatalogPage.AddNewProductPage.InformationTab.FillInformationTabInfoForNewProduct(informationDataProduct);
 
-            AddNewProductPage.DataTabElement.Click();
+            AddNewProductPage.DataTab.Open();
             this.CatalogPage.AddNewProductPage.DataTab.FillDataInfoForNewProduct(dataProduct);
         }
     }

@@ -6,6 +6,12 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct
 {
     public class DataTab
     {
+        IWebElement DataTabElement => DriverFactory.Driver.FindElement(By.CssSelector("a[href ='#tab-data']"));
+        public void Open()
+        {
+            DataTabElement.Click();
+        }
+
         IWebElement SKU => DriverFactory.Driver.FindElement(By.CssSelector("input[name='sku']"));
         IWebElement GTIN => DriverFactory.Driver.FindElement(By.CssSelector("input[name='gtin']"));
         IWebElement TARIC => DriverFactory.Driver.FindElement(By.CssSelector("input[name='taric']"));

@@ -35,13 +35,13 @@ namespace SeleniumWebDriverCourse.AdminTests
             LoginAdminApp();
             DriverFactory.Driver.Navigate().GoToUrl(CatalogPage.CatalogPageUrl);
             CatalogPage catalogPage = this.AdminSite.CatalogPage;
-            var ItemAmountBeforeTest = CatalogPage.ListOfProductCount;
+            var ItemsAmountBeforeTest = CatalogPage.ListOfProductCount;
 
             // Act
             catalogPage.AddNewProduct(generalProductInfo, informationDataProduct, dataProduct);
 
             // Arrange
-            Assert.That(CatalogPage.ListOfProductCount, Is.EqualTo(ItemAmountBeforeTest+1));
+            Assert.That(CatalogPage.ListOfProductCount, Is.EqualTo(ItemsAmountBeforeTest+1));
         }
     }
 }
