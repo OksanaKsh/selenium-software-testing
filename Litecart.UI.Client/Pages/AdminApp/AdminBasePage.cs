@@ -1,6 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using Litecart.UI.Client.Pages.UserApp;
 
-namespace FirstProject
+namespace Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct
 {
     public class AdminBasePage
     {
@@ -12,7 +12,6 @@ namespace FirstProject
         public GeoZonesPage GeoZonesPage => new GeoZonesPage();
         public CategoryElementPage CategoryElementPage => new CategoryElementPage();
         public CatalogPage CatalogPage => new CatalogPage();
-       //public AdminBasePage AdminSite;
         public ActionPanel ActionPanel => new ActionPanel();    
     }
 }

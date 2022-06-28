@@ -1,6 +1,5 @@
 ﻿
-
-namespace FirstProject
+namespace Litecart.UI.Client.Pages.AdminApp.AddNewProduct
 {
     public class GeneralProductDto
     {

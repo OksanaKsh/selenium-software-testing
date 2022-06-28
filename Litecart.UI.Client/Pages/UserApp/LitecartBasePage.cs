@@ -1,4 +1,4 @@
-﻿namespace FirstProject
+﻿namespace Litecart.UI.Client.Pages.UserApp
 {
     public class LitecartBasePage
     {

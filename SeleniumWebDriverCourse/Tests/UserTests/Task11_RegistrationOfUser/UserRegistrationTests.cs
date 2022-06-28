@@ -20,11 +20,14 @@
 //В форме регистрации есть капча, её нужно отключить в админке учебного приложения
 //на вкладке Settings -> Security.
 
+using Litecart.UI.Client;
+using Litecart.UI.Client.Pages.UserApp;
+using Litecart.UI.Client.Pages.UserApp.dto;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 
-namespace FirstProject
+namespace SeleniumWebDriverCourse.UserTests
 {
     public class UserRegistrationTests: UserBaseUiTest
     {
@@ -35,11 +38,11 @@ namespace FirstProject
         {
             // Arrange
             DriverFactory.Driver.Navigate().GoToUrl(RegistrationPage.UrlCreateAccount);
-            RegistrationPage registrationPage = this.Site.RegistrationPage;
+            var registrationPage = this.Site.RegistrationPage;
 
             // Act && Arrange
             registrationPage.FillRegistrationForm(customer);
-            DriverFactory.Wait.Until(ExpectedConditions.ElementExists(By.CssSelector("a[href='http://localhost/litecart/en/logout'")));
+            DriverFactory.Wait.Until(ExpectedConditions.ElementExists(By.XPath("//a[contains(text(),'Logout')]")));
             registrationPage.Logout();
             LoginPanel.LogIn(DataProvider.EmailValue, DataProvider.PasswordValue);
             registrationPage.Logout();

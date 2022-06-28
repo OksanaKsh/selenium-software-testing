@@ -16,8 +16,4 @@
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="102.0.5005.6102" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\UserApp\Interfaces\" />
-  </ItemGroup>
-
 </Project>

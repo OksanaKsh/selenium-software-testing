@@ -1,10 +1,9 @@
 ﻿using OpenQA.Selenium;
-using FirstProject.Dto;
-using FirstProject.dto;
 using Litecart.UI.Client.Helpers;
 using Litecart.UI.Client.Helpers.Extensions.String;
+using Litecart.UI.Client.Pages.UserApp.dto;
 
-namespace FirstProject
+namespace Litecart.UI.Client.Pages.UserApp
 {
     public class ProductDetailsPage : LitecartBasePage
     {

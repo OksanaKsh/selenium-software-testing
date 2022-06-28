@@ -17,8 +17,15 @@
 //После сохранения товара нужно убедиться,
 //что он появился в каталоге (в админке).
 //Клиентскую часть магазина можно не проверять.
+
+using FirstProject;
+using Litecart.UI.Client;
+using Litecart.UI.Client.Pages.AdminApp.AddNewProduct;
+using Litecart.UI.Client.Pages.AdminApp.Catalog;
 using NUnit.Framework;
-namespace FirstProject
+using SeleniumWebDriverCourse.AdminTests;
+
+namespace 
 {
     public class AddNewItemTest : AdminBaseUiTest
     {
@@ -35,7 +42,7 @@ namespace FirstProject
             catalogPage.AddNewProduct(generalProductInfo, informationDataProduct, dataProduct);
 
             // Arrange
-            Assert.That(CatalogPage.ListOfProductCount - ItemAmountBeforeTest == 1, Is.True);
+            Assert.That(CatalogPage.ListOfProductCount, Is.EqualTo(ItemAmountBeforeTest+1));
         }
     }
 }

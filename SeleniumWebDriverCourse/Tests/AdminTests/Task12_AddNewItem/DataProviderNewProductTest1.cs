@@ -1,4 +1,5 @@
 ﻿using System;
+using Litecart.UI.Client.Pages.AdminApp.AddNewProduct;
 
 
 namespace FirstProject

@@ -1,19 +1,13 @@
 ﻿using System;
 using System.Collections;
+using Litecart.UI.Client.Pages.UserApp.dto;
 
-namespace FirstProject
+namespace SeleniumWebDriverCourse.UserTests
 {
     public class DataProvider
     {
-        public static string EmailValue;
-        public static string CurrentEmailValue = EmailValue;
+        public static string EmailValue = "user" + Guid.NewGuid() + "@gmail.com";
         public static string PasswordValue { get; set; } = "qwerty";
-        public static string GenerateUniqueEmail()
-        {
-           // currentEmailValue = "user" + Guid.NewGuid() + "@gmail.com";
-           EmailValue = "user" + Guid.NewGuid() + "@gmail.com";
-            return EmailValue;
-        }
         public static IEnumerable ValidCustomers
         {
 
@@ -29,7 +23,7 @@ namespace FirstProject
                     City = "New City",
                     Country = "US",
                     Zone = "KS",
-                    Email = GenerateUniqueEmail(),
+                    Email = EmailValue,
                     Password = PasswordValue
                 };
             }

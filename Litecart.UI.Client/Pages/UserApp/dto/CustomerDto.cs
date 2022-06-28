@@ -1,5 +1,5 @@
 ﻿
-namespace FirstProject
+namespace Litecart.UI.Client.Pages.UserApp.dto
 {
     public class CustomerDto
     {

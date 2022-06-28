@@ -8,12 +8,10 @@
 
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
-using OpenQA.Selenium.Firefox;
-using System.Threading;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Threading;
 
 namespace FirstProject
 {

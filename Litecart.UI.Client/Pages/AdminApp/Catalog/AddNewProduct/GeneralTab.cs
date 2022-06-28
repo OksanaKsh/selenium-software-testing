@@ -1,6 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using Litecart.UI.Client.Pages.AdminApp.AddNewProduct;
+using OpenQA.Selenium;
 
-namespace FirstProject
+namespace Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct
 {
     public class GeneralTab
     {

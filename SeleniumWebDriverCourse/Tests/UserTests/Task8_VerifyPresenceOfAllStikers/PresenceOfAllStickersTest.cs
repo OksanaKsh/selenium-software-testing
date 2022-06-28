@@ -13,8 +13,9 @@
 
 using NUnit.Framework;
 using System.Collections.Generic;
+using Litecart.UI.Client.Pages.UserApp;
 
-namespace FirstProject
+namespace SeleniumWebDriverCourse.UserTests
 {
     public class PresenceOfAllStickersTest : UserBaseUiTest
     {

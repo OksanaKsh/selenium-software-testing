@@ -1,7 +1,7 @@
 ﻿using FirstProject.dto;
 using System.Drawing;
 
-namespace FirstProject.Dto
+namespace Litecart.UI.Client.Pages.UserApp.dto
 {
     public class ProductDetailsDto
     {

@@ -1,14 +1,15 @@
 ﻿
+using Litecart.UI.Client;
+using Litecart.UI.Client.Pages.UserApp;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
-using NUnit.Framework.Internal;
 
-namespace FirstProject
+namespace SeleniumWebDriverCourse.UserTests
 {
     public class UserBaseUiTest
     {
 
-        public LitecartBasePage Site { get; } = new LitecartBasePage();
+        public LitecartBasePage Site => new LitecartBasePage();
       
         [SetUp]
         public void Setup()

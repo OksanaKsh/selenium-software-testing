@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace FirstProject
+namespace Litecart.UI.Client.Pages.UserApp
 {
     public class BaseListProductsBlock 
     {

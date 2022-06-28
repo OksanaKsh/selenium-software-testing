@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace FirstProject
+namespace Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct
 {
     public class ActionPanel
     {    

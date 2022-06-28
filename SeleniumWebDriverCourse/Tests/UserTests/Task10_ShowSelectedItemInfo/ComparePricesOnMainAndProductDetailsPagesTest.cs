@@ -14,12 +14,12 @@
 //не совпадать)
 //д) акционная цена крупнее, чем обычная (это тоже надо проверить на каждой странице независимо)
 
-
-using FirstProject.Asserts;
 using Litecart.UI.Client.Helpers.ErrorMessages;
+using Litecart.UI.Client.Pages.UserApp;
+using Litecart.UI.Client.Pages.UserApp.Asserts;
 using NUnit.Framework;
 
-namespace FirstProject
+namespace SeleniumWebDriverCourse.UserTests
 {
     public class ComparePricesOnMainAndProductDetailsPagesTest: UserBaseUiTest
     {

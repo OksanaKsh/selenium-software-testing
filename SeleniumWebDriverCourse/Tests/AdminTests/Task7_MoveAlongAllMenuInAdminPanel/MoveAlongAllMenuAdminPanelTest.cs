@@ -11,7 +11,7 @@
 
 using NUnit.Framework;
 
-namespace FirstProject
+namespace SeleniumWebDriverCourse.AdminTests
 {
     public class MoveAlongAllMenuAdminPanelTest: AdminBaseUiTest
     {

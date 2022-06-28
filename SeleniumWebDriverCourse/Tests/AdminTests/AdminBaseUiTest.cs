@@ -1,13 +1,16 @@
-﻿using NUnit.Framework;
+﻿using Litecart.UI.Client;
+using Litecart.UI.Client.Pages.AdminApp;
+using Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct;
+using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 
-namespace FirstProject
+namespace SeleniumWebDriverCourse.AdminTests
 {
     public class AdminBaseUiTest
     {
         public Proxy Proxy;
-        public AdminBasePage AdminSite { get; } =  new AdminBasePage(); 
+        public AdminBasePage AdminSite  =>  new AdminBasePage(); 
         public void LoginAdminApp()
         {
             LoginPage loginPage = new LoginPage();

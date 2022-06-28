@@ -4,9 +4,8 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.Events;
 using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium.Remote;
 
-namespace FirstProject
+namespace Litecart.UI.Client
 {
     public class DriverFactory
     {

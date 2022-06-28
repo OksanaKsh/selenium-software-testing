@@ -9,10 +9,12 @@
 //2) на странице http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones
 //зайти в каждую из стран и проверить, что зоны расположены в алфавитном порядке
 
+using Litecart.UI.Client;
 using NUnit.Framework;
 using Litecart.UI.Client.Helpers;
+using Litecart.UI.Client.Pages.UserApp;
 
-namespace FirstProject
+namespace SeleniumWebDriverCourse.AdminTests
 {
     public class SortCountriesTest: AdminBaseUiTest
     {

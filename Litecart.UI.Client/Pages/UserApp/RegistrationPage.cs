@@ -1,12 +1,9 @@
-﻿using FirstProject.dto;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium;
 
-namespace FirstProject
+namespace Litecart.UI.Client.Pages.UserApp
 {
     public class RegistrationPage : LitecartBasePage
     {
-
 
         public static string UrlCreateAccount = "http://localhost/litecart/en/create_account";
 
