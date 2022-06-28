@@ -29,6 +29,7 @@ namespace LitecartUITests
     public class UserRegistrationTests: UserBaseUiTest
     {
         [Test]
+        [Repeat(3)]
         [TestCaseSource(typeof(DataProvider), nameof(DataProvider.ValidCustomers))]      
         //[Ignore ("Ignore a test not ready yet")]
         public void VerifyRegistrationNewUser(CustomerDto customer)

@@ -20,4 +20,10 @@
     <Folder Include="Pages\UserApp\Interfaces\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="testImage.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

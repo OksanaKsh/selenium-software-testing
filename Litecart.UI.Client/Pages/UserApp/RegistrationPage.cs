@@ -68,6 +68,7 @@ namespace LitecartUITests
             CityInput.SendKeys(customer.City);
             SelectCountry(customer.Country);
             //DriverFactory.Wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.CssSelector("select[name='zone_code']")));
+            Thread.Sleep(2000);
             SelectZone(customer.Zone);
             EmailInput.SendKeys(customer.Email);
             PhoneInput.SendKeys(customer.Phone);

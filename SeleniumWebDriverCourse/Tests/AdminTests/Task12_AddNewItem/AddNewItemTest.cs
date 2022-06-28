@@ -35,7 +35,7 @@ namespace LitecartUITests
             catalogPage.AddNewProduct(generalProductInfo, informationDataProduct, dataProduct);
 
             // Arrange
-            Assert.That(CatalogPage.ListOfProductCount - ItemAmountBeforeTest == 1, Is.True);
+            Assert.That(CatalogPage.ListOfProductCount, Is.EqualTo(ItemAmountBeforeTest+1));
         }
     }
 }
