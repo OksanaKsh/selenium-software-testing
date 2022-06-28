@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.Events;
@@ -31,6 +32,7 @@ namespace FirstProject
                 //SetProxy();
                 Driver = new ChromeDriver();
             }
+            Driver.Manage().Window.Maximize();
             Driver.Navigate().GoToUrl(url);
             return Driver;
         }
@@ -53,12 +55,11 @@ namespace FirstProject
 
         public static void MakeScreenshot(WebDriver driver)
         {
-            string path1 = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug\\net6.0", "");
-            string path = path1 + "Screenshot\\" + DateTime.Now.Millisecond + ".png";
-            driver.GetScreenshot().SaveAsFile(path, ScreenshotImageFormat.Png);
+            string screenshotsStorage = Path.Combine(TestContext.CurrentContext.WorkDirectory.ToString() ,"Screens", TestContext.CurrentContext.Test.MethodName.ToString()+".png");
+            driver.GetScreenshot().SaveAsFile(screenshotsStorage, ScreenshotImageFormat.Png);
         }
 
-        public void GetBrowserLogs()
+        public void GetBrowserLogs() 
         {
             foreach (LogEntry l in Driver.Manage().Logs.GetLog("browser"))
             {
