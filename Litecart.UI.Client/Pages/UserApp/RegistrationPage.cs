@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Litecart.UI.Client.Pages.UserApp.dto;
+using OpenQA.Selenium;
 
 namespace Litecart.UI.Client.Pages.UserApp
 {

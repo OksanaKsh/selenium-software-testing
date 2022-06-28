@@ -1,4 +1,4 @@
-﻿using FirstProject;
+﻿using Litecart.UI.Client.Pages.AdminApp.AddNewProduct;
 using Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct;
 using OpenQA.Selenium;
 

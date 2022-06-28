@@ -1,5 +1,4 @@
-﻿using FirstProject.dto;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace Litecart.UI.Client.Pages.UserApp.dto
 {

@@ -23,9 +23,8 @@ using Litecart.UI.Client;
 using Litecart.UI.Client.Pages.AdminApp.AddNewProduct;
 using Litecart.UI.Client.Pages.AdminApp.Catalog;
 using NUnit.Framework;
-using SeleniumWebDriverCourse.AdminTests;
 
-namespace 
+namespace SeleniumWebDriverCourse.AdminTests
 {
     public class AddNewItemTest : AdminBaseUiTest
     {

@@ -1,5 +1,6 @@
 ﻿using Litecart.UI.Client.Helpers;
 using Litecart.UI.Client.Helpers.Extensions.String;
+using Litecart.UI.Client.Pages.UserApp.dto;
 using OpenQA.Selenium;
 
 namespace Litecart.UI.Client.Pages.UserApp
