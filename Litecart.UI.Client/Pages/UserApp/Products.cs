@@ -10,7 +10,11 @@ namespace Litecart.UI.Client.Pages.UserApp
         public IWebElement ProductName;
         public IWebElement RegularPrice;
         public IWebElement CampaignPrice;
-        public List<ProductInfo> Products;
+        private List<ProductInfo> _products;
+
+            public List<ProductInfo> Products { get; set; } = new List<ProductInfo>();   
+
+
         public IList<IWebElement> ListOfProductElementsInSelectedBlock =>
             DriverFactory.Driver.FindElements(By.CssSelector("#box-campaigns.box li.product"));
 
@@ -20,8 +24,6 @@ namespace Litecart.UI.Client.Pages.UserApp
 
         public void IdentifyProductInfo(IList<IWebElement> listOfProductElementsInSelectedBlock)
         {
-            Products = new List<ProductInfo>();
-
             for (int i = 0; i <listOfProductElementsInSelectedBlock.Count; i++)
             {
                 Products.Add(new ProductInfo()

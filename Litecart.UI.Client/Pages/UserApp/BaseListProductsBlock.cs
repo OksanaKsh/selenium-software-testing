@@ -13,7 +13,9 @@ namespace Litecart.UI.Client.Pages.UserApp
         public BaseListProductsBlock()
         {
             ProductInfo.IdentifyProductInfo(ListOfProductElementsInSelectedBlock);
-        }      
+            ProductInfo.ListOfProductElementsInSelectedBlock = ListOfProductElementsInSelectedBlock;
+        }
+
 
     }
 }
