@@ -11,22 +11,21 @@ namespace Litecart.UI.Client.Pages.UserApp
         IWebElement RegularPrice;
         IWebElement CampaignPrice;
 
-        private List<ProductInfo> _products = new List<ProductInfo>();
-
         public List<ProductInfo> Products
         {
             get
             {
+                List<ProductInfo> products = new List<ProductInfo>();
                 foreach (var item in ListOfProductElementsInSelectedBlock)
                 {
-                    _products.Add(new ProductInfo()
+                    products.Add(new ProductInfo()
                     {
                         ProductName = item.FindElement(ProductNameLocator),
                         RegularPrice = item.FindElement(RegularPriceLocator),
                         CampaignPrice = item.FindElement(CampaignPriceLocator)
                     });
                 };
-                return _products;
+                return products;
             }
         }
 
