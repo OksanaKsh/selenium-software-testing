@@ -10,10 +10,25 @@ namespace Litecart.UI.Client.Pages.UserApp
         public IWebElement ProductName;
         public IWebElement RegularPrice;
         public IWebElement CampaignPrice;
-        private List<ProductInfo> _products;
 
-            public List<ProductInfo> Products { get; set; } = new List<ProductInfo>();   
+        private List<ProductInfo> _products = new List<ProductInfo>();
 
+        public List<ProductInfo> Products
+        {
+            get
+            {
+                foreach (var t in ListOfProductElementsInSelectedBlock)
+                {
+                    _products.Add(new ProductInfo()
+                    {
+                        ProductName = t.FindElement(ProductNameLocator),
+                        RegularPrice = t.FindElement(RegularPriceLocator),
+                        CampaignPrice = t.FindElement(CampaignPriceLocator)
+                    });
+                };
+                return _products;
+            }
+        }
 
         public IList<IWebElement> ListOfProductElementsInSelectedBlock =>
             DriverFactory.Driver.FindElements(By.CssSelector("#box-campaigns.box li.product"));
@@ -22,18 +37,19 @@ namespace Litecart.UI.Client.Pages.UserApp
         public By RegularPriceLocator => By.XPath(".//div[@class ='price-wrapper']/s[@class ='regular-price']");
         public By CampaignPriceLocator => By.XPath(".//div[@class ='price-wrapper']/strong[@class ='campaign-price']");
 
-        public void IdentifyProductInfo(IList<IWebElement> listOfProductElementsInSelectedBlock)
+        public void IdentifyProductInfo()
         {
-            for (int i = 0; i <listOfProductElementsInSelectedBlock.Count; i++)
+            foreach (var t in ListOfProductElementsInSelectedBlock)
             {
                 Products.Add(new ProductInfo()
                 {
-                    ProductName = ListOfProductElementsInSelectedBlock[i].FindElement(ProductNameLocator),
-                    RegularPrice = ListOfProductElementsInSelectedBlock[i].FindElement(RegularPriceLocator),
-                    CampaignPrice =ListOfProductElementsInSelectedBlock[i].FindElement(CampaignPriceLocator)
+                    ProductName = t.FindElement(ProductNameLocator),
+                    RegularPrice = t.FindElement(RegularPriceLocator),
+                    CampaignPrice = t.FindElement(CampaignPriceLocator)
                 });
             }
         }
+
         public ProductDetailsDto ReadInfo()
         {
             return new ProductDetailsDto()
