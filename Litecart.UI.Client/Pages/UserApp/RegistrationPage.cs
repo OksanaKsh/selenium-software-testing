@@ -51,15 +51,8 @@ namespace Litecart.UI.Client.Pages.UserApp
 
         public void SelectZone(string zone)
         {
-            string zoneVariable = String.Format("select[name='zone_code'] option[value='{0}']", zone);
-            // DriverFactory.Driver.FindElement(By.CssSelector("select[name='zone_code']")).Click();
-            ////wait.Until(d => d.FindElement(By.CssSelector("select[name='zone_code']")));
+            DriverFactory.Wait.Until(d => d.FindElement(By.CssSelector("select[name='zone_code']")));
             DriverFactory.Driver.FindElement(By.CssSelector("select[name='zone_code']")).Click();
-            DriverFactory.Driver.FindElement(By.CssSelector(
-                   String.Format("select[name='zone_code'] option[value='{0}']", zone))).Click();
-
-            //DriverFactory.Wait.Until(d => d.FindElement(By.CssSelector(zoneVariable)));
-            //new SelectElement(DriverFactory.Driver.FindElement(By.CssSelector("select[name=zone_code]"))).SelectByValue(zone);
         }
 
         public void FillRegistrationForm(CustomerDto customer)
@@ -70,7 +63,6 @@ namespace Litecart.UI.Client.Pages.UserApp
             PostcodeInput.SendKeys(customer.Postcode);
             CityInput.SendKeys(customer.City);
             SelectCountry(customer.Country);
-            Thread.Sleep(2000);
             SelectZone(customer.Zone);
             EmailInput.SendKeys(customer.Email);
             PhoneInput.SendKeys(customer.Phone);

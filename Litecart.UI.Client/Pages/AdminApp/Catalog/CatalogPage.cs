@@ -7,9 +7,9 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog
     public class CatalogPage:AdminBasePage
     {       
         public string CatalogPageUrl => "http://localhost/litecart/admin/?app=catalog&doc=catalog";
-        IWebElement AddNewProductButton => DriverFactory.Driver.FindElement(By.CssSelector("a[class='button'][href='http://localhost/litecart/admin/?category_id=0&app=catalog&doc=edit_product']"));
+        IWebElement AddNewProductButton => DriverFactory.Driver.FindElement(By.XPath("//a[@class='button'][contains(text(),' Add New Product')]"));
         public AddNewProductPage AddNewProductPage => new AddNewProductPage();
-        public int ProductsCount => DriverFactory.Driver.FindElements(By.XPath("//table[@class='dataTable']//tr")).ToList().Count;
+        public int ProductsCount => DriverFactory.Driver.FindElements(By.XPath("//table[@class='dataTable']//tr")).ToList().Count;//how properly delete public if i need (ProductsCount) it in tests?
         
         public void AddNewProduct(GeneralProductDto generalProductInfo, InformationProductDto informationDataProduct, DataProductDto dataProduct)
         {

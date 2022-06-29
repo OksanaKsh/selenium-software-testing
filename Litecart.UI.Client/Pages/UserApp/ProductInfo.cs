@@ -37,19 +37,6 @@ namespace Litecart.UI.Client.Pages.UserApp
         public By RegularPriceLocator => By.XPath(".//div[@class ='price-wrapper']/s[@class ='regular-price']");
         public By CampaignPriceLocator => By.XPath(".//div[@class ='price-wrapper']/strong[@class ='campaign-price']");
 
-        public void IdentifyProductInfo()
-        {
-            foreach (var t in ListOfProductElementsInSelectedBlock)
-            {
-                Products.Add(new ProductInfo()
-                {
-                    ProductName = t.FindElement(ProductNameLocator),
-                    RegularPrice = t.FindElement(RegularPriceLocator),
-                    CampaignPrice = t.FindElement(CampaignPriceLocator)
-                });
-            }
-        }
-
         public ProductDetailsDto ReadInfo()
         {
             return new ProductDetailsDto()

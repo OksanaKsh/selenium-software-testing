@@ -11,7 +11,7 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct
         {
             InformationTabElement.Click();
         }
-        IWebElement ManufacturerDropdown => DriverFactory.Driver.FindElement(By.CssSelector("select[name='manufacturer_id']"));
+        SelectElement ManufacturerDropdown => new SelectElement(DriverFactory.Driver.FindElement(By.CssSelector("select[name='manufacturer_id']")));
         IWebElement Supplier => DriverFactory.Driver.FindElement(By.CssSelector("select[name='supplier_id']"));//? empty dropdown what to do when fill form , just do not touch?
         IWebElement Keywords => DriverFactory.Driver.FindElement(By.CssSelector("input[name='keywords']"));
         IWebElement ShortDescription => DriverFactory.Driver.FindElement(By.CssSelector("input[name^='short_description']"));
@@ -21,8 +21,7 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct
         
         public void SelectManufacturer(InformationProductDto informationDataProduct)
         {
-            SelectElement manufacturer = new SelectElement(ManufacturerDropdown);
-            manufacturer.SelectByText(informationDataProduct.Manufacturer);
+            ManufacturerDropdown.SelectByText(informationDataProduct.Manufacturer);
         }
 
         public void FillInformationTabInfoForNewProduct(InformationProductDto informationDataProduct)

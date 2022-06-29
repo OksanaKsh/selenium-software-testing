@@ -35,15 +35,15 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct
         public void SetDimentions(DataProductDto dataProduct)
         {
             DimentionsWidth.Clear();
-            DimentionsHeight.Clear();
-            DimentionsLength.Clear();
-
             DimentionsWidth.SendKeys(dataProduct.DimentionWidth.ToString());
-            DimentionsHeight.SendKeys(dataProduct.DimentionHeight.ToString());
+
+            DimentionsHeight.Clear();
+            DimentionsWidth.SendKeys(dataProduct.DimentionWidth.ToString());
+
+            DimentionsLength.Clear();
             DimentionsLength.SendKeys(dataProduct.DimentionLength.ToString());
 
-            SelectElement dimentionsMeasure = new SelectElement(DimentionsMeasures);
-            dimentionsMeasure.SelectByValue(dataProduct.DimentionMeasures);
+            new SelectElement(DimentionsMeasures).SelectByValue(dataProduct.DimentionMeasures);
         }
 
         public void FillDataInfoForNewProduct(DataProductDto dataProduct)

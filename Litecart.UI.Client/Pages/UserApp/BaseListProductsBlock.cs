@@ -4,9 +4,14 @@ namespace Litecart.UI.Client.Pages.UserApp
 {
     public class BaseListProductsBlock 
     {
-        public string Name { get; set; }
-        public IWebElement Locator { get; set; }
+        string Name { get; set; }
+        public string Locator { get; set; }
         public ProductInfo ProductInfo => new ProductInfo();
+
+        public BaseListProductsBlock(string locator )
+        {
+                this.Locator = locator; 
+        }
 
     }
 }
