@@ -7,7 +7,7 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog
     public class CatalogPage:AdminBasePage
     {       
         public string CatalogPageUrl => "http://localhost/litecart/admin/?app=catalog&doc=catalog";
-        public IWebElement AddNewProductButton => DriverFactory.Driver.FindElement(By.CssSelector("a[class='button'][href='http://localhost/litecart/admin/?category_id=0&app=catalog&doc=edit_product']"));
+        IWebElement AddNewProductButton => DriverFactory.Driver.FindElement(By.CssSelector("a[class='button'][href='http://localhost/litecart/admin/?category_id=0&app=catalog&doc=edit_product']"));
         public AddNewProductPage AddNewProductPage => new AddNewProductPage();
         public int ProductsCount => DriverFactory.Driver.FindElements(By.XPath("//table[@class='dataTable']//tr")).ToList().Count;
         

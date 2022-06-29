@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using Litecart.UI.Client.Pages.AdminApp.AddNewProduct;
+using NUnit.Framework;
 
 
 namespace FirstProject
@@ -13,7 +15,7 @@ namespace FirstProject
                     Name = "TestName" + Guid.NewGuid().ToString(),
                     Code = "TestCode",
                     Quantity = 5.6,
-                    UploadImages = "C:\\SeleniumWebDriver\\ABarantcevCource\\SeleniumWebDriverCourse\\SeleniumWebDriverCourse\\bin\\Debug\\net6.0\\Files\\testImage.jpg",
+                    UploadImages = Path.Combine(TestContext.CurrentContext.WorkDirectory.ToString() ,"Files", "testImage.jpg"),
                     DateValidFrom = DateTime.Now,
                     DateValidTo = DateTime.Now.AddDays(30)
                 },

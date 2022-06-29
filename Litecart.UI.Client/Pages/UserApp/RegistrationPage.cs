@@ -8,7 +8,7 @@ namespace Litecart.UI.Client.Pages.UserApp
 
         public static string UrlCreateAccount = "http://localhost/litecart/en/create_account";
 
-        public static IWebElement LogoutLink => DriverFactory.Driver.FindElement(By.CssSelector("a[href='http://localhost/litecart/en/logout'"));
+        IWebElement LogoutLink => DriverFactory.Driver.FindElement(By.XPath("//div[@id='box-account']//a[contains(text(),'Logout')]"));
 
         IWebElement Title => DriverFactory.Driver.FindElement(By.CssSelector("h1.title"));
 
