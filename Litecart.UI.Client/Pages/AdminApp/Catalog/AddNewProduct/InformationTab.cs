@@ -21,8 +21,8 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct
         
         public void SelectManufacturer(InformationProductDto informationDataProduct)
         {
-            SelectElement manufacrurer = new SelectElement(ManufacturerDropdown);
-            manufacrurer.SelectByText(informationDataProduct.Manufacturer);
+            SelectElement manufacturer = new SelectElement(ManufacturerDropdown);
+            manufacturer.SelectByText(informationDataProduct.Manufacturer);
         }
 
         public void FillInformationTabInfoForNewProduct(InformationProductDto informationDataProduct)

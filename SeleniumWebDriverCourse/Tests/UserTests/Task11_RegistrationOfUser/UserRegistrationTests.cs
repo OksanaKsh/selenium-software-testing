@@ -43,7 +43,7 @@ namespace SeleniumWebDriverCourse.UserTests
             registrationPage.FillRegistrationForm(customer);
             DriverFactory.Wait.Until(x=> x.FindElement(By.XPath("//div[@id='box-account']//a[contains(text(),'Logout')]")));
             registrationPage.Logout();
-            LoginPanel.LogIn(DataProvider.EmailValue, DataProvider.PasswordValue);
+            this.Site.MainLitecartPage.LoginPanel.LogIn(DataProvider.EmailValue, DataProvider.PasswordValue);
             registrationPage.Logout();
         }
     }

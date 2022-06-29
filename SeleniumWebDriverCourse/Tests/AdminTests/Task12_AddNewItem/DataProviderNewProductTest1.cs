@@ -13,7 +13,7 @@ namespace FirstProject
                     Name = "TestName" + Guid.NewGuid().ToString(),
                     Code = "TestCode",
                     Quantity = 5.6,
-                    UploadImages = "C:\\Users\\kshan\\OneDrive\\Desktop",
+                    UploadImages = "C:\\SeleniumWebDriver\\ABarantcevCource\\SeleniumWebDriverCourse\\SeleniumWebDriverCourse\\bin\\Debug\\net6.0\\Files\\testImage.jpg",
                     DateValidFrom = DateTime.Now,
                     DateValidTo = DateTime.Now.AddDays(30)
                 },

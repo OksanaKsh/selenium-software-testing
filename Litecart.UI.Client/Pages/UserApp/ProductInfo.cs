@@ -8,8 +8,8 @@ namespace Litecart.UI.Client.Pages.UserApp
     public class ProductInfo : LitecartBasePage
     {
         public IWebElement ProductName;
-        public IWebElement RegularPrice;
-        public IWebElement CampaignPrice;
+        IWebElement RegularPrice;
+        IWebElement CampaignPrice;
 
         private List<ProductInfo> _products = new List<ProductInfo>();
 
@@ -17,13 +17,13 @@ namespace Litecart.UI.Client.Pages.UserApp
         {
             get
             {
-                foreach (var t in ListOfProductElementsInSelectedBlock)
+                foreach (var item in ListOfProductElementsInSelectedBlock)
                 {
                     _products.Add(new ProductInfo()
                     {
-                        ProductName = t.FindElement(ProductNameLocator),
-                        RegularPrice = t.FindElement(RegularPriceLocator),
-                        CampaignPrice = t.FindElement(CampaignPriceLocator)
+                        ProductName = item.FindElement(ProductNameLocator),
+                        RegularPrice = item.FindElement(RegularPriceLocator),
+                        CampaignPrice = item.FindElement(CampaignPriceLocator)
                     });
                 };
                 return _products;

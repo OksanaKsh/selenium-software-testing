@@ -7,11 +7,11 @@ namespace Litecart.UI.Client.Pages.UserApp
 {
     public class ProductDetailsPage : LitecartBasePage
     {
-        public IWebElement ProductName => DriverFactory.Driver.FindElement(By.CssSelector("h1.title"));
+        IWebElement ProductName => DriverFactory.Driver.FindElement(By.CssSelector("h1.title"));
 
-        public IWebElement RegularPrice => DriverFactory.Driver.FindElement(By.CssSelector(".regular-price"));
+        IWebElement RegularPrice => DriverFactory.Driver.FindElement(By.CssSelector(".regular-price"));
 
-        public IWebElement CampaignPrice => DriverFactory.Driver.FindElement(By.CssSelector(".campaign-price"));
+        IWebElement CampaignPrice => DriverFactory.Driver.FindElement(By.CssSelector(".campaign-price"));
 
         public ProductDetailsDto ReadInfo()
         {

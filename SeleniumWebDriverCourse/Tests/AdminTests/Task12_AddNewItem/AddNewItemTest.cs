@@ -33,8 +33,9 @@ namespace SeleniumWebDriverCourse.AdminTests
         {
             // Arrange
             LoginAdminApp();
-            DriverFactory.Driver.Navigate().GoToUrl(CatalogPage.CatalogPageUrl);
             var catalogPage = this.AdminSite.CatalogPage;
+            DriverFactory.Driver.Navigate().GoToUrl(catalogPage.CatalogPageUrl);
+           
             var ItemsAmountBeforeTest = catalogPage.ProductsCount;
 
             // Act
