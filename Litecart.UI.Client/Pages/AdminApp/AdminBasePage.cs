@@ -4,7 +4,7 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct
 {
     public class AdminBasePage
     {
-        public static string UrlCatalogPage => "http://localhost/litecart/admin/";
+        public  string UrlCatalogPage => "http://localhost/litecart/admin/";
         public HomePage HomePage => new HomePage();
         public LoginPage LoginPage => new LoginPage();
 

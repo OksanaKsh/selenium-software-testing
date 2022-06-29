@@ -23,20 +23,20 @@ namespace SeleniumWebDriverCourse.AdminTests
         public void CountriesAndZonesNameSorting()
         {
             LoginAdminApp();
-            DriverFactory.Driver.Navigate().GoToUrl(CountriesPage.UrlCountries);
 
             // Arrange
             CountriesPage countriesPage = AdminSite.CountriesPage;
-            
+            DriverFactory.Driver.Navigate().GoToUrl(countriesPage.UrlCountries);
+
             // Act && Assert
-            AlphabeticalOrderSorting.VerifyThatItemsAreSortedInAlphabeticalOrder(CountriesPage.ListOfCountries);
+            AlphabeticalOrderSorting.VerifyThatItemsAreSortedInAlphabeticalOrder(countriesPage.ListOfCountries);
 
             countriesPage.VerifyZonesAreSortedForCountryWhenAmountOfZonesGreaterThanZero();
 
             DriverFactory.Driver.Navigate().GoToUrl(GeoZonesPage.UrlGeoZones);
 
             // Act && Assert
-            GeoZonesPage.SelectEveryCountryAndVerifyThatZoneAreInAlphabeticalOrder();
+            this.AdminSite.GeoZonesPage.SelectEveryCountryAndVerifyThatZoneAreInAlphabeticalOrder();
         }
     }
 }

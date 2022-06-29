@@ -5,9 +5,9 @@ namespace Litecart.UI.Client.Pages.UserApp
 {
     public class CountriesPage : LitecartBasePage
     {
-        public static string UrlCountries => "http://localhost/litecart/admin/?app=countries&doc=countries";
+        public string UrlCountries => "http://localhost/litecart/admin/?app=countries&doc=countries";
         IList<IWebElement> TableRows => DriverFactory.Driver.FindElements(By.CssSelector("table.dataTable tr.row"));
-        public static IList<IWebElement> ListOfCountries => DriverFactory.Driver.FindElements(By.XPath("//table[@class='dataTable']//td[5]")).ToList();
+        public IList<IWebElement> ListOfCountries => DriverFactory.Driver.FindElements(By.XPath("//table[@class='dataTable']//td[5]")).ToList();
         IList<IWebElement> ListOfZones => DriverFactory.Driver.FindElements(By.XPath("//table[@class='dataTable']/td[2]")).ToList();
 
         By zoneLocator = By.XPath(".//td[6]");
