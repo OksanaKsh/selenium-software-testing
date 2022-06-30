@@ -8,8 +8,17 @@ namespace Litecart.UI.Client.Pages.UserApp
     public class ProductCardInfo : LitecartBasePage
     {
         public IWebElement ProductName;
-        public IWebElement RegularPrice;
-        public IWebElement CampaignPrice;
+        IWebElement RegularPrice;
+        IWebElement CampaignPrice;
+        public ProductCardInfo(IWebElement item)
+        {
+            ProductName = item.FindElement(ProductNameLocator);
+            RegularPrice = item.FindElement(RegularPriceLocator);
+            CampaignPrice = item.FindElement(CampaignPriceLocator);
+        }
+        By ProductNameLocator => By.XPath(".//div[@class ='name']");
+        By RegularPriceLocator => By.XPath(".//div[@class ='price-wrapper']/s[@class ='regular-price']");
+        By CampaignPriceLocator => By.XPath(".//div[@class ='price-wrapper']/strong[@class ='campaign-price']");
 
         public ProductDetailsDto ReadInfo()
         {
