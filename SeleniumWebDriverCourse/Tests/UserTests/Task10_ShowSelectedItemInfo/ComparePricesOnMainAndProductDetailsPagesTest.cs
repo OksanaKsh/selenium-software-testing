@@ -28,7 +28,7 @@ namespace SeleniumWebDriverCourse.UserTests
         public void VerifyDataOnMainPageAndDetailedProductPageAreSame()
         {
             // Arrange
-            var firstProductOnCampaignBlock = Site.MainLitecartPage.CampaignBlock.ProductInfo.Products[0];
+            var firstProductOnCampaignBlock = Site.MainLitecartPage.CampaignBlock.Products[0];
            
             // Act 
             var productInfoOnCampaignBlock = firstProductOnCampaignBlock.ReadInfo();
