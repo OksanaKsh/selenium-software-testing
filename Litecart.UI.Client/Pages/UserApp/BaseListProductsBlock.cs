@@ -15,20 +15,12 @@ namespace Litecart.UI.Client.Pages.UserApp
         {
             get
             {
-                List<ProductCardInfo> products = new List<ProductCardInfo>();
-                foreach (var item in ListOfProductElementsInSelectedBlock)
-                {
-                    products.Add(new ProductCardInfo(item));
-
-                }
+                List<ProductCardInfo> products = ListOfProductElementsInSelectedBlock.Select(x => new ProductCardInfo(x)).ToList();
 
                 return products;;
             }
         }
         IList<IWebElement> ListOfProductElementsInSelectedBlock =>
             DriverFactory.Driver.FindElements(By.CssSelector("#box-campaigns.box li.product"));
-        //ProductName = x.ProductName,
-        //RegularPrice = x.RegularPrice,
-        //CampaignPrice = x.CampaignPrice,
     }
 }
