@@ -1,4 +1,4 @@
-﻿namespace FirstProject
+﻿namespace Litecart.UI.Client.Pages.UserApp
 {
     public class LitecartBasePage
     {
@@ -6,8 +6,6 @@
         public HomePageLitecart HomePageLitecart => new HomePageLitecart();
         public ProductDetailsPage ProductDetailsPage => new ProductDetailsPage();
         public RegistrationPage RegistrationPage => new RegistrationPage();
-        public MainLitecartPage MainLitecartPage => new MainLitecartPage();        
-        //public CampaignBlockOnMainPage CampaignBlockOnMainPage => new CampaignBlockOnMainPage();
-        //public static LitecartBasePage? Site { get; set; }  
+        public MainLitecartPage MainLitecartPage => new MainLitecartPage();
     }
 }

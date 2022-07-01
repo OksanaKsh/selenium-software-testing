@@ -1,19 +1,17 @@
 ﻿using OpenQA.Selenium;
-using FirstProject.Interfaces;
-using FirstProject.Dto;
-using FirstProject.dto;
 using Litecart.UI.Client.Helpers;
 using Litecart.UI.Client.Helpers.Extensions.String;
+using Litecart.UI.Client.Pages.UserApp.dto;
 
-namespace FirstProject
+namespace Litecart.UI.Client.Pages.UserApp
 {
-    public class ProductDetailsPage : LitecartBasePage, IProductInfo
+    public class ProductDetailsPage : LitecartBasePage
     {
-        public IWebElement ProductName => DriverFactory.Driver.FindElement(By.CssSelector("h1.title"));
+        IWebElement ProductName => DriverFactory.Driver.FindElement(By.CssSelector("h1.title"));
 
-        public IWebElement RegularPrice => DriverFactory.Driver.FindElement(By.CssSelector(".regular-price"));
+        IWebElement RegularPrice => DriverFactory.Driver.FindElement(By.CssSelector(".regular-price"));
 
-        public IWebElement CampaignPrice => DriverFactory.Driver.FindElement(By.CssSelector(".campaign-price"));
+        IWebElement CampaignPrice => DriverFactory.Driver.FindElement(By.CssSelector(".campaign-price"));
 
         public ProductDetailsDto ReadInfo()
         {

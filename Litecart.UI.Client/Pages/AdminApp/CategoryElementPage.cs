@@ -1,8 +1,7 @@
-﻿using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
+﻿using Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct;
+using OpenQA.Selenium;
 
-
-namespace FirstProject
+namespace Litecart.UI.Client.Pages.AdminApp
 {
     public class CategoryElementPage : AdminBasePage
     {

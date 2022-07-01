@@ -1,19 +1,14 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FirstProject
+namespace Litecart.UI.Client.Pages.UserApp
 {
     public class LoginPanel
     {
-        static IWebElement Email => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='email']"));
-        static IWebElement Password => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='email']"));
-        static IWebElement LoginButton => DriverFactory.Driver.FindElement(By.CssSelector("button[name ='email']"));
+        IWebElement Email => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='email']"));
+        IWebElement Password => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='password']"));
+        IWebElement LoginButton => DriverFactory.Driver.FindElement(By.CssSelector("button[name ='login']"));
 
-        public static void LogIn(string email, string password)
+        public void LogIn(string email, string password)
         {
             Email.SendKeys(email);
             Password.SendKeys(password);

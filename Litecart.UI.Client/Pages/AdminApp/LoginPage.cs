@@ -1,10 +1,7 @@
-﻿
+﻿using Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct;
 using OpenQA.Selenium;
 
-using SeleniumExtras.PageObjects;
-
-
-namespace FirstProject
+namespace Litecart.UI.Client.Pages.AdminApp
 {
     public  class LoginPage : AdminBasePage
     {

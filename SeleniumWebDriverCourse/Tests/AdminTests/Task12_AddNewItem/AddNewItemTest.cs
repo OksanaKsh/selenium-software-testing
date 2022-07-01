@@ -2,7 +2,7 @@
 //Сделайте сценарий для добавления нового товара (продукта) в учебном приложении litecart (в админке).
 
 //Для добавления товара нужно открыть меню Catalog,
-//в правом верхнем углу нажать кнопку "Add New Product",
+//в правом верхнем углу нажать кнопку "Add New ProductCardInfo",
 //заполнить поля с информацией о товаре и сохранить.
 
 //Достаточно заполнить только информацию на вкладках General,
@@ -18,9 +18,31 @@
 //что он появился в каталоге (в админке).
 //Клиентскую часть магазина можно не проверять.
 
-namespace SeleniumWebDriverCourse.Task12_AddNewItem
+using FirstProject;
+using Litecart.UI.Client;
+using Litecart.UI.Client.Pages.AdminApp.AddNewProduct;
+using Litecart.UI.Client.Pages.AdminApp.Catalog;
+using NUnit.Framework;
+
+namespace SeleniumWebDriverCourse.AdminTests
 {
-    internal class AddNewItem
+    public class AddNewItemTest : AdminBaseUiTest
     {
+        [TestCaseSource(typeof(DataProviderNewProductTest1),nameof(DataProviderNewProductTest1.AddNewProductData))]       
+        public void AddNewItem(GeneralProductDto generalProductInfo, InformationProductDto informationDataProduct, DataProductDto dataProduct)
+        {
+            // Arrange
+            LoginAdminApp();
+            var catalogPage = this.AdminSite.CatalogPage;
+            DriverFactory.Driver.Navigate().GoToUrl(catalogPage.CatalogPageUrl);
+           
+            var ItemsAmountBeforeTest = catalogPage.ProductsCount;
+
+            // Act
+            catalogPage.AddNewProduct(generalProductInfo, informationDataProduct, dataProduct);
+
+            // Arrange
+            Assert.That(catalogPage.ProductsCount, Is.EqualTo(ItemsAmountBeforeTest+1));
+        }
     }
 }

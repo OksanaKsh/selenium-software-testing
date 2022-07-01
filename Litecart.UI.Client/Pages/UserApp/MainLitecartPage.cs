@@ -1,14 +1,11 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FirstProject
+namespace Litecart.UI.Client.Pages.UserApp
 {
-    public class MainLitecartPage: LitecartBasePage
+    public class MainLitecartPage : LitecartBasePage
     {
-        public CampaignBlockOnMainPage CampaignBlockOnMainPage => new CampaignBlockOnMainPage();
+        public LoginPanel LoginPanel => new LoginPanel();
+        public BaseListProductsBlock CampaignBlock => new BaseListProductsBlock("div[id='box-campaigns'][class='box']");
+
     }
 }

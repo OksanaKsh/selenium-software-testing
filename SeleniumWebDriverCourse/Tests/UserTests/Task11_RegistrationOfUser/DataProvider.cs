@@ -1,15 +1,16 @@
-﻿using FirstProject.dto;
-using System;
+﻿using System;
 using System.Collections;
+using Litecart.UI.Client.Pages.UserApp.dto;
 
-namespace FirstProject
+namespace SeleniumWebDriverCourse.UserTests
 {
     public class DataProvider
     {
-        public static string EmailValue { get; set; } = "adam" + (long)(DateTime.Now - DateTime.MinValue).TotalMilliseconds + "@smith.me";
+        public static string EmailValue = "user" + Guid.NewGuid() + "@gmail.com";
         public static string PasswordValue { get; set; } = "qwerty";
         public static IEnumerable ValidCustomers
         {
+
             get
             {
                 yield return new CustomerDto()

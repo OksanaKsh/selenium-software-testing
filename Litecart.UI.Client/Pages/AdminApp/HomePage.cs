@@ -1,7 +1,8 @@
-﻿using NUnit.Framework;
+﻿using Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace FirstProject
+namespace Litecart.UI.Client.Pages.AdminApp
 {
     public class HomePage: AdminBasePage
     {

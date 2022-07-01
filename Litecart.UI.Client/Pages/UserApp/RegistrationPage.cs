@@ -1,17 +1,14 @@
-﻿using FirstProject.dto;
+﻿using Litecart.UI.Client.Pages.UserApp.dto;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
-namespace FirstProject
+namespace Litecart.UI.Client.Pages.UserApp
 {
     public class RegistrationPage : LitecartBasePage
     {
-        
-        WebDriverWait wait = new WebDriverWait(DriverFactory.Driver, TimeSpan.FromSeconds(10));
 
         public static string UrlCreateAccount = "http://localhost/litecart/en/create_account";
 
-        IWebElement LogoutLink => DriverFactory.Driver.FindElement(By.CssSelector("logout"));
+        IWebElement LogoutLink => DriverFactory.Driver.FindElement(By.XPath("//div[@id='box-account']//a[contains(text(),'Logout')]"));
 
         IWebElement Title => DriverFactory.Driver.FindElement(By.CssSelector("h1.title"));
 
@@ -43,7 +40,7 @@ namespace FirstProject
 
         IWebElement ConfirmedPasswordInput => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='confirmed_password']"));
 
-        IWebElement CreateAccountButton => DriverFactory.Driver.FindElement(By.CssSelector("input[name ='create_account']"));
+        IWebElement CreateAccountButton => DriverFactory.Driver.FindElement(By.CssSelector("button[name ='create_account']"));
 
         public void SelectCountry(string country)
         {
@@ -52,17 +49,10 @@ namespace FirstProject
                     String.Format(".select2-results__option[id $= {0}]", country))).Click();
         }
 
-
         public void SelectZone(string zone)
         {
-            wait.Until(d => d.FindElement(
-                    By.CssSelector(String.Format("select[name=zone_code] option[value={0}]", zone))));
-            new SelectElement(DriverFactory.Driver.FindElement(By.CssSelector("select[name=zone_code]"))).SelectByValue(zone);
-        }
-        public string GenerateUniqueEmail()
-        {
-            Random random = new Random();
-            return "user" + random.Next(5) + "@gmail.com";
+            DriverFactory.Wait.Until(d => d.FindElement(By.CssSelector("select[name='zone_code']")));
+            DriverFactory.Driver.FindElement(By.CssSelector("select[name='zone_code']")).Click();
         }
 
         public void FillRegistrationForm(CustomerDto customer)
@@ -83,7 +73,7 @@ namespace FirstProject
 
         public void Logout()
         {
-
+            LogoutLink.Click();
         }
     }
 }

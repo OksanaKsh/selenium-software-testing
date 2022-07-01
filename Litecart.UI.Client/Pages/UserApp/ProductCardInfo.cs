@@ -1,17 +1,25 @@
-﻿using OpenQA.Selenium;
-using FirstProject.Interfaces;
-using FirstProject.Dto;
-using FirstProject.dto;
-using Litecart.UI.Client.Helpers;
+﻿using Litecart.UI.Client.Helpers;
 using Litecart.UI.Client.Helpers.Extensions.String;
+using Litecart.UI.Client.Pages.UserApp.dto;
+using OpenQA.Selenium;
 
-namespace FirstProject
+namespace Litecart.UI.Client.Pages.UserApp
 {
-    public class CampaignBlockOnMainPage : LitecartBasePage, IProductInfo
+    public class ProductCardInfo : LitecartBasePage
     {
-        public IWebElement ProductName => DriverFactory.Driver.FindElement(By.CssSelector("#box-campaigns.box .product .name"));
-        public IWebElement RegularPrice => DriverFactory.Driver.FindElement(By.CssSelector("#box-campaigns.box .product .price-wrapper .regular-price"));
-        public IWebElement CampaignPrice => DriverFactory.Driver.FindElement(By.CssSelector("#box-campaigns.box .product .price-wrapper .campaign-price"));
+        public IWebElement ProductName;
+        IWebElement RegularPrice;
+        IWebElement CampaignPrice;
+        public ProductCardInfo(IWebElement item)
+        {
+            ProductName = item.FindElement(ProductNameLocator);
+            RegularPrice = item.FindElement(RegularPriceLocator);
+            CampaignPrice = item.FindElement(CampaignPriceLocator);
+        }
+        By ProductNameLocator => By.XPath(".//div[@class ='name']");
+        By RegularPriceLocator => By.XPath(".//div[@class ='price-wrapper']/s[@class ='regular-price']");
+        By CampaignPriceLocator => By.XPath(".//div[@class ='price-wrapper']/strong[@class ='campaign-price']");
+
         public ProductDetailsDto ReadInfo()
         {
             return new ProductDetailsDto()

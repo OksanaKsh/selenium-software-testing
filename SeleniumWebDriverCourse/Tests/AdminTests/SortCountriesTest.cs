@@ -9,10 +9,12 @@
 //2) на странице http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones
 //зайти в каждую из стран и проверить, что зоны расположены в алфавитном порядке
 
+using Litecart.UI.Client;
 using NUnit.Framework;
 using Litecart.UI.Client.Helpers;
+using Litecart.UI.Client.Pages.UserApp;
 
-namespace FirstProject
+namespace SeleniumWebDriverCourse.AdminTests
 {
     public class SortCountriesTest: AdminBaseUiTest
     {
@@ -21,20 +23,20 @@ namespace FirstProject
         public void CountriesAndZonesNameSorting()
         {
             LoginAdminApp();
-            DriverFactory.Driver.Navigate().GoToUrl(CountriesPage.UrlCountries);
 
             // Arrange
             CountriesPage countriesPage = AdminSite.CountriesPage;
-            
+            DriverFactory.Driver.Navigate().GoToUrl(countriesPage.UrlCountries);
+
             // Act && Assert
-            AlphabeticalOrderSorting.VerifyThatItemsAreSortedInAlphabeticalOrder(CountriesPage.ListOfCountries);
+            AlphabeticalOrderSorting.VerifyThatItemsAreSortedInAlphabeticalOrder(countriesPage.ListOfCountries);
 
             countriesPage.VerifyZonesAreSortedForCountryWhenAmountOfZonesGreaterThanZero();
 
             DriverFactory.Driver.Navigate().GoToUrl(GeoZonesPage.UrlGeoZones);
 
             // Act && Assert
-            GeoZonesPage.SelectEveryCountryAndVerifyThatZoneAreInAlphabeticalOrder();
+            this.AdminSite.GeoZonesPage.SelectEveryCountryAndVerifyThatZoneAreInAlphabeticalOrder();
         }
     }
 }

@@ -1,12 +1,15 @@
 ﻿
+using Litecart.UI.Client;
+using Litecart.UI.Client.Pages.UserApp;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 
-namespace FirstProject
+namespace SeleniumWebDriverCourse.UserTests
 {
     public class UserBaseUiTest
     {
 
-        public LitecartBasePage Site { get; } = new LitecartBasePage();
+        public LitecartBasePage Site => new LitecartBasePage();
       
         [SetUp]
         public void Setup()
@@ -17,6 +20,10 @@ namespace FirstProject
         [TearDown]
         public void CloseBrowser()
         {
+            if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
+            {
+                DriverFactory.MakeScreenshot(DriverFactory.Driver);
+            }
             DriverFactory.CloseBrowser();
         }
     }
