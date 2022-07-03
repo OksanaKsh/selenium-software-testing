@@ -22,7 +22,7 @@ namespace SeleniumWebDriverCourse.Tests.UserTests.Task13_Add_to_cart
         {
 
             // Arrange
-            ProductDetailsPage productDetailsPage = Site.ProductDetailsPage;
+            var productDetailsPage = Site.ProductDetailsPage;
             var cart = Site.MainLitecartPage.Cart;
 
             //Act
