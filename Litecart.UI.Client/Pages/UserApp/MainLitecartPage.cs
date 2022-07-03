@@ -1,4 +1,4 @@
-﻿using LitecartUITests;
+﻿
 using OpenQA.Selenium;
 
 namespace Litecart.UI.Client.Pages.UserApp

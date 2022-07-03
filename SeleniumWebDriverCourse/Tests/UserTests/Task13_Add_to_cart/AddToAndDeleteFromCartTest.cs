@@ -8,7 +8,6 @@
 //5) открыть корзину(в правом верхнем углу кликнуть по ссылке Checkout)
 //6) удалить все товары из корзины один за другим, после каждого удаления подождать, пока внизу обновится таблица
 
-using Litecart.UI.Client.Pages.UserApp;
 using NUnit.Framework;
 using SeleniumWebDriverCourse.UserTests;
 

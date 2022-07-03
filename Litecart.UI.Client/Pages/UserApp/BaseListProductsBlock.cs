@@ -20,7 +20,11 @@ namespace Litecart.UI.Client.Pages.UserApp
                 return products;;
             }
         }
-        IList<IWebElement> ListOfProductElementsInSelectedBlock =>
-            DriverFactory.Driver.FindElements(By.CssSelector("#box-campaigns.box li.product"));
+        //IList<IWebElement> ListOfProductElementsInSelectedBlock =>
+        //    DriverFactory.Driver.FindElements(By.CssSelector("#box-campaigns.box li.product"));
+
+        IWebElement CurrentBlock => DriverFactory.Driver.FindElement(By.CssSelector(Locator));
+        IList<IWebElement> ListOfProductElementsInSelectedBlock => CurrentBlock.FindElements(By.XPath(".//li[@class='product column shadow hover-light']"));
+
     }
 }
