@@ -15,17 +15,17 @@ namespace SeleniumWebDriverCourse.Tests.UserTests.Task13_Add_to_cart
 {
     public  class AddToAndDeleteFromCartTest : UserBaseUiTest
     {
+        [Repeat(5)]
         [Test]
         //[Ignore ("Ignore a test not ready yet")]
         public void VerifyAddingAndDeletingItemsToBasket()
         {
 
             // Arrange
-            var productDetailsPage = Site.ProductDetailsPage;
             var cart = Site.MainLitecartPage.Cart;
 
             //Act
-            productDetailsPage.AddingThreeItemsToCart(cart);
+            Site.ProductDetailsPage.AddingThreeItemsToCart(cart);
 
             Site.MainLitecartPage.CheckoutPage.RemoveAddedItems(cart);
         }

@@ -10,14 +10,28 @@ namespace Litecart.UI.Client.Pages.UserApp
         public IWebElement ProductName;
         IWebElement RegularPrice;
         IWebElement CampaignPrice;
+        IWebElement Price;
         public ProductCardInfo(IWebElement item)
         {
             ProductName = item.FindElement(ProductNameLocator);
-            RegularPrice = item.FindElement(RegularPriceLocator);
-            CampaignPrice = item.FindElement(CampaignPriceLocator);
+            try
+            {
+                
+                    Price = item.FindElement(PriceLocator);
+                    RegularPrice = null;
+                    CampaignPrice = null;
+            }
+            catch (NoSuchElementException e)
+            {
+                Price = null;
+                RegularPrice = item.FindElement(RegularPriceLocator);
+                CampaignPrice = item.FindElement(CampaignPriceLocator);
+            }
+
         }
         By ProductNameLocator => By.XPath(".//div[@class ='name']");
         By RegularPriceLocator => By.XPath(".//div[@class ='price-wrapper']/s[@class ='regular-price']");
+        By PriceLocator => By.XPath(".//div[@class ='price-wrapper']/span[@class ='price']");
         By CampaignPriceLocator => By.XPath(".//div[@class ='price-wrapper']/strong[@class ='campaign-price']");
 
         public ProductDetailsDto ReadInfo()

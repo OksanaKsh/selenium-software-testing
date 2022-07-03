@@ -59,7 +59,7 @@ namespace Litecart.UI.Client.Pages.UserApp
 
                 DriverFactory.Wait.Until(ExpectedConditions.TextToBePresentInElement(cart.Quantity, (initialQuantity + 1).ToString()));
                 DriverFactory.Driver.Navigate().GoToUrl("http://localhost/litecart/en/");
-                DriverFactory.Wait.Until(ExpectedConditions.ElementExists(By.CssSelector("a[href='http://localhost/litecart/en/create_account']")));
+                DriverFactory.Wait.Until(ExpectedConditions.ElementExists(By.CssSelector("div[id='box-account-login']")));
             }
         }
     }
