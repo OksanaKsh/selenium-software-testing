@@ -12,6 +12,7 @@
 using Litecart.UI.Client;
 using NUnit.Framework;
 using Litecart.UI.Client.Helpers;
+using Litecart.UI.Client.Pages.AdminApp;
 using Litecart.UI.Client.Pages.UserApp;
 
 namespace SeleniumWebDriverCourse.AdminTests
@@ -29,7 +30,7 @@ namespace SeleniumWebDriverCourse.AdminTests
             DriverFactory.Driver.Navigate().GoToUrl(countriesPage.UrlCountries);
 
             // Act && Assert
-            AlphabeticalOrderSorting.VerifyThatItemsAreSortedInAlphabeticalOrder(countriesPage.ListOfCountries);
+            AlphabeticalOrderSorting.VerifyThatItemsAreSortedInAlphabeticalOrder(countriesPage.ListOfCountryNames);
 
             countriesPage.VerifyZonesAreSortedForCountryWhenAmountOfZonesGreaterThanZero();
 

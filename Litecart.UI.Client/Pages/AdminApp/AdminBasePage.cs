@@ -9,6 +9,7 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct
         public LoginPage LoginPage => new LoginPage();
 
         public CountriesPage CountriesPage => new CountriesPage();
+        public CountryDetailsPage CountryDetailsPage => new CountryDetailsPage();
         public GeoZonesPage GeoZonesPage => new GeoZonesPage();
         public CategoryElementPage CategoryElementPage => new CategoryElementPage();
         public CatalogPage CatalogPage => new CatalogPage();
