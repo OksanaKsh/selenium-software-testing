@@ -8,28 +8,15 @@ namespace Litecart.UI.Client.Pages.UserApp
 {
     public class ProductCardInfo : LitecartBasePage
     {
-        public IWebElement ProductName;
-        IWebElement RegularPrice;
-        IWebElement CampaignPrice;
-        IWebElement Price;
+        public IWebElement ProductName => item.FindElement(ProductNameLocator);
+        IWebElement RegularPrice => DriverFactory.Driver.IsElementExists(CampaignPriceLocator) ? item.FindElement(RegularPriceLocator) :null;
+        IWebElement CampaignPrice => DriverFactory.Driver.IsElementExists(CampaignPriceLocator) ? item.FindElement(CampaignPriceLocator) :null;
+        IWebElement Price => DriverFactory.Driver.IsElementExists(PriceLocator) ? item.FindElement(PriceLocator) : null;
+        IWebElement item;
+
         public ProductCardInfo(IWebElement item)
         {
-
-            ProductName = item.FindElement(ProductNameLocator);
-
-            if (DriverFactory.Driver.IsElementExists(PriceLocator))
-            {
-                Price = item.FindElement(PriceLocator);
-                RegularPrice = null;
-                CampaignPrice = null;
-            }
-            else
-            {
-                Price = null;
-                RegularPrice = item.FindElement(RegularPriceLocator); ;
-                CampaignPrice = item.FindElement(CampaignPriceLocator); ;
-            }
-
+            this.item = item;
         }
         By ProductNameLocator => By.XPath(".//div[@class ='name']");
         By RegularPriceLocator => By.XPath(".//div[@class ='price-wrapper']/s[@class ='regular-price']");
@@ -54,14 +41,7 @@ namespace Litecart.UI.Client.Pages.UserApp
                     Color = CampaignPrice.GetColor(),
                     Font = CampaignPrice.GetSize().ToDouble(),
                     IsFontBold = CampaignPrice.IsBold(),
-                },
-                Price = (DriverFactory.Driver.IsElementExists(PriceLocator))? new PriceDto()
-                {
-                    Amount = Price.GetPrice(),
-                    Color = Price.GetColor(),
-                    Font = Price.GetSize().ToDouble(),
-                    IsLineThrough = Price.IsLineThrough(),
-                }:null
+                }
             };
         }
     }

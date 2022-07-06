@@ -43,26 +43,5 @@ namespace Litecart.UI.Client.Pages.UserApp
         {
             AddToCardButton.Click();
         }
-
-        //public void AddingThreeItemsToCart(Cart cart)
-        //{
-        //    for (int i = 0; i < 3; i++)
-        //    {
-        //        MainLitecartPage.MostPopularBlock.Products[0].ProductName.Click();
-        //        var initialQuantity = cart.Quantity.Text.ToInt();
-
-        //        if (DriverFactory.Driver.IsElementExists(SizeDropdown))
-        //        {
-        //            var selectElement = new SelectElement(SizeDropdownElement);
-        //            selectElement.SelectByIndex(1);
-        //        } 
-
-        //        AddItemToCart();
-
-        //        DriverFactory.Wait.Until(ExpectedConditions.TextToBePresentInElement(cart.Quantity, (initialQuantity + 1).ToString()));
-        //        DriverFactory.Driver.Navigate().GoToUrl("http://localhost/litecart/en/");
-        //        DriverFactory.Wait.Until(ExpectedConditions.ElementExists(By.CssSelector("div[id='box-account-login']")));
-        //    }
-        //}
     }
 }
