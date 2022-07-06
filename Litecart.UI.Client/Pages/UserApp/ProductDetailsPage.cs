@@ -16,8 +16,8 @@ namespace Litecart.UI.Client.Pages.UserApp
 
         IWebElement CampaignPrice => DriverFactory.Driver.FindElement(By.CssSelector(".campaign-price"));
         IWebElement AddToCardButton => DriverFactory.Driver.FindElement(By.CssSelector("button[name='add_cart_product']"));
-        IWebElement SizeDropdownElement => DriverFactory.Driver.FindElement(By.CssSelector("select[name='options[Size]']"));
-        By SizeDropdown => By.CssSelector("select[name='options[Size]']");
+        public IWebElement SizeDropdownElement => DriverFactory.Driver.FindElement(By.CssSelector("select[name='options[Size]']"));
+        public By SizeDropdown => By.CssSelector("select[name='options[Size]']");
         public ProductDetailsDto ReadInfo()
         {
             return new ProductDetailsDto()
@@ -44,25 +44,25 @@ namespace Litecart.UI.Client.Pages.UserApp
             AddToCardButton.Click();
         }
 
-        public void AddingThreeItemsToCart(Cart cart)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                MainLitecartPage.MostPopularBlock.Products[0].ProductName.Click();
-                var initialQuantity = cart.Quantity.Text.ToInt();
+        //public void AddingThreeItemsToCart(Cart cart)
+        //{
+        //    for (int i = 0; i < 3; i++)
+        //    {
+        //        MainLitecartPage.MostPopularBlock.Products[0].ProductName.Click();
+        //        var initialQuantity = cart.Quantity.Text.ToInt();
 
-                if (DriverFactory.Driver.IsElementExists(SizeDropdown))
-                {
-                    var selectElement = new SelectElement(SizeDropdownElement);
-                    selectElement.SelectByIndex(1);
-                } 
+        //        if (DriverFactory.Driver.IsElementExists(SizeDropdown))
+        //        {
+        //            var selectElement = new SelectElement(SizeDropdownElement);
+        //            selectElement.SelectByIndex(1);
+        //        } 
 
-                AddItemToCart();
+        //        AddItemToCart();
 
-                DriverFactory.Wait.Until(ExpectedConditions.TextToBePresentInElement(cart.Quantity, (initialQuantity + 1).ToString()));
-                DriverFactory.Driver.Navigate().GoToUrl("http://localhost/litecart/en/");
-                DriverFactory.Wait.Until(ExpectedConditions.ElementExists(By.CssSelector("div[id='box-account-login']")));
-            }
-        }
+        //        DriverFactory.Wait.Until(ExpectedConditions.TextToBePresentInElement(cart.Quantity, (initialQuantity + 1).ToString()));
+        //        DriverFactory.Driver.Navigate().GoToUrl("http://localhost/litecart/en/");
+        //        DriverFactory.Wait.Until(ExpectedConditions.ElementExists(By.CssSelector("div[id='box-account-login']")));
+        //    }
+        //}
     }
 }
