@@ -5,23 +5,23 @@ namespace Litecart.UI.Client.Pages.UserApp
 {
     public class CheckoutPage
     {
-        public IList<IWebElement> Items => DriverFactory.Driver.FindElements(By.CssSelector(("li.item")));
-        public By TableLocator => By.XPath("//table[@class='dataTable rounded-corners']");
-        private IWebElement TableWithAddedItems => DriverFactory.Driver.FindElement(TableLocator);
+        IList<IWebElement> Items => DriverFactory.Driver.FindElements(By.CssSelector(("li.item")));
+        By TableLocator => By.XPath("//table[@class='dataTable rounded-corners']");
+        IWebElement TableWithAddedItems => DriverFactory.Driver.FindElement(TableLocator);
+        IWebElement RemoveButton =>
+            DriverFactory.Driver.FindElement(By.XPath("//p//button[@type='submit'][@name='remove_cart_item']"));
         public void RemoveAddedItems(Cart cart)
         {
             cart.Checkout.Click();
             for (int i = 0; i < Items.Count; i++)
             {
                 Items[0].Click();
-                DriverFactory.Driver.FindElement(By.XPath("//p//button[@type='submit'][@name='remove_cart_item']"))
-                    .Click();
+                RemoveButton.Click();
                 DriverFactory.Wait.Until(
                     ExpectedConditions.ElementExists(TableLocator));
             }
 
-            DriverFactory.Driver.FindElement(By.XPath(".//p//button[@type='submit'][@name='remove_cart_item']"))
-                .Click();
+            RemoveButton.Click();
             DriverFactory.Wait.Until(
                 ExpectedConditions.StalenessOf(TableWithAddedItems));
         }
