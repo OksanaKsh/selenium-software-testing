@@ -1,17 +1,23 @@
-﻿using Litecart.UI.Client.Pages.AdminApp.AddNewProduct;
+﻿using Litecart.UI.Client.Helpers;
+using Litecart.UI.Client.Helpers.Extensions.WebDriver;
+using Litecart.UI.Client.Pages.AdminApp.AddNewProduct;
 using Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct;
 using OpenQA.Selenium;
 
 namespace Litecart.UI.Client.Pages.AdminApp.Catalog
 {
-    public class CatalogPage: AdminBasePage
+    public class CatalogPage : AdminBasePage
     {
         public string CatalogPageUrl => "http://localhost/litecart/admin/?app=catalog&doc=catalog";
-        public string CatalogWithGoodsUrl => "http://localhost/litecart/admin/?app=catalog&doc=catalog&category_id=1";
+        public static string CatalogWithGoodsUrl => "http://localhost/litecart/admin/?app=catalog&doc=catalog&category_id=1";
         IWebElement AddNewProductButton => DriverFactory.Driver.FindElement(By.XPath("//a[@class='button'][contains(text(),' Add New Product')]"));
         public AddNewProductPage AddNewProductPage => new AddNewProductPage();
+        public EditProductPage EditProductPage => new EditProductPage();    
         public int ProductsCount => DriverFactory.Driver.FindElements(By.XPath("//table[@class='dataTable']//tr")).ToList().Count;//how properly delete public if i need (ProductsCount) it in tests?
-        
+
+        public IList<IWebElement> ProductsNameList =>
+            DriverFactory.Driver.FindElements(By.XPath("//table[@class='dataTable']//tr[@class='row']//td[3]/a[@href]"));
+
         public void AddNewProduct(GeneralProductDto generalProductInfo, InformationProductDto informationDataProduct, DataProductDto dataProduct)
         {
             AddNewProductButton.Click();
@@ -22,6 +28,25 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog
 
             AddNewProductPage.DataTab.Open();
             this.CatalogPage.AddNewProductPage.DataTab.FillDataInfoForNewProduct(dataProduct);
+        }
+
+        public void OpenProductsOnCatalogPageAndVerifyLogs()
+        {
+
+            for (int i = 0; i < ProductsNameList.Count; i++)
+            {
+
+                ProductsNameList[i].Click();
+                if (DriverFactory.Driver.IsElementExists(EditProductPage.EditProductHeader))
+                {
+                    BrowserLogging.VerifyMessagesAppearanceInBrowerLogs();
+                    ActionPanel.Cancel();
+                }
+                else
+                {
+                    i--;
+                }
+            }
         }
     }
 }
