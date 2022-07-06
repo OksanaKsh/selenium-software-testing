@@ -1,5 +1,6 @@
 ﻿using Litecart.UI.Client.Helpers;
 using Litecart.UI.Client.Helpers.Extensions.String;
+using Litecart.UI.Client.Helpers.Extensions.WebDriver;
 using Litecart.UI.Client.Pages.UserApp.dto;
 using OpenQA.Selenium;
 
@@ -13,19 +14,20 @@ namespace Litecart.UI.Client.Pages.UserApp
         IWebElement Price;
         public ProductCardInfo(IWebElement item)
         {
+
             ProductName = item.FindElement(ProductNameLocator);
-            try
+
+            if (DriverFactory.Driver.IsElementExists(PriceLocator))
             {
-                
-                    Price = item.FindElement(PriceLocator);
-                    RegularPrice = null;
-                    CampaignPrice = null;
+                Price = item.FindElement(PriceLocator);
+                RegularPrice = null;
+                CampaignPrice = null;
             }
-            catch (NoSuchElementException e)
+            else
             {
                 Price = null;
-                RegularPrice = item.FindElement(RegularPriceLocator);
-                CampaignPrice = item.FindElement(CampaignPriceLocator);
+                RegularPrice = item.FindElement(RegularPriceLocator); ;
+                CampaignPrice = item.FindElement(CampaignPriceLocator); ;
             }
 
         }
@@ -52,7 +54,14 @@ namespace Litecart.UI.Client.Pages.UserApp
                     Color = CampaignPrice.GetColor(),
                     Font = CampaignPrice.GetSize().ToDouble(),
                     IsFontBold = CampaignPrice.IsBold(),
-                }
+                },
+                Price = (DriverFactory.Driver.IsElementExists(PriceLocator))? new PriceDto()
+                {
+                    Amount = Price.GetPrice(),
+                    Color = Price.GetColor(),
+                    Font = Price.GetSize().ToDouble(),
+                    IsLineThrough = Price.IsLineThrough(),
+                }:null
             };
         }
     }
