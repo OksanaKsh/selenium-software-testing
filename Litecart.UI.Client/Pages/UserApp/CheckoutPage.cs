@@ -1,5 +1,4 @@
-﻿using Litecart.UI.Client.Helpers.Extensions.WebDriver;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 
 namespace Litecart.UI.Client.Pages.UserApp
@@ -8,7 +7,6 @@ namespace Litecart.UI.Client.Pages.UserApp
     {
         By ShortcutsLocator = By.CssSelector("li.shortcut a img");
         IList<IWebElement> Shortcuts => DriverFactory.Driver.FindElements(ShortcutsLocator);
-        //int ShortcutsCount = DriverFactory.Driver.FindElements(ShortcutsLocator).Count;
         By TableLocator => By.XPath("//table[@class='dataTable rounded-corners']");
         IWebElement TableWithAddedItems => DriverFactory.Driver.FindElement(TableLocator);
         IWebElement RemoveButton =>

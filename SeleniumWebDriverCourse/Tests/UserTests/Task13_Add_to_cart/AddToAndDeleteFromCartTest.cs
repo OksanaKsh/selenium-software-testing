@@ -21,7 +21,6 @@ namespace SeleniumWebDriverCourse.Tests.UserTests.Task13_Add_to_cart
         //[Ignore ("Ignore a test not ready yet")]
         public void VerifyAddingAndDeletingItemsToBasket()
         {
-
             //Arrange && Act && Assert
             for (int i = 0; i < 3; i++)
             {
