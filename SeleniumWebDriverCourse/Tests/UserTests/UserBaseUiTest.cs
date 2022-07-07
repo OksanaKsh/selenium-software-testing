@@ -8,13 +8,13 @@ namespace SeleniumWebDriverCourse.UserTests
 {
     public class UserBaseUiTest
     {
-
+        public string MainPageUrl => "http://localhost/litecart/en/";
         public LitecartBasePage Site => new LitecartBasePage();
       
         [SetUp]
         public void Setup()
         {
-            DriverFactory.StartBrowser("Chrome", "http://localhost/litecart/en/");
+            DriverFactory.StartBrowser("Chrome", MainPageUrl);
         }
 
         [TearDown]

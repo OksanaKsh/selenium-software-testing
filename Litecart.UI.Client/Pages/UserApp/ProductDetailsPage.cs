@@ -41,7 +41,24 @@ namespace Litecart.UI.Client.Pages.UserApp
         }
         public void AddItemToCart()
         {
+            var cart = new Cart();
+            SelectSizeIfPresent();
             AddToCardButton.Click();
+            cart.VerifyItemWasAddedToCart();
+        }
+
+        public void SelectSizeIfPresent()
+        {
+            if (DriverFactory.Driver.IsElementExists(SizeDropdown))
+            {
+                new SelectElement(SizeDropdownElement).SelectByIndex(1);
+            }
+        }
+
+        public void NavigateToMainPage()
+        {
+            DriverFactory.Driver.Navigate().GoToUrl(UrlUserPage);
+            DriverFactory.Wait.Until(ExpectedConditions.ElementExists(By.CssSelector("div[id='box-account-login']")));
         }
     }
 }

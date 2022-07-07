@@ -1,21 +1,24 @@
-﻿using OpenQA.Selenium;
+﻿using Litecart.UI.Client.Helpers.Extensions.WebDriver;
+using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 
 namespace Litecart.UI.Client.Pages.UserApp
 {
-    public class CheckoutPage
+    public class CheckoutPage : LitecartBasePage
     {
-        IList<IWebElement> Items => DriverFactory.Driver.FindElements(By.CssSelector(("li.item")));
+        By ShortcutsLocator = By.CssSelector("li.shortcut a img");
+        IList<IWebElement> Shortcuts => DriverFactory.Driver.FindElements(ShortcutsLocator);
+        //int ShortcutsCount = DriverFactory.Driver.FindElements(ShortcutsLocator).Count;
         By TableLocator => By.XPath("//table[@class='dataTable rounded-corners']");
         IWebElement TableWithAddedItems => DriverFactory.Driver.FindElement(TableLocator);
         IWebElement RemoveButton =>
             DriverFactory.Driver.FindElement(By.XPath("//p//button[@type='submit'][@name='remove_cart_item']"));
-        public void RemoveAddedItems(Cart cart)
+
+        public void RemoveAddedItems()
         {
-            cart.Checkout.Click();
-            for (int i = 0; i < Items.Count; i++)
+            for (int i =0; i < Shortcuts.Count ; i++)
             {
-                Items[0].Click();
+                Shortcuts[0].Click();
                 RemoveButton.Click();
                 DriverFactory.Wait.Until(
                     ExpectedConditions.ElementExists(TableLocator));
