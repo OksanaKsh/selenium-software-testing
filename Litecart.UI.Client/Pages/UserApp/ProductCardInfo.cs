@@ -9,9 +9,9 @@ namespace Litecart.UI.Client.Pages.UserApp
     public class ProductCardInfo : LitecartBasePage
     {
         public IWebElement ProductName => item.FindElement(ProductNameLocator);
-        IWebElement RegularPrice => DriverFactory.Driver.IsElementExists(CampaignPriceLocator) ? item.FindElement(RegularPriceLocator) :null;
-        IWebElement CampaignPrice => DriverFactory.Driver.IsElementExists(CampaignPriceLocator) ? item.FindElement(CampaignPriceLocator) :null;
-        IWebElement Price => DriverFactory.Driver.IsElementExists(PriceLocator) ? item.FindElement(PriceLocator) : null;
+        IWebElement RegularPrice => DriverFactory.Driver.IsElementExists(RegularPriceLocator) ? item.FindElement(RegularPriceLocator) : null;
+        IWebElement CampaignPrice => DriverFactory.Driver.IsElementExists(CampaignPriceLocator) ? item.FindElement(CampaignPriceLocator) : null;
+        IWebElement Price => DriverFactory.Driver.IsElementExists(PriceLocator) ? item.FindElement(PriceLocator) :null;
         IWebElement item;
 
         public ProductCardInfo(IWebElement item)
@@ -20,29 +20,45 @@ namespace Litecart.UI.Client.Pages.UserApp
         }
         By ProductNameLocator => By.XPath(".//div[@class ='name']");
         By RegularPriceLocator => By.XPath(".//div[@class ='price-wrapper']/s[@class ='regular-price']");
-        By PriceLocator => By.XPath(".//div[@class ='price-wrapper']/span[@class ='price']");
+        By PriceLocator => By.XPath("./div[@class ='price-wrapper']/span[@class ='price']");
         By CampaignPriceLocator => By.XPath(".//div[@class ='price-wrapper']/strong[@class ='campaign-price']");
 
         public ProductDetailsDto ReadInfo()
         {
-            return new ProductDetailsDto()
+            if (!DriverFactory.Driver.IsElementExists(PriceLocator))
             {
-                ProductName = ProductName.Text,
-                RegularPrice = new RegularPriceDto()
+                return new ProductDetailsDto()
                 {
-                    Amount = RegularPrice.GetPrice(),
-                    Color = RegularPrice.GetColor(),
-                    Font = RegularPrice.GetSize().ToDouble(),
-                    IsLineThrough = RegularPrice.IsLineThrough()
-                },
-                CampaignPrice = new CampaignPriceDto()
+                    ProductName = ProductName.Text,
+                    RegularPrice = new RegularPriceDto()
+                    {
+                        Amount = RegularPrice.GetPrice(),
+                        Color = RegularPrice.GetColor(),
+                        Font = RegularPrice.GetSize().ToDouble(),
+                        IsLineThrough = RegularPrice.IsLineThrough()
+                    },
+                    CampaignPrice = new CampaignPriceDto()
+                    {
+                        Amount = CampaignPrice.GetPrice(),
+                        Color = CampaignPrice.GetColor(),
+                        Font = CampaignPrice.GetSize().ToDouble(),
+                        IsFontBold = CampaignPrice.IsBold(),
+                    }
+                };
+            }
+            else
+            {
+                return new ProductDetailsDto()
                 {
-                    Amount = CampaignPrice.GetPrice(),
-                    Color = CampaignPrice.GetColor(),
-                    Font = CampaignPrice.GetSize().ToDouble(),
-                    IsFontBold = CampaignPrice.IsBold(),
-                }
-            };
+                    Price = new PriceDto()
+                    {
+                        Amount = Price.GetPrice(),
+                        Color = Price.GetColor(),
+                        Font = Price.GetSize().ToDouble(),
+                        IsLineThrough = Price.IsLineThrough()
+                    }
+                };
+            }
         }
     }
 }

@@ -8,8 +8,10 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog
 {
     public class CatalogPage : AdminBasePage
     {
-        public string CatalogPageUrl => "http://localhost/litecart/admin/?app=catalog&doc=catalog";
-        public static string CatalogWithGoodsUrl => "http://localhost/litecart/admin/?app=catalog&doc=catalog&category_id=1";
+        public static string CatalogPageUrl => "http://localhost/litecart/admin/?app=catalog&doc=catalog";
+        public static string CatalogWithGoodsUrl => CatalogPageUrl + "&category_id=1";
+        //public static string CatalogWithGoodsUrl => "http://localhost/litecart/admin/?app=catalog&doc=catalog&category_id=1";
+
         IWebElement AddNewProductButton => DriverFactory.Driver.FindElement(By.XPath("//a[@class='button'][contains(text(),' Add New Product')]"));
         public AddNewProductPage AddNewProductPage => new AddNewProductPage();
         public EditProductPage EditProductPage => new EditProductPage();    
