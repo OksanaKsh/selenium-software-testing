@@ -30,8 +30,11 @@ namespace SeleniumWebDriverCourse.Tests.AdminTests.Task12_AddNewItem
             var countryPage = this.AdminSite.CountriesPage;
             DriverFactory.Driver.Navigate().GoToUrl(countryPage.UrlCountries);
 
-            // Act & Assert
-            countryPage.SelectRandomCountry().VerifyThatArrowLinkOpenNewWindow();
+            // Act
+            var countryDetailsPage = countryPage.SelectRandomCountry();
+
+            // Assert
+            countryDetailsPage.VerifyThatArrowLinkOpenNewWindow();
         }
     }
 }
