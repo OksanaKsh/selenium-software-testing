@@ -9,9 +9,9 @@ namespace Litecart.UI.Client.Pages.UserApp
     public class ProductCardInfo : LitecartBasePage
     {
         public IWebElement ProductName => item.FindElement(ProductNameLocator);
-        IWebElement RegularPrice => DriverFactory.Driver.IsElementExists(RegularPriceLocator) ? item.FindElement(RegularPriceLocator) : null;
-        IWebElement CampaignPrice => DriverFactory.Driver.IsElementExists(CampaignPriceLocator) ? item.FindElement(CampaignPriceLocator) : null;
-        IWebElement Price => DriverFactory.Driver.IsElementExists(PriceLocator) ? item.FindElement(PriceLocator) :null;
+        IWebElement RegularPrice =>  item.FindElement(RegularPriceLocator);
+        IWebElement CampaignPrice => item.FindElement(CampaignPriceLocator);
+        IWebElement Price => item.FindElement(PriceLocator);
         IWebElement item;
 
         public ProductCardInfo(IWebElement item)
