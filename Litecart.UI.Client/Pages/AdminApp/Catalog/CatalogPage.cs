@@ -3,6 +3,7 @@ using Litecart.UI.Client.Helpers.Extensions.WebDriver;
 using Litecart.UI.Client.Pages.AdminApp.AddNewProduct;
 using Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct;
 using OpenQA.Selenium;
+using SeleniumExtras.WaitHelpers;
 
 namespace Litecart.UI.Client.Pages.AdminApp.Catalog
 {
@@ -14,7 +15,7 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog
 
         IWebElement AddNewProductButton => DriverFactory.Driver.FindElement(By.XPath("//a[@class='button'][contains(text(),' Add New Product')]"));
         public AddNewProductPage AddNewProductPage => new AddNewProductPage();
-        public EditProductPage EditProductPage => new EditProductPage();    
+        public EditProductPage EditProductPage => new EditProductPage();
         public int ProductsCount => DriverFactory.Driver.FindElements(By.XPath("//table[@class='dataTable']//tr")).ToList().Count;//how properly delete public if i need (ProductsCount) it in tests?
 
         public IList<IWebElement> ProductsNameList =>
@@ -32,23 +33,12 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog
             this.CatalogPage.AddNewProductPage.DataTab.FillDataInfoForNewProduct(dataProduct);
         }
 
-        public void OpenProductsOnCatalogPageAndVerifyLogs()
+        public IList<LogEntry> ReadLogs()
         {
-
-            for (int i = 0; i < ProductsNameList.Count; i++)
-            {
-
-                ProductsNameList[i].Click();
-                if (DriverFactory.Driver.IsElementExists(EditProductPage.EditProductHeader))
-                {
-                    BrowserLogging.VerifyMessagesAppearanceInBrowerLogs();
-                    ActionPanel.Cancel();
-                }
-                else
-                {
-                    i--;
-                }
-            }
+            var currentBrowserLogs = BrowserLogging.VerifyMessagesAppearanceInBrowserLogs();
+            ActionPanel.Cancel();
+            return currentBrowserLogs;
         }
     }
 }
+

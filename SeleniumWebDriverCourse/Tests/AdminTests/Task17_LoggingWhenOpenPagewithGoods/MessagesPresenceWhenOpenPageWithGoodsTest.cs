@@ -8,17 +8,18 @@
 //3) последовательно открывать страницы товаров и проверять, не появляются ли в логе браузера сообщения (любого уровня)
 
 using System;
-using System.Linq;
 using Litecart.UI.Client;
-using Litecart.UI.Client.Helpers.Extensions.WebDriver;
+using Litecart.UI.Client.Helpers;
 using Litecart.UI.Client.Pages.AdminApp.Catalog;
 using NUnit.Framework;
-using OpenQA.Selenium;
 using SeleniumWebDriverCourse.AdminTests;
+using System.Linq;
+using Litecart.UI.Client.Helpers.Extensions.WebDriver;
+using Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct;
 
 namespace SeleniumWebDriverCourse.Tests.AdminTests.Task17_LoggingWhenOpenPagewithGoods
 {
-    public class MessagesPresenceWhenOpenPageWithGoodsTest:AdminBaseUiTest
+    public class MessagesPresenceWhenOpenPageWithGoodsTest : AdminBaseUiTest
     {
         [Test]
         //[Repeat(5)]
@@ -29,8 +30,21 @@ namespace SeleniumWebDriverCourse.Tests.AdminTests.Task17_LoggingWhenOpenPagewit
             LoginAdminApp();
             DriverFactory.Driver.Navigate().GoToUrl(CatalogPage.CatalogWithGoodsUrl);
 
-            // Act & Assert
-            AdminSite.CatalogPage.OpenProductsOnCatalogPageAndVerifyLogs();
+            // Act
+            var catalogPage = AdminSite.CatalogPage;
+
+            for (int i = 0; i < catalogPage.ProductsNameList.Count; i++)
+            {
+                var logsBeforeOpeningPage = BrowserLogging.VerifyMessagesAppearanceInBrowserLogs();
+                catalogPage.ProductsNameList[i].Click();
+                if (DriverFactory.Driver.IsElementExists(new EditProductPage().EditProductHeader))
+                {
+                    // Assert
+                    bool logsPresent = catalogPage.ReadLogs().Except(logsBeforeOpeningPage).Any();
+                    Assert.That(logsPresent,Is.False);
+                }
+                else i--;
+            }
         }
     }
 }
