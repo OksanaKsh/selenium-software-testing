@@ -35,12 +35,14 @@ namespace SeleniumWebDriverCourse.Tests.AdminTests.Task17_LoggingWhenOpenPagewit
 
             for (int i = 0; i < catalogPage.ProductsNameList.Count; i++)
             {
+                var editProductPage = new EditProductPage();
                 var logsBeforeOpeningPage = BrowserLogging.VerifyMessagesAppearanceInBrowserLogs();
                 catalogPage.ProductsNameList[i].Click();
-                if (DriverFactory.Driver.IsElementExists(new EditProductPage().EditProductHeader))
+                if (DriverFactory.Driver.IsElementExists(editProductPage.EditProductHeader))
                 {
                     // Assert
                     bool logsPresent = catalogPage.ReadLogs().Except(logsBeforeOpeningPage).Any();
+                    editProductPage.ActionPanel.Cancel();
                     Assert.That(logsPresent,Is.False);
                 }
                 else i--;

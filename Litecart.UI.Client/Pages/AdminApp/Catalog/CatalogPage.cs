@@ -35,9 +35,7 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog
 
         public IList<LogEntry> ReadLogs()
         {
-            var currentBrowserLogs = BrowserLogging.VerifyMessagesAppearanceInBrowserLogs();
-            ActionPanel.Cancel();
-            return currentBrowserLogs;
+            return BrowserLogging.VerifyMessagesAppearanceInBrowserLogs();
         }
     }
 }
