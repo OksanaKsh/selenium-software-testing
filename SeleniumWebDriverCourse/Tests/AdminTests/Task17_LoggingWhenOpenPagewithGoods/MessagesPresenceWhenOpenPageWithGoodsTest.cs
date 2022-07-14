@@ -19,6 +19,7 @@ using Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct;
 
 namespace SeleniumWebDriverCourse.Tests.AdminTests.Task17_LoggingWhenOpenPagewithGoods
 {
+    [TestFixture, Parallelizable(ParallelScope.All)]
     public class MessagesPresenceWhenOpenPageWithGoodsTest : AdminBaseUiTest
     {
         [Test]

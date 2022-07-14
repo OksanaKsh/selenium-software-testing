@@ -17,6 +17,7 @@ using Litecart.UI.Client.Pages.UserApp;
 
 namespace SeleniumWebDriverCourse.UserTests
 {
+    [TestFixture, Parallelizable(ParallelScope.All)]
     public class PresenceOfAllStickersTest : UserBaseUiTest
     {
 

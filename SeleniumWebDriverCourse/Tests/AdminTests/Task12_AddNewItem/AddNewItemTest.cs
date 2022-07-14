@@ -26,6 +26,7 @@ using NUnit.Framework;
 
 namespace SeleniumWebDriverCourse.AdminTests
 {
+    [TestFixture, Parallelizable(ParallelScope.All)]
     public class AddNewItemTest : AdminBaseUiTest
     {
         [TestCaseSource(typeof(DataProviderNewProductTest1),nameof(DataProviderNewProductTest1.AddNewProductData))]       

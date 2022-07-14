@@ -13,6 +13,7 @@ using NUnit.Framework;
 
 namespace SeleniumWebDriverCourse.AdminTests
 {
+    [TestFixture, Parallelizable(ParallelScope.All)]
     public class MoveAlongAllMenuAdminPanelTest: AdminBaseUiTest
     {
         [Test]

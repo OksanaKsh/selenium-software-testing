@@ -17,6 +17,7 @@ using Litecart.UI.Client.Pages.UserApp;
 
 namespace SeleniumWebDriverCourse.AdminTests
 {
+    [TestFixture, Parallelizable(ParallelScope.All)]
     public class SortCountriesTest: AdminBaseUiTest
     {
         [Test]

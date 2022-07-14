@@ -14,6 +14,7 @@ using SeleniumWebDriverCourse.UserTests;
 
 namespace SeleniumWebDriverCourse.Tests.UserTests.Task13_Add_to_cart
 {
+    [TestFixture, Parallelizable(ParallelScope.All)]
     public class AddToAndDeleteFromCartTest : UserBaseUiTest
     {
         //[Repeat(5)]

@@ -18,6 +18,7 @@ using SeleniumWebDriverCourse.AdminTests;
 
 namespace SeleniumWebDriverCourse.Tests.AdminTests.Task12_AddNewItem
 {
+    [TestFixture, Parallelizable(ParallelScope.All)]
     public class CountriesLinksOpenedInNewWindowTest: AdminBaseUiTest
     {
         [Test]
