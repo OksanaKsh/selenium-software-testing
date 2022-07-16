@@ -4,7 +4,8 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct
 {
     public class AdminBasePage
     {
-        public string UrlCatalogPage => "http://localhost/litecart/admin/";
+        public static string LitecartAppHostIP = "192.168.0.195";
+        public string UrlCatalogPage => "http://" + LitecartAppHostIP + "/litecart/admin/";
         public HomePage HomePage => new HomePage();
         public LoginPage LoginPage => new LoginPage();
 

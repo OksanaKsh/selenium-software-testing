@@ -37,7 +37,7 @@ namespace SeleniumWebDriverCourse.Tests.AdminTests.Task17_LoggingWhenOpenPagewit
             for (int i = 0; i < catalogPage.ProductsNameList.Count; i++)
             {
                 var editProductPage = new EditProductPage();
-                var logsBeforeOpeningPage = BrowserLogging.VerifyMessagesAppearanceInBrowserLogs();
+                var logsBeforeOpeningPage = BrowserLogging.GetMessagesInBrowserLogs();
                 catalogPage.ProductsNameList[i].Click();
                 if (DriverFactory.Driver.IsElementExists(editProductPage.EditProductHeader))
                 {

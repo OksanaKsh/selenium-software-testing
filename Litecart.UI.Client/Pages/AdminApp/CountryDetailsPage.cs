@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct;
-using Litecart.UI.Client.Pages.UserApp;
+﻿using Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct;
 using OpenQA.Selenium;
-using SeleniumExtras.WaitHelpers;
 
 namespace Litecart.UI.Client.Pages.AdminApp
 {

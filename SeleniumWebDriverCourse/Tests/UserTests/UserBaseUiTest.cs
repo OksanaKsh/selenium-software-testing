@@ -8,7 +8,8 @@ namespace SeleniumWebDriverCourse.UserTests
 {
     public class UserBaseUiTest
     {
-        public string MainPageUrl => "http://localhost/litecart/en/";
+        string LitecartAppHostIP = "192.168.0.195";
+        public string MainPageUrl => "http://"+ LitecartAppHostIP + "/litecart/en/";
         public LitecartBasePage Site => new LitecartBasePage();
       
         [SetUp]

@@ -4,13 +4,13 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.Events;
 using OpenQA.Selenium.Support.UI;
 using System.Collections.Concurrent;
-using NUnit.Framework;
-using OpenQA.Selenium.DevTools.V100.CSS;
+using OpenQA.Selenium.Remote;
 
 namespace Litecart.UI.Client
 {
     public class DriverFactory
     {
+        static string RemoteURL = "http://localhost:4444/wd/hub";
         public static WebDriver Driver
         {
             get
@@ -43,11 +43,15 @@ namespace Litecart.UI.Client
             {
                 Driver = new FirefoxDriver();
             }
-            else if ((browserName.Equals("Chrome")))
+            else if (browserName.Equals("Chrome"))
             {
-               // SetProxy();
-                Driver = new ChromeDriver();
-            }
+                ChromeOptions capabilities = new ChromeOptions();
+                capabilities.BrowserVersion = "103";
+                capabilities.AddAdditionalCapability("enableVNC", true, true);
+                Driver = new RemoteWebDriver(new Uri(RemoteURL),capabilities); 
+                // SetProxy();
+                //Driver = new ChromeDriver();
+            }           
             Driver.Manage().Window.Maximize();
             Driver.Navigate().GoToUrl(url);
             return Driver;

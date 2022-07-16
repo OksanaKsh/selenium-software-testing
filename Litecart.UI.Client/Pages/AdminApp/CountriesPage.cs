@@ -7,7 +7,7 @@ namespace Litecart.UI.Client.Pages.AdminApp
 {
     public class CountriesPage : AdminBasePage
     {
-        public string UrlCountries => "http://localhost/litecart/admin/?app=countries&doc=countries";
+        public string UrlCountries => "http://" + LitecartAppHostIP + "/litecart/admin/?app=countries&doc=countries";
         IList<IWebElement> TableRows => DriverFactory.Driver.FindElements(By.CssSelector("table.dataTable tr.row"));
         public IList<IWebElement> ListOfCountryNames => DriverFactory.Driver.FindElements(By.XPath("//table[@class='dataTable']//td[5]//a")).ToList();
         IList<IWebElement> ListOfZones => DriverFactory.Driver.FindElements(By.XPath("//table[@class='dataTable']/td[2]")).ToList();

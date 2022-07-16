@@ -6,7 +6,7 @@ namespace Litecart.UI.Client.Pages.UserApp
     public class RegistrationPage : LitecartBasePage
     {
 
-        public static string UrlCreateAccount = "http://localhost/litecart/en/create_account";
+        public static string UrlCreateAccount = "http://" + LitecartAppHostIP + "/litecart/en/create_account";
 
         IWebElement LogoutLink => DriverFactory.Driver.FindElement(By.XPath("//div[@id='box-account']//a[contains(text(),'Logout')]"));
 

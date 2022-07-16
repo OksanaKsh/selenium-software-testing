@@ -10,6 +10,9 @@ namespace SeleniumWebDriverCourse.AdminTests
     public class AdminBaseUiTest
     {
         public Proxy Proxy;
+        static string LitecartAppHostIP = "192.168.0.195";
+        public static string AdminBaseURL => "http://"+ LitecartAppHostIP + "/litecart/admin/";
+
         public AdminBasePage AdminSite  =>  new AdminBasePage(); 
         public void LoginAdminApp()
         {
@@ -21,7 +24,7 @@ namespace SeleniumWebDriverCourse.AdminTests
         public void Setup()
         {
             //DriverFactory.SetProxy();
-            DriverFactory.StartBrowser("Chrome", "http://localhost/litecart/admin/");
+            DriverFactory.StartBrowser("Chrome", AdminBaseURL);
         }
 
         [TearDown]

@@ -7,7 +7,7 @@ namespace Litecart.UI.Client.Pages.UserApp
     public class Cart : LitecartBasePage
     {
         IWebElement QuantityOfAddedItems => DriverFactory.Driver.FindElement(By.CssSelector("span.quantity"));
-        IWebElement Checkout => DriverFactory.Driver.FindElement(By.CssSelector("a[href='http://localhost/litecart/en/checkout'][class='link']"));
+        IWebElement Checkout => DriverFactory.Driver.FindElement(By.CssSelector("a[href='http://" + LitecartAppHostIP + "/litecart/en/checkout'][class='link']"));
 
         int QuantityBeforeAddingItems = DriverFactory.Driver.FindElement(By.CssSelector("span.quantity")).Text.ToInt();
         public void VerifyItemWasAddedToCart()
