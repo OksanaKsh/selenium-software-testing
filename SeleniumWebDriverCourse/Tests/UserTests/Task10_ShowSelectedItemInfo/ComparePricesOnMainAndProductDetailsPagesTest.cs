@@ -21,6 +21,7 @@ using NUnit.Framework;
 
 namespace SeleniumWebDriverCourse.UserTests
 {
+    [TestFixture, Parallelizable(ParallelScope.All)]
     public class ComparePricesOnMainAndProductDetailsPagesTest: UserBaseUiTest
     {
         [Test]

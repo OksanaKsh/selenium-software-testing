@@ -26,6 +26,7 @@ using NUnit.Framework;
 
 namespace SeleniumWebDriverCourse.AdminTests
 {
+    [TestFixture, Parallelizable(ParallelScope.All)]
     public class AddNewItemTest : AdminBaseUiTest
     {
         [TestCaseSource(typeof(DataProviderNewProductTest1),nameof(DataProviderNewProductTest1.AddNewProductData))]       
@@ -34,7 +35,7 @@ namespace SeleniumWebDriverCourse.AdminTests
             // Arrange
             LoginAdminApp();
             var catalogPage = this.AdminSite.CatalogPage;
-            DriverFactory.Driver.Navigate().GoToUrl(catalogPage.CatalogPageUrl);
+            DriverFactory.Driver.Navigate().GoToUrl(CatalogPage.CatalogPageUrl);
            
             var ItemsAmountBeforeTest = catalogPage.ProductsCount;
 

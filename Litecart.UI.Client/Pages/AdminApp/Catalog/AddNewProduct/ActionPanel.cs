@@ -12,5 +12,9 @@ namespace Litecart.UI.Client.Pages.AdminApp.Catalog.AddNewProduct
         {
             SaveButton.Click();
         }
+        public void Cancel()
+        {
+            CancelButton.Click();
+        }
     }
 }

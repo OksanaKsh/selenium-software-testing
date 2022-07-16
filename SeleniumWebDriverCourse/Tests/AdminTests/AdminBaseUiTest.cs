@@ -20,7 +20,7 @@ namespace SeleniumWebDriverCourse.AdminTests
         [SetUp]
         public void Setup()
         {
-            DriverFactory.SetProxy();
+            //DriverFactory.SetProxy();
             DriverFactory.StartBrowser("Chrome", "http://localhost/litecart/admin/");
         }
 

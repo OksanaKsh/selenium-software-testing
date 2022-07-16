@@ -7,5 +7,6 @@ namespace Litecart.UI.Client.Pages.UserApp.dto
         public string? ProductName { get; set; }
         public RegularPriceDto? RegularPrice { get; set; }
         public CampaignPriceDto? CampaignPrice { get; set; }
+        public PriceDto? Price { get; set; }    
     }
 }

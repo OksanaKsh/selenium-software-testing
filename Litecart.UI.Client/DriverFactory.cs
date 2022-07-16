@@ -1,15 +1,32 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.Events;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.Concurrent;
+using NUnit.Framework;
+using OpenQA.Selenium.DevTools.V100.CSS;
 
 namespace Litecart.UI.Client
 {
     public class DriverFactory
     {
-        public static WebDriver? Driver { get; set; }
+        public static WebDriver Driver
+        {
+            get
+            {
+                return DriverCollection.First(pair => pair.Value == NUnit.Framework.TestContext.CurrentContext.Test.Name).Key;
+            }
+            
+            set
+            {
+                DriverCollection.TryAdd(value, NUnit.Framework.TestContext.CurrentContext.Test.Name);
+            }
+        }
+
+        public static readonly ConcurrentDictionary<  WebDriver, string> DriverCollection =
+            new ConcurrentDictionary<WebDriver, string>();
+    public static EventFiringWebDriver? EventDriver { get; set; }
         public static WebDriverWait Wait
         {
             get
@@ -28,7 +45,7 @@ namespace Litecart.UI.Client
             }
             else if ((browserName.Equals("Chrome")))
             {
-                //SetProxy();
+               // SetProxy();
                 Driver = new ChromeDriver();
             }
             Driver.Manage().Window.Maximize();
@@ -36,16 +53,16 @@ namespace Litecart.UI.Client
             return Driver;
         }
 
-        public static WebDriver SetProxy()
-        {
-            Proxy proxy = new Proxy();
-            proxy.Kind = ProxyKind.Manual;
-            proxy.HttpProxy = "localhost:8888";
-            ChromeOptions options = new ChromeOptions();
-            options.Proxy = proxy;
-            Driver = new ChromeDriver(options);
-            return Driver;
-        }
+        //public static WebDriver SetProxy()
+        //{
+        //    Proxy proxy = new Proxy();
+        //    proxy.Kind = ProxyKind.Manual;
+        //    proxy.HttpProxy = "127.0.0.1:8888";
+        //    ChromeOptions options = new ChromeOptions();
+        //    options.Proxy = proxy;
+        //    Driver = new ChromeDriver(options);
+        //    return Driver;
+        //}
         public static void CloseBrowser()
         {
             Driver.Quit();
@@ -54,7 +71,7 @@ namespace Litecart.UI.Client
 
         public static void MakeScreenshot(WebDriver driver)
         {
-            string screenshotsStorage = Path.Combine(TestContext.CurrentContext.WorkDirectory.ToString() ,"Screens", TestContext.CurrentContext.Test.MethodName.ToString()+".png");
+            string screenshotsStorage = Path.Combine(NUnit.Framework.TestContext.CurrentContext.WorkDirectory.ToString() ,"Screens", NUnit.Framework.TestContext.CurrentContext.Test.MethodName.ToString()+".png");
             driver.GetScreenshot().SaveAsFile(screenshotsStorage, ScreenshotImageFormat.Png);
         }
 

@@ -28,6 +28,7 @@ using OpenQA.Selenium;
 
 namespace SeleniumWebDriverCourse.UserTests
 {
+    [TestFixture, Parallelizable(ParallelScope.All)]
     public class UserRegistrationTests: UserBaseUiTest
     {
         [Test]
